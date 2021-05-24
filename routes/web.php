@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Login');
+});
+
+Route::get('/d', function () {
+    return view('Store_Keeper.Dashboard');
 });
