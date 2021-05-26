@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/d', function () {
-    return view('StoreKeeper.Dashboard');
+    return view('storeKeeper.dashboard');
 });

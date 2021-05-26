@@ -1,7 +1,11 @@
-@include('Layouts.Header')
+@include('layouts.header')
 
-@include('Layouts.Navbar')
+@include('layouts.navbar')
 
-@include('Layouts.Middle')
+@include('layouts.middle')
 
-@include('Layouts.Footer')
+
+
+
+
+@include('layouts.footer')
