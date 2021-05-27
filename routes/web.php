@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\storekeeper\StoreArrivalController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('Login');
 });
 
-Route::get('/d', function () {
-    return view('storeKeeper.dashboard');
-});
+
+
+Route::view('/d','storeKeeper.dashboard');
+Route::get('/dd',[StoreArrivalController::class,'index']);
+Route::post('/addarrivals',[StoreArrivalController::class,'store']);

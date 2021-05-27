@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectionReturnsTable extends Migration
+class CreateSectionInchargesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateSectionReturnsTable extends Migration
      */
     public function up()
     {
-        Schema::create('_section__returns', function (Blueprint $table) {
+        Schema::create('sectionincharges', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('employee_id');
             $table->string('section_id');
-            $table->string('catagory_id');
-            $table->string('product_id');
-            $table->string('quantity');
-            $table->string('return_remarks');
-            $table->string('return_status');
             $table->string('status');
             $table->timestamps();
         });
@@ -33,6 +30,6 @@ class CreateSectionReturnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_section__returns');
+        Schema::dropIfExists('_section_incharges');
     }
 }

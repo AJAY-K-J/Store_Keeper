@@ -13,7 +13,7 @@ class CreateSectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('_sections', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('status');
