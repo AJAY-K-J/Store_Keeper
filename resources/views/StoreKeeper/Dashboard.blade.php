@@ -1,6 +1,243 @@
 @extends('layouts.main')
 
 
+@section('sidebar0')
+
+
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+    href="/d" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+        class="hide-menu">Dashboard</span></a></li>
+@endsection
+
+@section('sidebar1')
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+    href="charts.html" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span
+        class="hide-menu">Add User</span></a></li>
+    
+@endsection
+
+@section('sidebar2')
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+    href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span
+        class="hide-menu">Add Designations</span></a></li>
+    
+@endsection
+@section('sidebar3')
+
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+    href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span
+        class="hide-menu">Add Roles</span></a></li>
+    
+@endsection
+@section('sidebar4')
+
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+    href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
+        class="hide-menu">Add Sections</span></a></li>
+    
+@endsection
+@section('sidebar5')
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+    href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
+        class="hide-menu">Add Categories</span></a></li>
+    
+@endsection
+@section('sidebar6')
+
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+    href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
+        class="hide-menu">Add Items</span></a></li>
+    
+@endsection
+@section('sidebar7')
+
+<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+    href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span
+        class="hide-menu">Icons </span></a>
+<ul aria-expanded="false" class="collapse  first-level">
+    <li class="sidebar-item"><a href="icon-material.html" class="sidebar-link"><i
+                class="mdi mdi-emoticon"></i><span class="hide-menu"> Material Icons
+            </span></a></li>
+    <li class="sidebar-item"><a href="icon-fontawesome.html" class="sidebar-link"><i
+                class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Font Awesome
+                Icons </span></a></li>
+</ul>
+</li>
+    
+@endsection
+@section('sidebar8')
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+    href="pages-elements.html" aria-expanded="false"><i class="mdi mdi-pencil"></i><span
+        class="hide-menu">Elements</span></a></li>
+    
+@endsection
+@section('sidebar9')
+       
+<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+    href="javascript:void(0)" aria-expanded="false"><i
+        class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
+<ul aria-expanded="false" class="collapse  first-level">
+    <li class="sidebar-item"><a href="index2.html" class="sidebar-link"><i
+                class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Dashboard-2
+            </span></a></li>
+    <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i
+                class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery
+            </span></a></li>
+    <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i
+                class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar
+            </span></a></li>
+    <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i
+                class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice
+            </span></a></li>
+    <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i
+                class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option
+            </span></a></li>
+</ul>
+</li>
+    
+@endsection
+
+ <!-- Column -->
+          <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                              <!-- ============================================================== -->
+
+
+
+
+@section('Column1')
+
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-2 col-xlg-3">
+                       <a href="/d"> <div class="card card-hover">
+                            <div class="box bg-cyan text-center">
+                                <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
+                                <h6 class="text-white">Dashboard</h6>
+                            </div>
+                        </div></a>
+                    </div>
+    
+@endsection
+
+
+
+@section('Column2')
+ <!-- Column -->
+
+                    
+ <div class="col-md-6 col-lg-4 col-xlg-3">
+    <div class="card card-hover">
+        <div class="box bg-success text-center">
+            <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
+            <h6 class="text-white">Store Arrival Book</h6>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('Column3')
+
+                   
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-2 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="box bg-warning text-center">
+                                <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
+                                <h6 class="text-white">GR book</h6>
+                            </div>
+                        </div>
+                    </div>
+@endsection
+@section('Column4')
+
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-2 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="box bg-danger text-center">
+                                <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
+                                <h6 class="text-white">Cadex</h6>
+                            </div>
+                        </div>
+                    </div>
+@endsection
+@section('Column5')
+ <!-- Column -->
+ <div class="col-md-6 col-lg-2 col-xlg-3">
+    <div class="card card-hover">
+        <div class="box bg-info text-center">
+            <h1 class="font-light text-white"><i class="mdi mdi-arrow-all"></i></h1>
+            <h6 class="text-white">Full Width</h6>
+        </div>
+    </div>
+</div>
+<!-- Column -->
+@endsection
+@section('Column6')
+     <!-- Column -->
+     <div class="col-md-6 col-lg-4 col-xlg-3">
+        <div class="card card-hover">
+            <div class="box bg-danger text-center">
+                <h1 class="font-light text-white"><i class="mdi mdi-receipt"></i></h1>
+                <h6 class="text-white">Forms</h6>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('Column7')
+
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-2 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="box bg-info text-center">
+                                <h1 class="font-light text-white"><i class="mdi mdi-relative-scale"></i></h1>
+                                <h6 class="text-white">Buttons</h6>
+                            </div>
+                        </div>
+                    </div>
+@endsection
+@section('Column8')
+     <!-- Column -->
+     <div class="col-md-6 col-lg-2 col-xlg-3">
+        <div class="card card-hover">
+            <div class="box bg-cyan text-center">
+                <h1 class="font-light text-white"><i class="mdi mdi-pencil"></i></h1>
+                <h6 class="text-white">Elements</h6>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('Column9')
+<div class="col-md-6 col-lg-2 col-xlg-3">
+    <div class="card card-hover">
+        <div class="box bg-success text-center">
+            <h1 class="font-light text-white"><i class="mdi mdi-calendar-check"></i></h1>
+            <h6 class="text-white">Calnedar</h6>
+        </div>
+    </div>
+</div>
+@endsection
+@section('Column10')
+     <!-- Column -->
+     <div class="col-md-6 col-lg-2 col-xlg-3">
+        <div class="card card-hover">
+            <div class="box bg-warning text-center">
+                <h1 class="font-light text-white"><i class="mdi mdi-alert"></i></h1>
+                <h6 class="text-white">Errors</h6>
+            </div>
+        </div>
+    </div>
+@endsection
+
+
+
+
+
+          <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                              <!-- ============================================================== -->
+
+
+
 @section('main')
 
 
