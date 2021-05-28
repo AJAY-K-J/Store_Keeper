@@ -11,7 +11,7 @@
 
 @section('sidebar1')
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="charts.html" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span
+    href="adduser" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span
         class="hide-menu">Add User</span></a></li>
     
 @endsection

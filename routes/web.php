@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\storekeeper\StoreArrivalController;
+use App\Http\Controllers\storekeeper\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +23,7 @@ Route::get('/', function () {
 Route::view('/d','storeKeeper.dashboard');
 Route::get('/dd',[StoreArrivalController::class,'index']);
 Route::post('/addarrivals',[StoreArrivalController::class,'store']);
+
+Route::get('/adduser',[UserController::class,'index']);
+
+
