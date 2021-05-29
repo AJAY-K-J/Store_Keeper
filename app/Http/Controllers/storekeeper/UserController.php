@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      return view('storekeeper.adduser');
+        return view('storekeeper.adduser');
     }
 
     /**
@@ -36,9 +36,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $adduser = new User;
+        $adduser->name = $request->name;
+        $adduser->username = $request->username;
+        $adduser->email = $request->email;
+        $adduser->designation = $request->designation;
+        $adduser->role = $request->role;
+        $adduser->save();
     }
-
     /**
      * Display the specified resource.
      *

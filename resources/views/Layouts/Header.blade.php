@@ -10,6 +10,7 @@
     <title>Store Keeper </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+  
  <!-- Custom CSS -->
     <link href="assets/styles.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -27,6 +28,8 @@
 </head>
 
 <body>
+
+    <div id="app">
      <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
