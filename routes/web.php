@@ -20,14 +20,11 @@ Route::get('/', function () {
 
 
 
-Route::view('/d','storeKeeper.dashboard');
+Route::view('/storedashboard','storeKeeper.dashboard');
 Route::get('/dd',[StoreArrivalController::class,'index']);
 Route::post('/addarrivals',[StoreArrivalController::class,'store']);
 
-Route::get('/adduser',[UserController::class,'index']);
 
 
 
-/*Auth::routes('');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/

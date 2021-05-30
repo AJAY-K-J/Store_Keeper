@@ -4,7 +4,7 @@
 @section('sidebar0')
 
 
-    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/d"
+    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/storedashboard"
             aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
 @endsection
 
@@ -209,73 +209,32 @@
 
         <div class="col-md-12">
 
-            <div class="card">
-                <div class="">
+           
+            <user-list> </user-list>
 
 
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 bold">
-                            <h5 class="card-title mb-0">USERS LIST</h5>
-                            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="col-md-6 text-end">
-                            <button type="button" class="btn btn-sm btn-success text-end "data-toggle="modal" data-target="#exampleModalCenter"
-                                name="">Add New User</button>
-                            
-                            
-                            </div>
+                        <div class="modal-body">
+
+                            <add-new-user> </add-new-user>
+                        </div>
+
                     </div>
-
-
                 </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-
-                    </tbody>
-                </table>
             </div>
         </div>
+    </div>
 
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-     <add-new-user> </add-new-user>
-           
-        </div>
-     
-      </div>
-    </div>
-  </div>
-        
-    </div>
-   
 
 
 
@@ -292,5 +251,5 @@
 
 @section('s')
 
-    
+
 @endsection

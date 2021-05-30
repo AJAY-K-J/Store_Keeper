@@ -15,9 +15,18 @@ class UserController extends Controller
      */
     public function index()
     {
+
+       
+
         return view('storekeeper.adduser');
+  
     }
 
+    public function userslist(){
+
+       $users = User::table('users')->all();
+       return $users;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -36,6 +45,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+
+            'name'=>'Required',
+            'username'=>'Required',
+            'email'=>'Required',
+            'designation'=>'Required',
+            'role'=>'Required',
+
+            ]);
+
         $adduser = new User;
         $adduser->name = $request->name;
         $adduser->username = $request->username;

@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('/adduser',[UserController::class,'store']);
+
+Route::get('/adduser',[UserController::class,'userslist']);
