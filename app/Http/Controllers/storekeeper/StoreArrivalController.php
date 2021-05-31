@@ -77,7 +77,7 @@ class StoreArrivalController extends Controller
 
         $store->save();
 
-        return redirect("/d");
+        return redirect("/storedashboard");
         
     }
 

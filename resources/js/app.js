@@ -8,6 +8,11 @@ require('./bootstrap');
 
 
 window.Vue = require('vue').default;
+window.bus = new Vue();
+export const bus = new Vue();
+
+
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -22,6 +27,7 @@ window.Vue = require('vue').default;
 
 Vue.component('add-new-user', require('./components/storekeeper/addnewuser.vue').default);
 Vue.component('user-list', require('./components/storekeeper/userlist.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

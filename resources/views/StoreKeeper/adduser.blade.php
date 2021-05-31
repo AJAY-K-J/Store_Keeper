@@ -71,7 +71,7 @@
 
     <!-- Column -->
     <div class="col-md-6 col-lg-2 col-xlg-3">
-        <a href="/d">
+        <a href="storedashboard">
             <div class="card card-hover">
                 <div class="box bg-cyan text-center">
                     <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
@@ -214,15 +214,15 @@
 
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            <div class="modal fade" id="add-user" data-backdrop="static" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <h5 class="modal-title" id="exampleModalLongTitle">ADD USER</h5>
+                          <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </button>-->
                         </div>
                         <div class="modal-body">
 
@@ -232,6 +232,9 @@
                     </div>
                 </div>
             </div>
+
+
+
         </div>
     </div>
 

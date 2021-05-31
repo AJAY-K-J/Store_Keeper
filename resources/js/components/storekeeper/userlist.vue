@@ -10,8 +10,9 @@
             type="button"
             class="btn btn-sm btn-success text-end"
             data-toggle="modal"
-            data-target="#exampleModalCenter"
+            data-target="#add-user"
             name=""
+          
           >
             Add New User
           </button>
@@ -19,9 +20,9 @@
       </div>
     </div>
     <table class="table">
-      <thead>
+      <thead >
         <tr>
-          <th scope="col">#</th>
+          <th scope="col" >#</th>
           <th scope="col">Role</th>
           <th scope="col">Name</th>
           <th scope="col">User Name</th>
@@ -44,6 +45,8 @@
         </tr>
       </tbody>
     </table>
+      <!-- Modal -->
+
   </div>
 </template>
 
@@ -51,6 +54,7 @@
 export default {
   data() {
     return {
+      name:'',
       list: {},
     };
   },
@@ -58,8 +62,23 @@ export default {
   created() {
     axios.get("/api/adduser").then((response) => (this.list = response.data));
   },
+
+methods:{
+
+
+
+
+}
+
+
 };
 </script>
 
 <style>
+.table thead th {
+  
+    font-weight: bold;
+    color: black;
+}
+
 </style>
