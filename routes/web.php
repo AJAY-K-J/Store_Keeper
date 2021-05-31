@@ -25,6 +25,6 @@ Route::get('/dd',[StoreArrivalController::class,'index']);
 Route::post('/addarrivals',[StoreArrivalController::class,'store']);
 
 
-
+Route::get('/adduser',[UserController::class,'index']);
 
 

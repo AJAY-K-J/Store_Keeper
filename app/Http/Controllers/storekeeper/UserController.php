@@ -24,8 +24,9 @@ class UserController extends Controller
 
     public function userslist(){
 
-       $users = User::table('users')->all();
-       return $users;
+        $users = User::all();
+        return $users;
+        
     }
     /**
      * Show the form for creating a new resource.
