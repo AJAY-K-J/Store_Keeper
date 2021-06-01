@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\storekeeper\StoreArrivalController;
 use App\Http\Controllers\storekeeper\UserController;
+use App\Http\Controllers\storekeeper\RoleController;
+use App\Http\Controllers\storekeeper\DesignationController;
+use App\Http\Controllers\storekeeper\CategoryController;
+use App\Http\Controllers\storekeeper\ItemController;
+use App\Http\Controllers\storekeeper\SectionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,4 +32,12 @@ Route::post('/addarrivals',[StoreArrivalController::class,'store']);
 
 Route::get('/adduser',[UserController::class,'index']);
 
+Route::get('/addroles',[RoleController::class,'index']);
 
+Route::get('/adddesignations',[DesignationController::class,'index']);
+
+Route::get('/addcategories',[CategoryController::class,'index']);
+
+Route::get('/additems',[ItemController::class,'index']);
+
+Route::get('/addsections',[SectionController::class,'index']);

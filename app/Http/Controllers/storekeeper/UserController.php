@@ -16,9 +16,9 @@ class UserController extends Controller
     public function index()
     {
 
-       
+       $userr=User::all();
 
-        return view('storekeeper.adduser');
+        return view('storekeeper.adduser',compact('userr'));
   
     }
 

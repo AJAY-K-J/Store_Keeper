@@ -5,7 +5,7 @@
         <div class="col-md-6 bold">
           <h5 class="card-title mb-0">USERS LIST</h5>
         </div>
-        <div class="col-md-6 text-end">
+   <div class="col-md-6 text-end">
           <button
             type="button"
             class="btn btn-sm btn-success text-end"
@@ -16,7 +16,13 @@
           >
             Add New User
           </button>
+        
         </div>
+                       <div v-if="msg" class="alert alert-success mt-1" role="alert">
+  New User Added
+
+</div>
+
       </div>
     </div>
     <table class="table">
@@ -54,6 +60,7 @@
 export default {
   data() {
     return {
+      msg:false,
       name:'',
       list: {},
     };
@@ -65,6 +72,7 @@ export default {
   var vm =this;
      bus.$on('user-added', function(){
                 vm.get_user();
+                vm.showmsg();
             });
   },
 
@@ -72,8 +80,11 @@ methods:{
 
 get_user(){
   axios.get("/api/adduser").then((response) => (this.list = response.data));
-}
+},
 
+showmsg(){
+  this.msg=true;
+}
 
 }
 

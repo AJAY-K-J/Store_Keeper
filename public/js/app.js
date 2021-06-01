@@ -1933,7 +1933,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["userr"],
   data: function data() {
     return {
       user: {
@@ -1942,7 +1949,8 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         designation: "",
         role: ""
-      }
+      },
+      errors: {}
     };
   },
   mounted: function mounted() {
@@ -1950,11 +1958,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     clear_data: function clear_data() {
-      this.user.name = "";
-      this.user.username = "";
-      this.user.email = "";
-      this.user.designation = "";
-      this.user.role = "";
+      for (var usr in this.user) {
+        this.user[usr] = null;
+      }
+
+      for (var er in this.errors) {
+        this.errors[er] = null;
+      }
     },
     adduser: function adduser() {
       var _this = this;
@@ -1962,15 +1972,15 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("./api/adduser", this.user).then(function (response) {
         console.log(response);
 
-        if (response.data == 'Success') {
+        if (response.data == "Success") {
           _this.$refs.cancel_btn.click();
 
           _this.clear_data();
-
-          alert('added');
         }
 
         bus.$emit("user-added");
+      })["catch"](function (error) {
+        _this.errors = error.response.data.errors;
       });
     }
   }
@@ -2041,9 +2051,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      msg: false,
       name: '',
       list: {}
     };
@@ -2053,6 +2070,7 @@ __webpack_require__.r(__webpack_exports__);
     var vm = this;
     bus.$on('user-added', function () {
       vm.get_user();
+      vm.showmsg();
     });
   },
   methods: {
@@ -2062,6 +2080,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/adduser").then(function (response) {
         return _this.list = response.data;
       });
+    },
+    showmsg: function showmsg() {
+      this.msg = true;
     }
   }
 });
@@ -37847,12 +37868,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder: "Name",
-                  name: "name",
-                  required: ""
-                },
+                attrs: { type: "text", placeholder: "Name", name: "name" },
                 domProps: { value: _vm.user.name },
                 on: {
                   input: function($event) {
@@ -37864,7 +37880,11 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("small", { staticClass: "text-danger" })
+              _vm.errors.name
+                ? _c("small", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.name[0]))
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -37883,8 +37903,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   placeholder: "User Name",
-                  name: "username",
-                  required: ""
+                  name: "username"
                 },
                 domProps: { value: _vm.user.username },
                 on: {
@@ -37897,7 +37916,11 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("small", { staticClass: "text-danger" })
+              _vm.errors.username
+                ? _c("small", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.username[0]))
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -37913,12 +37936,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: {
-                  type: "email",
-                  placeholder: "Email",
-                  name: "email",
-                  required: ""
-                },
+                attrs: { type: "email", placeholder: "Email", name: "email" },
                 domProps: { value: _vm.user.email },
                 on: {
                   input: function($event) {
@@ -37930,7 +37948,11 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("small", { staticClass: "text-danger" })
+              _vm.errors.email
+                ? _c("small", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.email[0]))
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -37949,8 +37971,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   placeholder: "Designation",
-                  name: "designation",
-                  required: ""
+                  name: "designation"
                 },
                 domProps: { value: _vm.user.designation },
                 on: {
@@ -37963,7 +37984,11 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("small", { staticClass: "text-danger" })
+              _vm.errors.designation
+                ? _c("small", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.designation[0]))
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -37979,12 +38004,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder: "Role",
-                  name: "role",
-                  required: ""
-                },
+                attrs: { type: "text", placeholder: "Role", name: "role" },
                 domProps: { value: _vm.user.role },
                 on: {
                   input: function($event) {
@@ -37994,7 +38014,13 @@ var render = function() {
                     _vm.$set(_vm.user, "role", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.errors.role
+                ? _c("small", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.role[0]))
+                  ])
+                : _vm._e()
             ])
           ])
         ]),
@@ -38052,10 +38078,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _vm.msg
+          ? _c(
+              "div",
+              {
+                staticClass: "alert alert-success mt-1",
+                attrs: { role: "alert" }
+              },
+              [_vm._v("\n  New User Added\n\n")]
+            )
+          : _vm._e()
+      ])
+    ]),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(1),
+      _vm._m(2),
       _vm._v(" "),
       _c(
         "tbody",
@@ -38086,28 +38129,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6 bold" }, [
-          _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("USERS LIST")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6 text-end" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm btn-success text-end",
-              attrs: {
-                type: "button",
-                "data-toggle": "modal",
-                "data-target": "#add-user",
-                name: ""
-              }
-            },
-            [_vm._v("\n          Add New User\n        ")]
-          )
-        ])
-      ])
+    return _c("div", { staticClass: "col-md-6 bold" }, [
+      _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("USERS LIST")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 text-end" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-success text-end",
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#add-user",
+            name: ""
+          }
+        },
+        [_vm._v("\n            Add New User\n          ")]
+      )
     ])
   },
   function() {

@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\storekeeper\UserController;
+use App\Http\Controllers\storekeeper\RoleController;
+use App\Http\Controllers\storekeeper\DesignationController;
+use App\Http\Controllers\storekeeper\CategoryController;
+use App\Http\Controllers\storekeeper\ItemController;
+use App\Http\Controllers\storekeeper\SectionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes

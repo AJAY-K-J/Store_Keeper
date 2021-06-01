@@ -226,7 +226,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <add-new-user> </add-new-user>
+                            <add-new-user  :userr = "{{ json_encode($userr) }}"> </add-new-user>
                         </div>
 
                     </div>
