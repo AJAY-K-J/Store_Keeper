@@ -1950,21 +1950,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     clear_data: function clear_data() {
-      this.user.name = '';
-      this.user.username = '';
-      this.user.email = '';
-      this.user.designation = '';
-      this.user.role = '';
+      this.user.name = "";
+      this.user.username = "";
+      this.user.email = "";
+      this.user.designation = "";
+      this.user.role = "";
     },
     adduser: function adduser() {
       var _this = this;
 
       axios.post("./api/adduser", this.user).then(function (response) {
-        alert('added');
+        console.log(response);
 
-        _this.$refs.cancel_btn.click();
+        if (response.data == 'Success') {
+          _this.$refs.cancel_btn.click();
 
-        _this.clear_data();
+          _this.clear_data();
+
+          alert('added');
+        }
+
+        bus.$emit("user-added");
       });
     }
   }
@@ -2043,13 +2049,21 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    axios.get("/api/adduser").then(function (response) {
-      return _this.list = response.data;
+    this.get_user();
+    var vm = this;
+    bus.$on('user-added', function () {
+      vm.get_user();
     });
   },
-  methods: {}
+  methods: {
+    get_user: function get_user() {
+      var _this = this;
+
+      axios.get("/api/adduser").then(function (response) {
+        return _this.list = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),

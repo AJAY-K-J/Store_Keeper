@@ -105,21 +105,25 @@ export default {
   },
 
   methods: {
-
-clear_data(){
-
-    this.user.name='';
-    this.user.username='';
-    this.user.email='';
-    this.user.designation='';
-    this.user.role='';
-},
+    clear_data() {
+      this.user.name = "";
+      this.user.username = "";
+      this.user.email = "";
+      this.user.designation = "";
+      this.user.role = "";
+    },
 
     adduser() {
       axios.post("./api/adduser", this.user).then((response) => {
-          alert('added');
+      console.log(response);
+        if (response.data == 'Success') {
+
           this.$refs.cancel_btn.click();
           this.clear_data();
+          alert('added');
+        }
+
+        bus.$emit("user-added");
       });
     },
   },

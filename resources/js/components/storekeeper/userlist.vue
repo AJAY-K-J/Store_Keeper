@@ -60,12 +60,19 @@ export default {
   },
 
   created() {
-    axios.get("/api/adduser").then((response) => (this.list = response.data));
+
+  this.get_user();
+  var vm =this;
+     bus.$on('user-added', function(){
+                vm.get_user();
+            });
   },
 
 methods:{
 
-
+get_user(){
+  axios.get("/api/adduser").then((response) => (this.list = response.data));
+}
 
 
 }

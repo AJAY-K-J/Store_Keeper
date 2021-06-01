@@ -64,6 +64,7 @@ class UserController extends Controller
         $adduser->designation = $request->designation;
         $adduser->role = $request->role;
         $adduser->save();
+        return 'Success';
     }
     /**
      * Display the specified resource.
