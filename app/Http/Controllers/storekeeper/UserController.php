@@ -5,6 +5,7 @@ namespace App\Http\Controllers\storekeeper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Item;
 
 class UserController extends Controller
 {
@@ -16,9 +17,9 @@ class UserController extends Controller
     public function index()
     {
 
-       $userr=User::all();
+       $item_details=Item::all();
 
-        return view('storekeeper.adduser',compact('userr'));
+        return view('storekeeper.adduser',compact('item_details'));
   
     }
 
@@ -57,14 +58,35 @@ class UserController extends Controller
 
             ]);
 
-        $adduser = new User;
-        $adduser->name = $request->name;
-        $adduser->username = $request->username;
-        $adduser->email = $request->email;
-        $adduser->designation = $request->designation;
-        $adduser->role = $request->role;
-        $adduser->save();
-        return 'Success';
+if($request->id){
+    $user=User::find($request->id);
+}else
+    $user = new User;
+  if($request->name){
+      $user->name=$request->name;
+  }
+
+
+  if($request->username){
+    $user->username=$request->username;
+}
+if($request->email){
+    $user->email=$request->email;
+}
+if($request->designation){
+    $user->designation=$request->designation;
+}
+if($request->role){
+    $user->role=$request->role;
+}
+
+$user->save();
+return 'Success';
+
+
+
+      
+        
     }
     /**
      * Display the specified resource.
@@ -106,8 +128,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $id)
     {
-        //
+        $delete_user = User::find($id);
+        $delete_user->delete();
+        return 'Success';
     }
 }

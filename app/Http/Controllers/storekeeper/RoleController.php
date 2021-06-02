@@ -13,6 +13,13 @@ class RoleController extends Controller
     }
 
 
+    public function roleslist(){
+
+        $role= Role::all();
+        return $role;
+        
+    }
+
 
     public function store(Request $request)
     {
@@ -20,14 +27,31 @@ class RoleController extends Controller
         $request->validate([
 
             'name'=>'Required',
-            
 
             ]);
 
-        $adduser = new Role;
-        $adduser->name = $request->name;
-     
-        $adduser->save();
+if($request->id){
+    $Role=Role::find($request->id);
+}else
+    $Role = new Role;
+  if($request->name){
+      $Role->name=$request->name;
+  }
+
+
+$Role->save();
+return 'Success';     
+        
+    }
+
+
+
+
+
+    public function destroy( $id)
+    {
+        $delete_role = Role::find($id);
+        $delete_role->delete();
         return 'Success';
     }
 

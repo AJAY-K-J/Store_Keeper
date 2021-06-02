@@ -207,45 +207,37 @@
 
 @section('main')
 
+<div class="row">
 
-    <div class="row">
+    <div class="col-md-12">
 
-        <div class="col-md-12">
+       
+        <designation-list> </designation-list>
 
-            <div class="card">
-                <div class="">
-                    
 
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 bold"><h5 class="card-title mb-0">DESIGNATIONS LIST</h5></div>
-                        <div class="col-md-6 text-end"><button type="submit" class="btn btn-sm btn-success text-end " name="">Add New Designation</button></div>
+        <!-- Modal -->
+        <div class="modal fade" id="add-designation" data-backdrop="static" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">ADD DESIGNATION</h5>
+                      <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>-->
                     </div>
-                    
-                    
+                    <div class="modal-body">
+
+                        <add-new-designation > </add-new-designation>
+                    </div>
+
                 </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                     
-                            <th scope="col">Name</th>
-                     	
-                            <th scope="col">Status</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-            </div></div>
+            </div>
         </div>
+
+
+
+    </div>
+</div>
+  
     @endsection

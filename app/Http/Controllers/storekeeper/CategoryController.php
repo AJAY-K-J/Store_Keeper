@@ -12,4 +12,49 @@ class CategoryController extends Controller
         return view('storekeeper.addcategories');
     }
 
+
+
+    public function categorylist(){
+
+        $category= Category::all();
+        return $category;
+        
+    }
+
+
+    public function store(Request $request)
+    {
+
+        $request->validate([
+
+            'name'=>'Required',
+
+            ]);
+
+if($request->id){
+    $Category=Category::find($request->id);
+}else
+    $Category = new Category;
+  if($request->name){
+      $Category->name=$request->name;
+  }
+
+
+$Category->save();
+return 'Success';     
+        
+    }
+
+
+
+
+
+    public function destroy( $id)
+    {
+        $delete_category = Category::find($id);
+        $delete_category->delete();
+        return 'Success';
+    }
+
+    
 }

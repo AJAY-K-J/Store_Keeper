@@ -11,4 +11,48 @@ class SectionController extends Controller
     public function index(){
         return view('storekeeper.addsections');
     }
+
+    public function sectionslist(){
+
+        $section= Section::all();
+        return $section;
+        
+    }
+
+
+    public function store(Request $request)
+    {
+
+        $request->validate([
+
+            'name'=>'Required',
+
+            ]);
+
+if($request->id){
+    $Section=Section::find($request->id);
+}else
+    $Section = new Section;
+  if($request->name){
+      $Section->name=$request->name;
+  }
+
+
+$Section->save();
+return 'Success';     
+        
+    }
+
+
+
+
+
+    public function destroy( $id)
+    {
+        $delete_section = Section::find($id);
+        $delete_section->delete();
+        return 'Success';
+    }
+
+
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\storekeeper\DesignationController;
 use App\Http\Controllers\storekeeper\CategoryController;
 use App\Http\Controllers\storekeeper\ItemController;
 use App\Http\Controllers\storekeeper\SectionController;
+use App\Http\Controllers\sections\SectionPageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,9 +26,9 @@ Route::get('/', function () {
 
 
 
-Route::view('/storedashboard','storeKeeper.dashboard');
-Route::get('/dd',[StoreArrivalController::class,'index']);
-Route::post('/addarrivals',[StoreArrivalController::class,'store']);
+
+Route::get('/storedashboard',[StoreArrivalController::class,'index']);
+
 
 
 Route::get('/adduser',[UserController::class,'index']);
@@ -41,3 +42,9 @@ Route::get('/addcategories',[CategoryController::class,'index']);
 Route::get('/additems',[ItemController::class,'index']);
 
 Route::get('/addsections',[SectionController::class,'index']);
+
+
+
+
+
+Route::get('/sectiondashboard',[SectionPageController::class,'index']);

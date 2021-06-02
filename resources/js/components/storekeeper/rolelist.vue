@@ -3,21 +3,21 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-6 bold">
-          <h5 class="card-title mb-0">USERS LIST</h5>
+          <h5 class="card-title mb-0">ROLE LIST</h5>
         </div>
         <div class="col-md-6 text-end">
           <button
             type="button"
             class="btn btn-sm btn-success text-end"
             data-toggle="modal"
-            data-target="#add-user"
+            data-target="#add-role"
             name=""
           >
-            Add New User
+            Add New Role
           </button>
         </div>
         <div v-if="msg" class="alert alert-success mt-1" role="alert">
-          New User Added
+          New Role Added
         </div>
       </div>
     </div>
@@ -26,36 +26,30 @@
         <tr>
           <th scope="col">#</th>
 
-          <th scope="col">Name</th>
-          <th scope="col">User Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Designation</th>
-          <th scope="col">Role</th>
+          <th scope="col">Role Name</th>
+        
           <th scope="col">Status</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="lis in list" :key="lis.id">
-          <td scope="row">{{ lis.id }}</td>
-          <td>{{ lis.name }}</td>
-          <td>{{ lis.username }}</td>
-          <td>{{ lis.email }}</td>
-          <td>{{ lis.designation }}</td>
-          <td>{{ lis.role }}</td>
-          <td>{{ lis.status }}</td>
+        <tr v-for="role in roles" :key="role.id">
+          <td scope="row">{{ role.id }}</td>
+          <td>{{role.name }}</td>
+         
+          <td>{{ role.status }}</td>
           <td>
             <button
               type="button"
               class="btn btn-sm btn-success text-end"
               data-toggle="modal"
-              data-target="#edit-user"
+              data-target="#edit-role"
               name=""
-              @click="edit_user(lis)"
+              @click="edit_role(role)"
             >
               edit
             </button>
-            <td><button class="btn btn-danger btn-sm m-0" @click="delete_user(lis.id)">Delete</button></td>
+            <td><button class="btn btn-danger btn-sm m-0" @click="delete_role(role.id)">Delete</button></td>
           
         </tr>
       </tbody>
@@ -66,19 +60,19 @@
 
     <!-- Modal -->
 
-    <div class="modal fade" id="edit-user" data-backdrop="static" tabindex="-1" role="dialog"
+    <div class="modal fade" id="edit-role" data-backdrop="static" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">EDIT USER</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">EDIT ROLE</h5>
                           <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>-->
                         </div>
                         <div class="modal-body">
 
-                            <add-new-user :edit='true'> </add-new-user>
+                            <add-new-role :edit='true'> </add-new-role>
                         </div>
 
                     </div>
@@ -95,38 +89,38 @@ export default {
     return {
       msg: false,
       name: "",
-      list: {},
+     roles: {},
     };
   },
 
   created() {
-    this.get_user();
+    this.get_role();
     var vm = this;
-    bus.$on("user-added", function () {
-      vm.get_user();
+    bus.$on("role-added", function () {
+      vm.get_role();
       vm.showmsg();
     });
   },
 
   methods: {
-    get_user() {
-      axios.get("/api/adduser").then((response) => (this.list = response.data));
+    get_role() {
+      axios.get("/api/add_role").then((response) => (this.roles = response.data));
     },
 
     showmsg() {
       this.msg = true;
     },
 
-    edit_user(lis) {
-      bus.$emit("edit-user",lis);
-      console.log(lis);
-    },
-    delete_user(id){
+    edit_role(role) {
+      bus.$emit("edit-role",role);
    
- axios.delete('/api/adduser/'+id).then((response) => {
+    },
+    delete_role(id){
+   
+ axios.delete('/api/add_role/'+id).then((response) => {
           console.log(response);
           if (response.data == "Success") {
-          this.get_user();
+          this.get_role();
           }
 
         

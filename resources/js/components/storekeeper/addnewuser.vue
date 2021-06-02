@@ -94,7 +94,33 @@
 
 <script>
 export default {
-  props: ["userr"],
+  props: ["edit"],
+
+
+created() {
+      if(this.edit)
+      {
+       
+          var vm = this;
+          bus.$on('edit-user',function(lis) {
+          vm.clear_data();
+           vm.user.id = lis.id;
+            vm.user.name = lis.name;
+            vm.user.username = lis.username;
+            vm.user.email = lis.email;
+            vm.user.designation = lis.designation;
+            vm.user.role= lis.role;
+          });
+      }
+      
+    },
+
+
+
+
+
+
+
 
   data() {
     return {
@@ -109,9 +135,6 @@ export default {
     };
   },
 
-  mounted() {
-    console.log("Component mounted.");
-  },
 
   methods: {
     clear_data() {
