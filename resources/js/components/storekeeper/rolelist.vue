@@ -47,9 +47,9 @@
               name=""
               @click="edit_role(role)"
             >
-              edit
+            
             </button>
-            <td><button class="btn btn-danger btn-sm m-0" @click="delete_role(role.id)">Delete</button></td>
+            <button class="btn btn-danger btn-sm m-0" @click="delete_role(role.id)">  <i class=" ti-trash"> </i></button></td>
           
         </tr>
       </tbody>

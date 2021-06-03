@@ -78,7 +78,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <add-new-user :edit='true'> </add-new-user>
+                            <add-new-user  :role_details="role_details" :designation_details="designation_details" :edit='true'> </add-new-user>
                         </div>
 
                     </div>
@@ -91,6 +91,7 @@
 
 <script>
 export default {
+    props: [ "role_details", "designation_details"],
   data() {
     return {
       msg: false,
@@ -119,7 +120,7 @@ export default {
 
     edit_user(lis) {
       bus.$emit("edit-user",lis);
-      console.log(lis);
+     
     },
     delete_user(id){
    

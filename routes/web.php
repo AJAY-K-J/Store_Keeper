@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\storekeeper\StoreArrivalController;
 use App\Http\Controllers\storekeeper\UserController;
 use App\Http\Controllers\storekeeper\RoleController;
@@ -21,10 +22,12 @@ use App\Http\Controllers\sections\SectionPageController;
 */
 
 Route::get('/', function () {
-    return view('Login');
+    return view('Auth.Login');
 });
 
 
+Route::post('/login',[UserAuthController::class,'usercheck']);
+Route::post('/logout',[UserAuthController::class,'userlogout']);
 
 
 Route::get('/storedashboard',[StoreArrivalController::class,'index']);
@@ -48,3 +51,6 @@ Route::get('/addsections',[SectionController::class,'index']);
 
 
 Route::get('/sectiondashboard',[SectionPageController::class,'index']);
+//Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

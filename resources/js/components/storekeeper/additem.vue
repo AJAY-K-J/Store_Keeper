@@ -2,7 +2,7 @@
   <div>
     <form method="post" @submit.prevent="additem()">
       <div class="row">
-        <div class="col-12">
+        <div class="col-6">
           <div class="form-group">
             <label>Item Name</label>
             <input
@@ -16,25 +16,59 @@
               errors.name[0]
             }}</small>
           </div>
-          
-   <div class="form-group">
+
+        </div>
+<div class="col-6">
+          <div class="form-group">
             <label>Category Name</label>
-            <input
-              type="text"
+         
+ <select
               class="form-control"
-              placeholder="Category Name"
+              id="category_name"
               name="category_name"
               v-model="items.category_name"
-            />
+            >
+              <option value="">Select category</option>
+              <option v-for="category in category_details" :key="category.id">
+                {{ category.name }}
+              </option>
+            </select>
+
             <small class="text-danger" v-if="errors.category_name">{{
               errors.category_name[0]
             }}</small>
           </div>
-          
+        </div>
+      </div>
+
+ <div class="row ">
+        <div class="col-12">
+
+  <div class="form-group">
+                  <label for="remarks" class="control-label col-form-label"
+                    >Description of item</label
+                  >
+                  <div class="col-sm-9">
+                    <textarea
+                      class="form-control form-height"
+                      name="description_item"
+                      v-model="items.description_item"
+                    ></textarea>
+                  </div>
+
+                  <small class="text-danger" v-if="errors.description_item">{{
+                    errors.description_item[0]
+                  }}</small>
+                </div>
+
+
 
 
         </div>
-      </div>
+        </div>
+
+
+
       <div class="row mt-4">
         <div class="col-12">
           <div class="form-group text-end">
@@ -59,42 +93,31 @@
 
 <script>
 export default {
-  props: ["edit"],
+  props: ["edit", "category_details"],
 
-
-created() {
-      if(this.edit)
-      {
-       
-          var vm = this;
-          bus.$on('edit-item',function(item) {
-          vm.clear_data();
-           vm.items.id = item.id;
-            vm.items.name = item.name;
-           vm.items.category_name = item.category_name;
-          });
-      }
-      
-    },
-
-
-
-
-
-
-
+  created() {
+    if (this.edit) {
+      var vm = this;
+      bus.$on("edit-item", function (item) {
+        vm.clear_data();
+        vm.items.id = item.id;
+        vm.items.name = item.name;
+        vm.items.category_name = item.category_name;
+        vm.items.description_item= item.description_item;
+      });
+    }
+  },
 
   data() {
     return {
       items: {
         name: "",
-       category_name:"",
-       
+        category_name: "",
+       description_item:"",
       },
       errors: {},
     };
   },
-
 
   methods: {
     clear_data() {
@@ -108,7 +131,7 @@ created() {
     },
 
     additem() {
-console.log(this.items);
+      console.log(this.items);
 
       axios
         .post("./api/add_item", this.items)

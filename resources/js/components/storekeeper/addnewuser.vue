@@ -2,7 +2,11 @@
   <div>
     <form method="post" @submit.prevent="adduser()">
       <div class="row">
-        <div class="col-12">
+
+
+        <div class="col-6">
+
+
           <div class="form-group">
             <label>Name</label>
             <input
@@ -16,6 +20,9 @@
               errors.name[0]
             }}</small>
           </div>
+        </div>
+
+        <div class="col-6">
           <div class="form-group">
             <label>User Name</label>
             <input
@@ -29,6 +36,15 @@
               errors.username[0]
             }}</small>
           </div>
+        </div>
+      </div>
+
+<div class="row">
+
+
+
+
+        <div class="col-6">
           <div class="form-group">
             <label>Email</label>
             <input
@@ -42,34 +58,56 @@
               errors.email[0]
             }}</small>
           </div>
+</div>
+<div class="col-6">
           <div class="form-group">
             <label>Designation</label>
-            <input
-              type="text"
+            <select
               class="form-control"
-              placeholder="Designation"
+              id="itemname"
               name="designation"
               v-model="user.designation"
-            />
+            >
+              <option value="">Select designation</option>
+              <option
+                v-for="designation in designation_details"
+                :key="designation.id"
+              >
+                {{ designation.name }}
+              </option>
+            </select>
             <small class="text-danger" v-if="errors.designation">{{
               errors.designation[0]
             }}</small>
           </div>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-12">
           <div class="form-group">
             <label>Role</label>
-            <input
-              type="text"
+            <select
               class="form-control"
-              placeholder="Role"
+              id="itemname"
               name="role"
               v-model="user.role"
-            />
+            >
+              <option value="">Select role</option>
+              <option v-for="roles in role_details" :key="roles.id">
+                {{ roles.name }}
+              </option>
+            </select>
+
             <small class="text-danger" v-if="errors.role">{{
               errors.role[0]
             }}</small>
           </div>
-        </div>
-      </div>
+</div>
+
+</div>
+
+
       <div class="row mt-4">
         <div class="col-12">
           <div class="form-group text-end">
@@ -94,33 +132,23 @@
 
 <script>
 export default {
-  props: ["edit"],
+  props: ["edit", "role_details", "designation_details"],
 
-
-created() {
-      if(this.edit)
-      {
+  created() {
+     
+    if (this.edit) {
+      var vm = this;
+      bus.$on("edit-user", function (lis) {
        
-          var vm = this;
-          bus.$on('edit-user',function(lis) {
-          vm.clear_data();
-           vm.user.id = lis.id;
-            vm.user.name = lis.name;
-            vm.user.username = lis.username;
-            vm.user.email = lis.email;
-            vm.user.designation = lis.designation;
-            vm.user.role= lis.role;
-          });
-      }
-      
-    },
-
-
-
-
-
-
-
+        vm.clear_data();
+        vm.user.id = lis.id;
+        vm.user.name = lis.name;
+        vm.user.username = lis.username;
+        vm.user.email = lis.email;
+     
+      });
+    }
+  },
 
   data() {
     return {
@@ -134,7 +162,6 @@ created() {
       errors: {},
     };
   },
-
 
   methods: {
     clear_data() {
@@ -151,7 +178,7 @@ created() {
       axios
         .post("./api/adduser", this.user)
         .then((response) => {
-          console.log(response);
+         
           if (response.data == "Success") {
             this.$refs.cancel_btn.click();
             this.clear_data();

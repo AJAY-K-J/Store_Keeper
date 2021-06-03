@@ -5,11 +5,14 @@ namespace App\Http\Controllers\storekeeper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Item;
+use App\Models\Category;
 
 class ItemController extends Controller
 {
     public function index(){
-        return view('storekeeper.additems');
+
+$category_details=Category::all();
+        return view('storekeeper.additems',compact('category_details'));
     }
 
 
@@ -43,6 +46,9 @@ if($request->id){
   }
   if($request->category_name){
     $item->category_name=$request->category_name;
+}
+  if($request->description_item){
+    $item->description_item=$request->description_item;
 }
 
 

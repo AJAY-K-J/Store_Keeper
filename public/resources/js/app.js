@@ -2124,51 +2124,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["edit", "category_details"],
+  props: ["edit"],
   created: function created() {
     if (this.edit) {
       var vm = this;
-      bus.$on("edit-item", function (item) {
+      bus.$on('edit-item', function (item) {
         vm.clear_data();
         vm.items.id = item.id;
         vm.items.name = item.name;
         vm.items.category_name = item.category_name;
-        vm.items.description_item = item.description_item;
       });
     }
   },
@@ -2176,8 +2141,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       items: {
         name: "",
-        category_name: "",
-        description_item: ""
+        category_name: ""
       },
       errors: {}
     };
@@ -2320,55 +2284,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["edit", "role_details", "designation_details"],
+  props: ["edit"],
   created: function created() {
     if (this.edit) {
       var vm = this;
-      bus.$on("edit-user", function (lis) {
+      bus.$on('edit-user', function (lis) {
         vm.clear_data();
         vm.user.id = lis.id;
         vm.user.name = lis.name;
         vm.user.username = lis.username;
         vm.user.email = lis.email;
+        vm.user.designation = lis.designation;
+        vm.user.role = lis.role;
       });
     }
   },
@@ -2398,6 +2326,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("./api/adduser", this.user).then(function (response) {
+        console.log(response);
+
         if (response.data == "Success") {
           _this.$refs.cancel_btn.click();
 
@@ -3782,7 +3712,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["role_details", "designation_details"],
   data: function data() {
     return {
       msg: false,
@@ -3811,6 +3740,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     edit_user: function edit_user(lis) {
       bus.$emit("edit-user", lis);
+      console.log(lis);
     },
     delete_user: function delete_user(id) {
       var _this2 = this;
@@ -3824,58 +3754,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   }
-});
-
-/***/ }),
-
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "bus": () => (/* binding */ bus)
-/* harmony export */ });
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-window.bus = new Vue();
-var bus = new Vue();
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('dashboard-form', __webpack_require__(/*! ./components/storekeeper/dashboardform.vue */ "./resources/js/components/storekeeper/dashboardform.vue").default);
-Vue.component('add-new-user', __webpack_require__(/*! ./components/storekeeper/addnewuser.vue */ "./resources/js/components/storekeeper/addnewuser.vue").default);
-Vue.component('user-list', __webpack_require__(/*! ./components/storekeeper/userlist.vue */ "./resources/js/components/storekeeper/userlist.vue").default);
-Vue.component('add-new-category', __webpack_require__(/*! ./components/storekeeper/addcategory.vue */ "./resources/js/components/storekeeper/addcategory.vue").default);
-Vue.component('category-list', __webpack_require__(/*! ./components/storekeeper/categorylist.vue */ "./resources/js/components/storekeeper/categorylist.vue").default);
-Vue.component('add-new-item', __webpack_require__(/*! ./components/storekeeper/additem.vue */ "./resources/js/components/storekeeper/additem.vue").default);
-Vue.component('item-list', __webpack_require__(/*! ./components/storekeeper/itemlist.vue */ "./resources/js/components/storekeeper/itemlist.vue").default);
-Vue.component('add-new-role', __webpack_require__(/*! ./components/storekeeper/addrole.vue */ "./resources/js/components/storekeeper/addrole.vue").default);
-Vue.component('role-list', __webpack_require__(/*! ./components/storekeeper/rolelist.vue */ "./resources/js/components/storekeeper/rolelist.vue").default);
-Vue.component('add-new-designation', __webpack_require__(/*! ./components/storekeeper/adddesignation.vue */ "./resources/js/components/storekeeper/adddesignation.vue").default);
-Vue.component('designation-list', __webpack_require__(/*! ./components/storekeeper/designationlist.vue */ "./resources/js/components/storekeeper/designationlist.vue").default);
-Vue.component('add-new-section', __webpack_require__(/*! ./components/storekeeper/addsection.vue */ "./resources/js/components/storekeeper/addsection.vue").default);
-Vue.component('section-list', __webpack_require__(/*! ./components/storekeeper/sectionlist.vue */ "./resources/js/components/storekeeper/sectionlist.vue").default);
-/**
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-var app = new Vue({
-  el: '#app'
 });
 
 /***/ }),
@@ -36689,19 +36567,6 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./node_modules/popper.js/dist/esm/popper.js":
 /*!***************************************************!*\
   !*** ./node_modules/popper.js/dist/esm/popper.js ***!
@@ -40809,7 +40674,7 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6" }, [
+          _c("div", { staticClass: "col-12" }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Item Name")]),
               _vm._v(" "),
@@ -40840,116 +40705,40 @@ var render = function() {
                     _vm._v(_vm._s(_vm.errors.name[0]))
                   ])
                 : _vm._e()
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Category Name")]),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.items.category_name,
-                      expression: "items.category_name"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "category_name", name: "category_name" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.items,
-                        "category_name",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.items.category_name,
+                    expression: "items.category_name"
                   }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Select category")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.category_details, function(category) {
-                    return _c("option", { key: category.id }, [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(category.name) +
-                          "\n              "
-                      )
-                    ])
-                  })
                 ],
-                2
-              ),
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  placeholder: "Category Name",
+                  name: "category_name"
+                },
+                domProps: { value: _vm.items.category_name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.items, "category_name", $event.target.value)
+                  }
+                }
+              }),
               _vm._v(" "),
               _vm.errors.category_name
                 ? _c("small", { staticClass: "text-danger" }, [
                     _vm._v(_vm._s(_vm.errors.category_name[0]))
-                  ])
-                : _vm._e()
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row " }, [
-          _c("div", { staticClass: "col-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "control-label col-form-label",
-                  attrs: { for: "remarks" }
-                },
-                [_vm._v("Description of item")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.items.description_item,
-                      expression: "items.description_item"
-                    }
-                  ],
-                  staticClass: "form-control form-height",
-                  attrs: { name: "description_item" },
-                  domProps: { value: _vm.items.description_item },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.items,
-                        "description_item",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _vm.errors.description_item
-                ? _c("small", { staticClass: "text-danger" }, [
-                    _vm._v(_vm._s(_vm.errors.description_item[0]))
                   ])
                 : _vm._e()
             ])
@@ -40967,7 +40756,7 @@ var render = function() {
                   attrs: { "data-dismiss": "modal", type: "button" },
                   on: { click: _vm.clear_data }
                 },
-                [_vm._v("\n              Cancel\n            ")]
+                [_vm._v("\n            Cancel\n          ")]
               ),
               _vm._v(" "),
               _c(
@@ -40976,7 +40765,7 @@ var render = function() {
                   staticClass: "btn btn-primary float-right",
                   attrs: { type: "submit" }
                 },
-                [_vm._v("\n              Save\n            ")]
+                [_vm._v("\n            Save\n          ")]
               )
             ])
           ])
@@ -41022,7 +40811,7 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6" }, [
+          _c("div", { staticClass: "col-12" }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Name")]),
               _vm._v(" "),
@@ -41053,10 +40842,8 @@ var render = function() {
                     _vm._v(_vm._s(_vm.errors.name[0]))
                   ])
                 : _vm._e()
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("User Name")]),
               _vm._v(" "),
@@ -41091,12 +40878,8 @@ var render = function() {
                     _vm._v(_vm._s(_vm.errors.username[0]))
                   ])
                 : _vm._e()
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6" }, [
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Email")]),
               _vm._v(" "),
@@ -41127,128 +40910,68 @@ var render = function() {
                     _vm._v(_vm._s(_vm.errors.email[0]))
                   ])
                 : _vm._e()
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Designation")]),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.user.designation,
-                      expression: "user.designation"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "itemname", name: "designation" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.user,
-                        "designation",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.user.designation,
+                    expression: "user.designation"
                   }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Select designation")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.designation_details, function(designation) {
-                    return _c("option", { key: designation.id }, [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(designation.name) +
-                          "\n              "
-                      )
-                    ])
-                  })
                 ],
-                2
-              ),
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  placeholder: "Designation",
+                  name: "designation"
+                },
+                domProps: { value: _vm.user.designation },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.user, "designation", $event.target.value)
+                  }
+                }
+              }),
               _vm._v(" "),
               _vm.errors.designation
                 ? _c("small", { staticClass: "text-danger" }, [
                     _vm._v(_vm._s(_vm.errors.designation[0]))
                   ])
                 : _vm._e()
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12" }, [
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Role")]),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.user.role,
-                      expression: "user.role"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "itemname", name: "role" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.user,
-                        "role",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.user.role,
+                    expression: "user.role"
                   }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Select role")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.role_details, function(roles) {
-                    return _c("option", { key: roles.id }, [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(roles.name) +
-                          "\n              "
-                      )
-                    ])
-                  })
                 ],
-                2
-              ),
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Role", name: "role" },
+                domProps: { value: _vm.user.role },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.user, "role", $event.target.value)
+                  }
+                }
+              }),
               _vm._v(" "),
               _vm.errors.role
                 ? _c("small", { staticClass: "text-danger" }, [
@@ -41270,7 +40993,7 @@ var render = function() {
                   attrs: { "data-dismiss": "modal", type: "button" },
                   on: { click: _vm.clear_data }
                 },
-                [_vm._v("\n              Cancel\n            ")]
+                [_vm._v("\n            Cancel\n          ")]
               ),
               _vm._v(" "),
               _c(
@@ -41279,7 +41002,7 @@ var render = function() {
                   staticClass: "btn btn-primary float-right",
                   attrs: { type: "submit" }
                 },
-                [_vm._v("\n              Save\n            ")]
+                [_vm._v("\n            Save\n          ")]
               )
             ])
           ])
@@ -42627,8 +42350,6 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(item.category_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(item.description_item))]),
-            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(item.status))]),
             _vm._v(" "),
             _c("td", [
@@ -42749,8 +42470,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Category Name")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Description of Item")]),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Actions")])
@@ -42826,21 +42545,26 @@ var render = function() {
             _c("td", [_vm._v(_vm._s(role.status))]),
             _vm._v(" "),
             _c("td", [
-              _c("button", {
-                staticClass: "btn btn-sm btn-success text-end",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "modal",
-                  "data-target": "#edit-role",
-                  name: ""
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.edit_role(role)
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-success text-end",
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "modal",
+                    "data-target": "#edit-role",
+                    name: ""
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.edit_role(role)
+                    }
                   }
-                }
-              }),
-              _vm._v(" "),
+                },
+                [_vm._v("\n            edit\n          ")]
+              )
+            ]),
+            _c("td", [
               _c(
                 "button",
                 {
@@ -42851,7 +42575,7 @@ var render = function() {
                     }
                   }
                 },
-                [_c("i", { staticClass: " ti-trash" })]
+                [_vm._v("Delete")]
               )
             ])
           ])
@@ -43274,15 +42998,7 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "modal-body" },
-                [
-                  _c("add-new-user", {
-                    attrs: {
-                      role_details: _vm.role_details,
-                      designation_details: _vm.designation_details,
-                      edit: true
-                    }
-                  })
-                ],
+                [_c("add-new-user", { attrs: { edit: true } })],
                 1
               )
             ])
@@ -55907,41 +55623,7 @@ Vue.compile = compileToFunctions;
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/chunk loaded */
-/******/ 	(() => {
-/******/ 		var deferred = [];
-/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
-/******/ 			if(chunkIds) {
-/******/ 				priority = priority || 0;
-/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
-/******/ 				deferred[i] = [chunkIds, fn, priority];
-/******/ 				return;
-/******/ 			}
-/******/ 			var notFulfilled = Infinity;
-/******/ 			for (var i = 0; i < deferred.length; i++) {
-/******/ 				var [chunkIds, fn, priority] = deferred[i];
-/******/ 				var fulfilled = true;
-/******/ 				for (var j = 0; j < chunkIds.length; j++) {
-/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
-/******/ 						chunkIds.splice(j--, 1);
-/******/ 					} else {
-/******/ 						fulfilled = false;
-/******/ 						if(priority < notFulfilled) notFulfilled = priority;
-/******/ 					}
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferred.splice(i--, 1)
-/******/ 					result = fn();
-/******/ 				}
-/******/ 			}
-/******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -56003,66 +55685,57 @@ Vue.compile = compileToFunctions;
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"/js/app": 0,
-/******/ 			"css/app": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0;
-/******/ 			for(moduleId in moreModules) {
-/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 				}
-/******/ 			}
-/******/ 			if(runtime) var result = runtime(__webpack_require__);
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					installedChunks[chunkId][0]();
-/******/ 				}
-/******/ 				installedChunks[chunkIds[i]] = 0;
-/******/ 			}
-/******/ 			return __webpack_require__.O(result);
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 	})();
-/******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!******************************!*\
+  !*** ./resources/js/main.js ***!
+  \******************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "bus": () => (/* binding */ bus)
+/* harmony export */ });
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
+window.bus = new Vue();
+var bus = new Vue();
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+Vue.component('dashboard-form', __webpack_require__(/*! ./components/storekeeper/dashboardform.vue */ "./resources/js/components/storekeeper/dashboardform.vue").default);
+Vue.component('add-new-user', __webpack_require__(/*! ./components/storekeeper/addnewuser.vue */ "./resources/js/components/storekeeper/addnewuser.vue").default);
+Vue.component('user-list', __webpack_require__(/*! ./components/storekeeper/userlist.vue */ "./resources/js/components/storekeeper/userlist.vue").default);
+Vue.component('add-new-category', __webpack_require__(/*! ./components/storekeeper/addcategory.vue */ "./resources/js/components/storekeeper/addcategory.vue").default);
+Vue.component('category-list', __webpack_require__(/*! ./components/storekeeper/categorylist.vue */ "./resources/js/components/storekeeper/categorylist.vue").default);
+Vue.component('add-new-item', __webpack_require__(/*! ./components/storekeeper/additem.vue */ "./resources/js/components/storekeeper/additem.vue").default);
+Vue.component('item-list', __webpack_require__(/*! ./components/storekeeper/itemlist.vue */ "./resources/js/components/storekeeper/itemlist.vue").default);
+Vue.component('add-new-role', __webpack_require__(/*! ./components/storekeeper/addrole.vue */ "./resources/js/components/storekeeper/addrole.vue").default);
+Vue.component('role-list', __webpack_require__(/*! ./components/storekeeper/rolelist.vue */ "./resources/js/components/storekeeper/rolelist.vue").default);
+Vue.component('add-new-designation', __webpack_require__(/*! ./components/storekeeper/adddesignation.vue */ "./resources/js/components/storekeeper/adddesignation.vue").default);
+Vue.component('designation-list', __webpack_require__(/*! ./components/storekeeper/designationlist.vue */ "./resources/js/components/storekeeper/designationlist.vue").default);
+Vue.component('add-new-section', __webpack_require__(/*! ./components/storekeeper/addsection.vue */ "./resources/js/components/storekeeper/addsection.vue").default);
+Vue.component('section-list', __webpack_require__(/*! ./components/storekeeper/sectionlist.vue */ "./resources/js/components/storekeeper/sectionlist.vue").default);
+/**
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+var app = new Vue({
+  el: '#app'
+});
+})();
+
 /******/ })()
 ;

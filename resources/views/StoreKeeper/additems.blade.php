@@ -228,7 +228,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <add-new-item > </add-new-item>
+                        <add-new-item  :category_details="{{json_encode($category_details)}}"> </add-new-item>
                     </div>
 
                 </div>

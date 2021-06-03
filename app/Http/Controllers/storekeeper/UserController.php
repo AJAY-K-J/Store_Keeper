@@ -5,7 +5,8 @@ namespace App\Http\Controllers\storekeeper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Item;
+use App\Models\Role;
+use App\Models\Designation;
 
 class UserController extends Controller
 {
@@ -17,9 +18,9 @@ class UserController extends Controller
     public function index()
     {
 
-       $item_details=Item::all();
-
-        return view('storekeeper.adduser',compact('item_details'));
+      $role_details=Role::all();
+      $designation_details=Designation::all();
+        return view('storekeeper.adduser',compact('role_details','designation_details'));
   
     }
 

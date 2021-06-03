@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('category_name');
+            $table->string('description_item');
             $table->string('status')->default(0);
             $table->timestamps();
         });
