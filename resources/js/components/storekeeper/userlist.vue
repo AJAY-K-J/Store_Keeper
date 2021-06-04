@@ -29,7 +29,7 @@
           <th scope="col">Name</th>
           <th scope="col">User Name</th>
           <th scope="col">Email</th>
-          <th scope="col">Designation</th>
+          <th scope="col">Section</th>
           <th scope="col">Role</th>
           <th scope="col">Status</th>
           <th scope="col">Actions</th>
@@ -41,11 +41,11 @@
           <td>{{ lis.name }}</td>
           <td>{{ lis.username }}</td>
           <td>{{ lis.email }}</td>
-          <td>{{ lis.designation }}</td>
+          <td>{{ lis.section }}</td>
           <td>{{ lis.role }}</td>
           <td>{{ lis.status }}</td>
           <td>
-            <button
+           <!-- <button
               type="button"
               class="btn btn-sm btn-success text-end"
               data-toggle="modal"
@@ -54,8 +54,8 @@
               @click="edit_user(lis)"
             >
               edit
-            </button>
-            <td><button class="btn btn-danger btn-sm m-0" @click="delete_user(lis.id)">Delete</button></td>
+            </button>-->
+            <button class="btn btn-danger btn-sm m-0" @click="delete_user(lis.id)">Delete</button></td>
           
         </tr>
       </tbody>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <add-new-user  :role_details="role_details" :designation_details="designation_details" :edit='true'> </add-new-user>
+                            <add-new-user  :role_details="role_details"  :edit='true'> </add-new-user>
                         </div>
 
                     </div>
@@ -91,7 +91,7 @@
 
 <script>
 export default {
-    props: [ "role_details", "designation_details"],
+    props: [ "role_details",],
   data() {
     return {
       msg: false,

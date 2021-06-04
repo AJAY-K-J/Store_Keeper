@@ -16,13 +16,12 @@
               errors.name[0]
             }}</small>
           </div>
-
         </div>
-<div class="col-6">
+        <div class="col-6">
           <div class="form-group">
             <label>Category Name</label>
-         
- <select
+
+            <select
               class="form-control"
               id="category_name"
               name="category_name"
@@ -41,33 +40,26 @@
         </div>
       </div>
 
- <div class="row ">
+      <div class="row">
         <div class="col-12">
+          <div class="form-group">
+            <label for="remarks" class="control-label col-form-label"
+              >Description of item</label
+            >
+            <div class="col-sm-9">
+              <textarea
+                class="form-control form-height"
+                name="description_item"
+                v-model="items.description_item"
+              ></textarea>
+            </div>
 
-  <div class="form-group">
-                  <label for="remarks" class="control-label col-form-label"
-                    >Description of item</label
-                  >
-                  <div class="col-sm-9">
-                    <textarea
-                      class="form-control form-height"
-                      name="description_item"
-                      v-model="items.description_item"
-                    ></textarea>
-                  </div>
-
-                  <small class="text-danger" v-if="errors.description_item">{{
-                    errors.description_item[0]
-                  }}</small>
-                </div>
-
-
-
-
+            <small class="text-danger" v-if="errors.description_item">{{
+              errors.description_item[0]
+            }}</small>
+          </div>
         </div>
-        </div>
-
-
+      </div>
 
       <div class="row mt-4">
         <div class="col-12">
@@ -97,13 +89,14 @@ export default {
 
   created() {
     if (this.edit) {
+
       var vm = this;
       bus.$on("edit-item", function (item) {
         vm.clear_data();
         vm.items.id = item.id;
         vm.items.name = item.name;
-        vm.items.category_name = item.category_name;
-        vm.items.description_item= item.description_item;
+
+        vm.items.description_item = item.description_item;
       });
     }
   },
@@ -113,7 +106,7 @@ export default {
       items: {
         name: "",
         category_name: "",
-       description_item:"",
+        description_item: "",
       },
       errors: {},
     };

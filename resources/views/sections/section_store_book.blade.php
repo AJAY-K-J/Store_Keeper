@@ -85,6 +85,6 @@
 @section('main')
 
 
-<sectiondashboard-table :section_details =" {{json_encode($section_details)}} "> </sectiondashboard-table>
+store
 
 @endsection

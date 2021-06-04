@@ -61,35 +61,10 @@
 </div>
 <div class="col-6">
           <div class="form-group">
-            <label>Designation</label>
-            <select
-              class="form-control"
-              id="itemname"
-              name="designation"
-              v-model="user.designation"
-            >
-              <option value="">Select designation</option>
-              <option
-                v-for="designation in designation_details"
-                :key="designation.id"
-              >
-                {{ designation.name }}
-              </option>
-            </select>
-            <small class="text-danger" v-if="errors.designation">{{
-              errors.designation[0]
-            }}</small>
-          </div>
-</div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-          <div class="form-group">
             <label>Role</label>
             <select
               class="form-control"
-              id="itemname"
+              id=""
               name="role"
               v-model="user.role"
             >
@@ -102,8 +77,42 @@
             <small class="text-danger" v-if="errors.role">{{
               errors.role[0]
             }}</small>
+
+
+          </div>
+
+
+</div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+          
+</div>
+  <div v-if="user.role=='section-in-charge'" class="col-12">
+          <div class="form-group">
+            <label>Section</label>
+            <select
+              class="form-control"
+              id="section"
+              name="section"
+              v-model="user.section"
+            >
+              <option value="">Select section</option>
+              <option v-for="section in section_details" :key="section.id">
+                {{ section.name }}
+              </option>
+            </select>
+
+            <small class="text-danger" v-if="errors.section">{{
+              errors.section[0]
+            }}</small>
+
+            
           </div>
 </div>
+
+
 
 </div>
 
@@ -132,12 +141,14 @@
 
 <script>
 export default {
-  props: ["edit", "role_details", "designation_details"],
+  props: ["edit", "role_details"],
 
   created() {
-     
+
+    this.get_section();
     if (this.edit) {
       var vm = this;
+       vm.user.section ='null';
       bus.$on("edit-user", function (lis) {
        
         vm.clear_data();
@@ -145,7 +156,7 @@ export default {
         vm.user.name = lis.name;
         vm.user.username = lis.username;
         vm.user.email = lis.email;
-     
+    
       });
     }
   },
@@ -156,9 +167,12 @@ export default {
         name: "",
         username: "",
         email: "",
-        designation: "",
+        section: "",
         role: "",
       },
+section_details:{},
+
+
       errors: {},
     };
   },
@@ -166,13 +180,21 @@ export default {
   methods: {
     clear_data() {
       for (let usr in this.user) {
-        this.user[usr] = null;
+        this.user[usr] = "";
       }
 
       for (let er in this.errors) {
         this.errors[er] = null;
       }
     },
+
+ get_section() {
+      axios.get("/api/section").then((response) => (this.section_details = response.data));
+
+
+
+    },
+
 
     adduser() {
       axios
@@ -182,6 +204,7 @@ export default {
           if (response.data == "Success") {
             this.$refs.cancel_btn.click();
             this.clear_data();
+            this.get_section();
           }
 
           bus.$emit("user-added");

@@ -50,7 +50,7 @@
             >
               edit
             </button>
-            <td><button class="btn btn-danger btn-sm m-0" @click="delete_item(item.id)">Delete</button></td>
+            <button class="btn btn-danger btn-sm m-0" @click="delete_item(item.id)">Delete</button></td>
           
         </tr>
       </tbody>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <add-new-item :edit='true'> </add-new-item>
+                            <add-new-item  :edit='true' :category_details="category_details" > </add-new-item>
                         </div>
 
                     </div>
@@ -86,6 +86,7 @@
 
 <script>
 export default {
+   props: ["category_details"],
   data() {
     return {
       msg: false,
@@ -95,6 +96,8 @@ export default {
   },
 
   created() {
+
+
     this.get_item();
     var vm = this;
     bus.$on("item-added", function () {

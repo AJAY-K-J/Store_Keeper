@@ -49,7 +49,7 @@
             >
               edit
             </button>
-            <td><button class="btn btn-danger btn-sm m-0" @click="delete_category(cat.id)">Delete</button></td>
+            <button class="btn btn-danger btn-sm m-0" @click="delete_category(cat.id)">Delete</button></td>
           
         </tr>
       </tbody>

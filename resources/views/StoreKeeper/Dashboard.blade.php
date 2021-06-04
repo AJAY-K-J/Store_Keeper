@@ -208,6 +208,6 @@
 
 
 
-    <dashboard-form  :item_details="{{json_encode($item_details)}}" :section_details="{{json_encode($section_details)}}">   </dashboard-form>
+    <dashboard-form  :section_officer="{{json_encode($section_officer)}}"  :item_details="{{json_encode($item_details)}}" :section_details="{{json_encode($section_details)}}">   </dashboard-form>
 
   @endsection

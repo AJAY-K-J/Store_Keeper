@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
-use App\Models\Designation;
+use App\Models\Section;
 
 class UserController extends Controller
 {
@@ -18,17 +18,16 @@ class UserController extends Controller
     public function index()
     {
 
-      $role_details=Role::all();
-      $designation_details=Designation::all();
-        return view('storekeeper.adduser',compact('role_details','designation_details'));
-  
+        $role_details = Role::all();
+        
+        return view('storekeeper.adduser', compact('role_details'));
     }
 
-    public function userslist(){
+    public function userslist()
+    {
 
         $users = User::all();
         return $users;
-        
     }
     /**
      * Show the form for creating a new resource.
@@ -51,43 +50,59 @@ class UserController extends Controller
 
         $request->validate([
 
-            'name'=>'Required',
-            'username'=>'Required',
-            'email'=>'Required',
-            'designation'=>'Required',
-            'role'=>'Required',
+            'name' => 'Required',
+            'username' => 'Required|unique:users,username',
+            'email' => 'Required|unique:users,email',
 
-            ]);
-
-if($request->id){
-    $user=User::find($request->id);
-}else
-    $user = new User;
-  if($request->name){
-      $user->name=$request->name;
-  }
-
-
-  if($request->username){
-    $user->username=$request->username;
-}
-if($request->email){
-    $user->email=$request->email;
-}
-if($request->designation){
-    $user->designation=$request->designation;
-}
-if($request->role){
-    $user->role=$request->role;
-}
-
-$user->save();
-return 'Success';
+            'role' => 'Required',
 
 
 
+        ]);
+
+        if ($request->id) {
+            $user = User::find($request->id);
+        } else
+            $user = new User;
+        if ($request->name) {
+            $user->name = $request->name;
+        }
+
+
+        if ($request->username) {
+            $user->username = $request->username;
+        }
+        if ($request->email) {
+            $user->email = $request->email;
+        }
+
+        if ($request->role) {
+
+            if ($request->role == 'section-in-charge') {
+                $request->validate(
+                    [
+                        'section' => 'Required',
+
+                    ]
+                );
+            }
+ 
+
+
+            $user->role = $request->role;
+        }
+        if ($request->section) {
+
+            $user->section = $request->section;
+        }
+
+       if( $user->save()){
+           $sec=Section::where('name', $request->section)->first();
+           $sec->status=1;
+           $sec->save();
+       }
       
-        
+        return 'Success';
     }
     /**
      * Display the specified resource.
@@ -129,7 +144,7 @@ return 'Success';
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         $delete_user = User::find($id);
         $delete_user->delete();

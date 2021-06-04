@@ -175,14 +175,23 @@
                     >Name of officer
                   </label>
                   <div class="col-sm-9">
-                    <input
-                      type="text"
+
+
+ <select
                       class="form-control"
-                      id="officer"
+                      id="store_officer"
                       name="store_officer"
                       v-model="arrivals.section_officer"
-                      placeholder="Name Inspection officer "
-                    />
+                    >
+                      <option value="">Select Name </option>
+                      <option  v-for="officer in section_officer" :key="officer.id">
+                        {{ officer.name }}
+                      </option>
+                    </select>
+
+
+
+                
                   </div>
                   <small class="text-danger" v-if="errors.section_officer">{{
                     errors.section_officer[0]
@@ -272,7 +281,7 @@
 
 <script>
 export default {
-  props: ["edit", "item_details","section_details"],
+  props: ["edit", "item_details","section_details","section_officer"],
 
   created() {},
 

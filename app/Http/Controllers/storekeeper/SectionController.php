@@ -19,6 +19,12 @@ class SectionController extends Controller
         
     }
 
+    public function sectiondata(){
+
+        $section_details = Section::all()->where('status', 0);
+        return $section_details;
+
+    }
 
     public function store(Request $request)
     {

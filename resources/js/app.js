@@ -38,6 +38,14 @@ Vue.component('designation-list', require('./components/storekeeper/designationl
 
 Vue.component('add-new-section', require('./components/storekeeper/addsection.vue').default);
 Vue.component('section-list', require('./components/storekeeper/sectionlist.vue').default);
+
+
+
+
+
+Vue.component('sectiondashboard-table', require('./components/section/sectiondashboard.vue').default);
+
+
 /**
 /**
  * Next, we will create a fresh Vue application instance and attach it to

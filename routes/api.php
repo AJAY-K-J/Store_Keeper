@@ -41,6 +41,7 @@ Route::delete('/add_designation/{id}',[DesignationController::class,'destroy']);
 Route::post('/add_section',[SectionController::class,'store']);
 Route::get('/add_section',[SectionController::class,'sectionslist']);
 Route::delete('/add_section/{id}',[SectionController::class,'destroy']);
+Route::get('/section',[SectionController::class,'sectiondata']);
 
 Route::post('/add_item',[ItemController::class,'store']);
 Route::get('/add_item',[ItemController::class,'itemlist']);

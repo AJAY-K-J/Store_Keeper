@@ -9,6 +9,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 use App\Models\storearrival;
 use App\Models\Item;
 use App\Models\Section;
+use App\Models\User;
 class StoreArrivalController extends Controller
 {
     /**
@@ -21,7 +22,8 @@ class StoreArrivalController extends Controller
 
         $item_details=Item::all();
 $section_details=Section::all();
-        return view('storekeeper.dashboard',compact('item_details','section_details'));
+$section_officer=User::all()->where('role','=','section-in-charge');
+        return view('storekeeper.dashboard',compact('item_details','section_details','section_officer'));
 
     }
 

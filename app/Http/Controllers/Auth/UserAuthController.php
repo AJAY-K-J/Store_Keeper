@@ -34,7 +34,7 @@ return redirect('storedashboard');
 
 }elseif($user->role == 'section-in-charge'){
 
-    $request->session()->put('section-in-charge',$user->id);
+    $request->session()->put('section-in-charge',$user->section);
     return redirect('sectiondashboard');
     
 

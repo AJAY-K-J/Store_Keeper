@@ -210,7 +210,7 @@
         <div class="col-md-12">
 
            
-            <user-list> </user-list>
+            <user-list   :role_details="{{json_encode($role_details)}}"> </user-list>
 
 
             <!-- Modal -->
@@ -226,7 +226,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <add-new-user :designation_details="{{json_encode($designation_details)}}"   :role_details="{{json_encode($role_details)}}" > </add-new-user>
+                            <add-new-user    :role_details="{{json_encode($role_details)}}" > </add-new-user>
                         </div>
 
                     </div>
