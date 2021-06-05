@@ -19,7 +19,7 @@
                   </label>
                   <div class="col-sm-9">
                     <input
-                      type="text"
+                      type="date"
                       class="form-control"
                       id="date"
                       name="date"
@@ -57,7 +57,7 @@
                   >
                   <div class="col-sm-9">
                     <input
-                      type="text"
+                      type="date"
                       class="form-control"
                       id="dcdate"
                       name="Dc_date"
@@ -113,14 +113,17 @@
                     >Name of Section
                   </label>
                   <div class="col-sm-9">
-                  <select
+                    <select
                       class="form-control"
                       id="section"
                       name="section"
                       v-model="arrivals.section"
                     >
-                      <option value="">Select section </option>
-                      <option v-for="section in section_details" :key="section.id">
+                      <option value="">Select section</option>
+                      <option
+                        v-for="section in section_details"
+                        :key="section.id"
+                      >
                         {{ section.name }}
                       </option>
                     </select>
@@ -175,23 +178,20 @@
                     >Name of officer
                   </label>
                   <div class="col-sm-9">
-
-
- <select
+                    <select
                       class="form-control"
                       id="store_officer"
                       name="store_officer"
                       v-model="arrivals.section_officer"
                     >
-                      <option value="">Select Name </option>
-                      <option  v-for="officer in section_officer" :key="officer.id">
+                      <option value="">Select Name</option>
+                      <option
+                        v-for="officer in section_officer"
+                        :key="officer.id"
+                      >
                         {{ officer.name }}
                       </option>
                     </select>
-
-
-
-                
                   </div>
                   <small class="text-danger" v-if="errors.section_officer">{{
                     errors.section_officer[0]
@@ -201,7 +201,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="itemname" class="control-label col-form-label"
-                    >Choose item 
+                    >Choose item
                   </label>
                   <div class="col-sm-9">
                     <select
@@ -210,7 +210,7 @@
                       name="item_name"
                       v-model="arrivals.item_name"
                     >
-                      <option value="">Select item  </option>
+                      <option value="">Select item</option>
                       <option v-for="item in item_details" :key="item.id">
                         {{ item.name }}
                       </option>
@@ -280,8 +280,9 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
-  props: ["edit", "item_details","section_details","section_officer"],
+  props: ["edit", "item_details", "section_details", "section_officer"],
 
   created() {},
 

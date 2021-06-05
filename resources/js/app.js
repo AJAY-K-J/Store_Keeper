@@ -6,7 +6,8 @@ window.bus = new Vue();
 export const bus = new Vue();
 
 
-
+import Swal from 'sweetalert2';
+window.Swal = Swal;
 
 /**
  * The following block of code may be used to automatically register your
@@ -44,7 +45,7 @@ Vue.component('section-list', require('./components/storekeeper/sectionlist.vue'
 
 
 Vue.component('sectiondashboard-table', require('./components/section/sectiondashboard.vue').default);
-
+Vue.component('view-arrival', require('./components/section/view_arrival.vue').default);
 
 /**
 /**

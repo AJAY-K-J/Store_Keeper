@@ -14,3 +14,11 @@ height: 0px !important;
 border:none !important;
 border-bottom: 1px solid sienna!important;
 }
+
+.btn{
+    outline: none!important;
+}
+
+.inline{
+    display: inline-block!important;
+}

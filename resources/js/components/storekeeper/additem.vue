@@ -84,7 +84,10 @@
 </template>
 
 <script>
+
 export default {
+  
+
   props: ["edit", "category_details"],
 
   created() {
@@ -131,6 +134,18 @@ export default {
         .then((response) => {
           console.log(response);
           if (response.data == "Success") {
+        
+
+
+Swal.fire({
+  title: 'Error!',
+  text: 'Do you want to continue',
+  icon: 'error',
+  confirmButtonText: 'Cool'
+})
+
+
+
             this.$refs.cancel_btn.click();
             this.clear_data();
           }
