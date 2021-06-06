@@ -127,7 +127,7 @@ export default {
     },
 
     additem() {
-      console.log(this.items);
+      
 
       axios
         .post("./api/add_item", this.items)
@@ -137,12 +137,7 @@ export default {
         
 
 
-Swal.fire({
-  title: 'Error!',
-  text: 'Do you want to continue',
-  icon: 'error',
-  confirmButtonText: 'Cool'
-})
+Swal.fire("New Item Added!", "", "success");
 
 
 

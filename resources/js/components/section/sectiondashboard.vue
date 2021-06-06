@@ -8,6 +8,7 @@
         <div class="col-md-6 text-end"></div>
       </div>
     </div>
+ 
     <table class="table text-center">
       <thead>
         <tr>
@@ -23,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="details in section_details" :key="details.id">
+        <tr v-for="details in section_detail" :key="details.id">
           <td>{{ details.id }}</td>
 
           <td>{{ convert_date(details.date) }}</td>
@@ -39,12 +40,15 @@
           <td>{{ details.remarks }}</td>
 
           <td>
-           
-            <button type="button"  class="btn btn-sm btn-secondary" data-toggle="modal" data-target=".view"
-            
-            @click="view_arrival(details)"
-            >view</button>
-
+            <button
+              type="button"
+              class="btn btn-sm btn-secondary"
+              data-toggle="modal"
+              data-target=".view"
+              @click="view_arrival(details)"
+            >
+              view
+            </button>
 
             <button class="btn btn-success btn-sm m-0">Confirm</button>
             <button class="btn btn-danger btn-sm m-0">Reject</button>
@@ -55,27 +59,35 @@
 
     <!-- Modal -->
 
-   
-      <div class="modal fade view" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-       <view-arrival> </view-arrival>
+    <div
+      class="modal fade view"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <view-arrival> </view-arrival>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-    </div>
-
-
- 
 </template>
 
 <script>
 import moment from "moment";
 
 export default {
-  props: ["section_details"],
+  props:['section_details'],
+  data() {
+    return {
+      section_detail: [],
+    };
+  },
 
-  created(){
+  created() {
+ this. get_section_details();
 
   },
 
@@ -85,6 +97,12 @@ export default {
     },
     view_arrival(details) {
       bus.$emit("store-details", details);
+    },
+
+    get_section_details() {
+      axios
+        .get("/api/section-details")
+        .then((response) => (this.section_detail = response.data));
     },
   },
 };

@@ -84,7 +84,13 @@ class UserController extends Controller
                         'section' => 'Required',
 
                     ]
+
+
+
                 );
+
+                
+
             }
  
 
@@ -95,12 +101,15 @@ class UserController extends Controller
 
             $user->section = $request->section;
         }
+        $user->save();
+       
+         if($request->section ==!null){
+            $sec=Section::where('name', $request->section)->first();
+            $sec->status=1;
+            $sec->save();
 
-       if( $user->save()){
-           $sec=Section::where('name', $request->section)->first();
-           $sec->status=1;
-           $sec->save();
-       }
+         }
+
       
         return 'Success';
     }
@@ -147,6 +156,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         $delete_user = User::find($id);
+        $section =$delete_user->section;
+        if($section !='null'){
+
+            $sect=Section::where('name', $section)->first();
+            $sect->status=0;
+            $sect->save();
+
+        }
         $delete_user->delete();
         return 'Success';
     }

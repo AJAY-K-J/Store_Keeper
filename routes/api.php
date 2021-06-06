@@ -9,6 +9,8 @@ use App\Http\Controllers\storekeeper\CategoryController;
 use App\Http\Controllers\storekeeper\ItemController;
 use App\Http\Controllers\storekeeper\SectionController;
 use App\Http\Controllers\storekeeper\StoreArrivalController;
+use App\Http\Controllers\sections\SectionPageController;
+use App\Http\Controllers\sections\SectionResponseController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -50,3 +52,8 @@ Route::delete('/add_item/{id}',[ItemController::class,'destroy']);
 Route::post('/add_role',[RoleController::class,'store']);
 Route::get('/add_role',[RoleController::class,'roleslist']);
 Route::delete('/add_role/{id}',[RoleController::class,'destroy']);
+
+
+Route::get('/section-details',[SectionPageController::class,'sectionItem']);
+Route::post('/section-confirm/{id}',[SectionResponseController::class,'confirm']);
+Route::post('/section-reject/{id}',[SectionResponseController::class,'reject']);

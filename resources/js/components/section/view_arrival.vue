@@ -8,21 +8,21 @@
         <div class="row">
           <div class="col-md-3">
             <h5>Date</h5>
-            <p> {{ date}}</p>
+            <p>{{ date }}</p>
           </div>
           <div class="col-md-3">
             <h5>Details of supplier</h5>
-            <p>{{supplier}} </p>
+            <p>{{ supplier }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Descripction of item</h5>
-            <p>{{descripction_item}} </p>
+            <p>{{ descripction_item }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Name of item</h5>
-            <p>{{item_name}} </p>
+            <p>{{ item_name }}</p>
           </div>
         </div>
 
@@ -31,16 +31,16 @@
         <div class="row">
           <div class="col-md-3">
             <h5>Quantity</h5>
-            <p> {{quantity}}</p>
+            <p>{{ quantity }}</p>
           </div>
           <div class="col-md-3">
             <h5>Price</h5>
-            <p>{{price}} </p>
+            <p>{{ price }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Invoice No</h5>
-            <p>{{invoice}}</p>
+            <p>{{ invoice }}</p>
           </div>
 
           <div class="col-md-3">
@@ -68,16 +68,22 @@
           >
             Cancel
           </button>
-         
-            <button class="btn btn-success btn-sm float-right" type="submit"  @click=" confirm()">
-              confirm
-            </button>
-       
-         
-            <button class="btn btn-danger btn-sm float-right" type="submit" @click="reject()">
-              Reject
-            </button>
-          
+
+          <button
+            class="btn btn-success btn-sm float-right"
+            type="submit"
+            @click="confirm()"
+          >
+            confirm
+          </button>
+
+          <button
+            class="btn btn-danger btn-sm float-right"
+            type="submit"
+            @click="reject()"
+          >
+            Reject
+          </button>
         </div>
       </div>
     </div>
@@ -86,47 +92,98 @@
 
 <script>
 export default {
-
-    created() {
-   
-
-      var vm = this;
-      bus.$on("store-details", function (details) {
-          vm.date= details.date
-    vm.remarks =details.remarks;
-    vm.supplier=details.supplier;
-    vm.descripction_item=details.description_of_item;
-    vm.item_name=details.item_name;
-    vm.quantity=details.quantity;
-    vm.price=details.price;
-    vm.invoice=details.invoice;
-      
-      });
-    
+  created() {
+    var vm = this;
+    bus.$on("store-details", function (details) {
+      vm.date = details.date;
+      vm.remarks = details.remarks;
+      vm.supplier = details.supplier;
+      vm.descripction_item = details.description_of_item;
+      vm.item_name = details.item_name;
+      vm.quantity = details.quantity;
+      vm.price = details.price;
+      vm.invoice = details.invoice;
+      vm.id = details.id;
+    });
   },
-  data(){
- return {
-     date:'',
-     supplier:'',
-     descripction_item:'',
-     item_name:'',
-     quantity:'',
-     price:'',
-     invoice:'',
+  data() {
+    return {
+      id: "",
+      date: "",
+      supplier: "",
+      descripction_item: "",
+      item_name: "",
+      quantity: "",
+      price: "",
+      invoice: "",
 
-remarks:'',
+      remarks: "",
 
- };
-
+      errors: {},
+    };
   },
-
 
   methods: {
     confirm() {
-      alert("hii");
+      axios
+        .post("./api/section-confirm/" + this.id, {
+          remarks: this.remarks,
+        })
+        .then((response) => {
+          
+          if (response.data == "Success") {
+            Swal.fire("Confirmed!", "", "success");
+
+            this.$refs.cancel_btn.click();
+          }
+
+          bus.$emit("item-confirmed ");
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors.remarks;
+        });
     },
     reject() {
-      alert("sorry");
+
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, reject it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    axios.post("./api/section-reject/" + this.id).then((response) => {
+          
+          if (response.data == "Success") {
+               Swal.fire(
+      'Rejected!',
+      'Your item has been rejected.',
+      'success'
+    );
+
+            this.$refs.cancel_btn.click();
+          }
+
+          bus.$emit("item-confirmed ");
+        });
+
+
+
+
+
+
+ 
+  }
+})
+
+
+
+
+
+  
     },
   },
 };

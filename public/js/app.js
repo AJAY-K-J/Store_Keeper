@@ -1918,16 +1918,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["section_details"],
-  created: function created() {},
+  props: ['section_details'],
+  data: function data() {
+    return {
+      section_detail: []
+    };
+  },
+  created: function created() {
+    this.get_section_details();
+  },
   methods: {
     convert_date: function convert_date(date) {
       return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format("DD-MM-YYYY");
     },
     view_arrival: function view_arrival(details) {
       bus.$emit("store-details", details);
+    },
+    get_section_details: function get_section_details() {
+      var _this = this;
+
+      axios.get("/api/section-details").then(function (response) {
+        return _this.section_detail = response.data;
+      });
     }
   }
 });
@@ -2031,6 +2051,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     var vm = this;
@@ -2043,26 +2069,65 @@ __webpack_require__.r(__webpack_exports__);
       vm.quantity = details.quantity;
       vm.price = details.price;
       vm.invoice = details.invoice;
+      vm.id = details.id;
     });
   },
   data: function data() {
     return {
-      date: '',
-      supplier: '',
-      descripction_item: '',
-      item_name: '',
-      quantity: '',
-      price: '',
-      invoice: '',
-      remarks: ''
+      id: "",
+      date: "",
+      supplier: "",
+      descripction_item: "",
+      item_name: "",
+      quantity: "",
+      price: "",
+      invoice: "",
+      remarks: "",
+      errors: {}
     };
   },
   methods: {
     confirm: function confirm() {
-      alert("hii");
+      var _this = this;
+
+      axios.post("./api/section-confirm/" + this.id, {
+        remarks: this.remarks
+      }).then(function (response) {
+        if (response.data == "Success") {
+          Swal.fire("Confirmed!", "", "success");
+
+          _this.$refs.cancel_btn.click();
+        }
+
+        bus.$emit("item-confirmed ");
+      })["catch"](function (error) {
+        _this.errors = error.response.data.errors.remarks;
+      });
     },
     reject: function reject() {
-      alert("sorry");
+      var _this2 = this;
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, reject it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.post("./api/section-reject/" + _this2.id).then(function (response) {
+            if (response.data == "Success") {
+              Swal.fire('Rejected!', 'Your item has been rejected.', 'success');
+
+              _this2.$refs.cancel_btn.click();
+            }
+
+            bus.$emit("item-confirmed ");
+          });
+        }
+      });
     }
   }
 });
@@ -2421,17 +2486,11 @@ __webpack_require__.r(__webpack_exports__);
     additem: function additem() {
       var _this = this;
 
-      console.log(this.items);
       axios.post("./api/add_item", this.items).then(function (response) {
         console.log(response);
 
         if (response.data == "Success") {
-          Swal.fire({
-            title: 'Error!',
-            text: 'Do you want to continue',
-            icon: 'error',
-            confirmButtonText: 'Cool'
-          });
+          Swal.fire("New Item Added!", "", "success");
 
           _this.$refs.cancel_btn.click();
 
@@ -2616,6 +2675,12 @@ __webpack_require__.r(__webpack_exports__);
         vm.user.email = lis.email;
       });
     }
+
+    ;
+    var gt = this;
+    bus.$on("user-deleted", function () {
+      gt.get_section();
+    });
   },
   data: function data() {
     return {
@@ -4089,6 +4154,8 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data == "Success") {
           _this2.get_user();
         }
+
+        bus.$emit("user-deleted");
       });
     }
   }
@@ -65566,7 +65633,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.section_details, function(details) {
+        _vm._l(_vm.section_detail, function(details) {
           return _c("tr", { key: details.id }, [
             _c("td", [_vm._v(_vm._s(details.id))]),
             _vm._v(" "),
@@ -65598,7 +65665,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("view")]
+                [_vm._v("\n            view\n          ")]
               ),
               _vm._v(" "),
               _c("button", { staticClass: "btn btn-success btn-sm m-0" }, [
@@ -65707,25 +65774,25 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Date")]),
             _vm._v(" "),
-            _c("p", [_vm._v(" " + _vm._s(_vm.date))])
+            _c("p", [_vm._v(_vm._s(_vm.date))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Details of supplier")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.supplier) + " ")])
+            _c("p", [_vm._v(_vm._s(_vm.supplier))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Descripction of item")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.descripction_item) + " ")])
+            _c("p", [_vm._v(_vm._s(_vm.descripction_item))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Name of item")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.item_name) + " ")])
+            _c("p", [_vm._v(_vm._s(_vm.item_name))])
           ])
         ]),
         _vm._v(" "),
@@ -65735,13 +65802,13 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Quantity")]),
             _vm._v(" "),
-            _c("p", [_vm._v(" " + _vm._s(_vm.quantity))])
+            _c("p", [_vm._v(_vm._s(_vm.quantity))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Price")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.price) + " ")])
+            _c("p", [_vm._v(_vm._s(_vm.price))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
@@ -65805,7 +65872,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n            confirm\n          ")]
+            [_vm._v("\n          confirm\n        ")]
           ),
           _vm._v(" "),
           _c(
@@ -65819,7 +65886,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n            Reject\n          ")]
+            [_vm._v("\n          Reject\n        ")]
           )
         ])
       ])

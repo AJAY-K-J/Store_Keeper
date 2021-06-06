@@ -158,7 +158,15 @@ export default {
         vm.user.email = lis.email;
     
       });
-    }
+    };
+ var gt = this;
+   bus.$on("user-deleted", function () {
+      gt.get_section();
+    
+    });
+
+ 
+
   },
 
   data() {

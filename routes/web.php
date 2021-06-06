@@ -51,6 +51,7 @@ Route::get('/addsections',[SectionController::class,'index']);
 
 
 Route::get('/sectiondashboard',[SectionPageController::class,'index']);
+Route::get('/sectionlogout',[SectionPageController::class,'logout']);
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

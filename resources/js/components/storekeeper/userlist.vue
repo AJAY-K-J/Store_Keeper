@@ -130,7 +130,7 @@ export default {
           this.get_user();
           }
 
-        
+         bus.$emit("user-deleted");
         })
 
     },
