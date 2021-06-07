@@ -31,7 +31,7 @@ class CreateStorearrivalsTable extends Migration
             $table->date('Dc_date');
             $table->string('section');
 
-            $table->string('section_officer');
+            $table->string('arrivals_page_no')->default(0);
             $table->string('sign_of_ask')->default('1');
 
             $table->string('sign_of_insp_officer')->default('0');

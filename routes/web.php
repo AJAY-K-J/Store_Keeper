@@ -10,6 +10,8 @@ use App\Http\Controllers\storekeeper\CategoryController;
 use App\Http\Controllers\storekeeper\ItemController;
 use App\Http\Controllers\storekeeper\SectionController;
 use App\Http\Controllers\sections\SectionPageController;
+use App\Http\Controllers\sections\SectionResponseController;
+use App\Http\Controllers\storekeeper\ConfirmedItemsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,12 +29,13 @@ Route::get('/', function () {
 
 
 Route::post('/login',[UserAuthController::class,'usercheck']);
-Route::post('/logout',[UserAuthController::class,'userlogout']);
+Route::get('/logout',[UserAuthController::class,'userlogout']);
 
 
 Route::get('/storedashboard',[StoreArrivalController::class,'index']);
 
-
+Route::get('/confirmedIitemPage',[ConfirmedItemsController::class,'index']);
+Route::get('/confirmedDetails',[ConfirmedItemsController::class,'confirmedItems']);
 
 Route::get('/adduser',[UserController::class,'index']);
 
@@ -51,7 +54,20 @@ Route::get('/addsections',[SectionController::class,'index']);
 
 
 Route::get('/sectiondashboard',[SectionPageController::class,'index']);
+Route::get('/section-details',[SectionPageController::class,'sectionItem']);
 Route::get('/sectionlogout',[SectionPageController::class,'logout']);
+
+
+Route::post('/section-confirm/{id}',[SectionResponseController::class,'confirm']);
+Route::post('/section-reject/{id}',[SectionResponseController::class,'reject']);
+
+
+
+
+
+
+
+
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

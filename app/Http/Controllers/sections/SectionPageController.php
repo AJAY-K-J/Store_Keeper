@@ -21,9 +21,9 @@ class SectionPageController extends Controller
 
         if (Session()->has('section-in-charge')) {
 
-   $section_details=storearrival::where([['section',Session('section-in-charge')],['sign_of_insp_officer',0]])->get();
 
- return   view('sections.sectiondashboard',compact('section_details'));
+
+ return   view('sections.sectiondashboard');
 
 
         } else {
@@ -38,11 +38,20 @@ class SectionPageController extends Controller
    public function sectionItem(){
 
 
-
-        $section_details=storearrival::where([['section',Session('section-in-charge')],['sign_of_insp_officer',0]])->get();
-     
-      return  json_encode( $section_details);
     
+
+       
+
+    if (Session()->has('section-in-charge')) {
+
+        $user_id=Session('section-in-charge');
+         $user_detail=User::where('id','=',  $user_id)->pluck('section');
+    
+
+
+        $section_details=storearrival::where([['section', $user_detail],['sign_of_insp_officer',0]])->get();
+      return   $section_details;
+    } else return redirect('/');
 
    }
 

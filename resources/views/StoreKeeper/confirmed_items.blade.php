@@ -56,7 +56,6 @@
 @endsection
 @section('sidebar8')
 
-    
 @endsection
 @section('sidebar9')
        
@@ -207,5 +206,8 @@
 
 @section('main')
 
-gir
-    @endsection
+
+
+    <confirmed-details>   </confirmed-details>
+
+  @endsection

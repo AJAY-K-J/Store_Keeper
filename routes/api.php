@@ -53,7 +53,3 @@ Route::post('/add_role',[RoleController::class,'store']);
 Route::get('/add_role',[RoleController::class,'roleslist']);
 Route::delete('/add_role/{id}',[RoleController::class,'destroy']);
 
-
-Route::get('/section-details',[SectionPageController::class,'sectionItem']);
-Route::post('/section-confirm/{id}',[SectionResponseController::class,'confirm']);
-Route::post('/section-reject/{id}',[SectionResponseController::class,'reject']);

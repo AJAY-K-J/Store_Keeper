@@ -55,7 +55,7 @@ $section_officer=User::all()->where('role','=','section-in-charge');
             'section' => 'Required',
             'description_of_item' => 'Required',
             'invoice' => 'Required',
-            'section_officer' => 'Required',
+           
             'item_name' => 'Required',
             'Dc_no' => 'Required',
 
@@ -91,8 +91,8 @@ $section_officer=User::all()->where('role','=','section-in-charge');
         if ($request->invoice) {
             $store->invoice = $request->invoice;
         }
-        if ($request->section_officer) {
-            $store->section_officer = $request->section_officer;
+        if ($request->arrivals_page_no) {
+            $store->arrivals_page_no = $request->arrivals_page_no;
         }
         if ($request->item_name) {
             $store->item_name = $request->item_name;

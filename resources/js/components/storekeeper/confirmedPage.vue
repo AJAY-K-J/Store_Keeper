@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-6 bold">
-          <h5 class="card-title mb-0">pending Confirmation</h5>
+          <h5 class="card-title mb-0">Confiremd Items</h5>
         </div>
         <div class="col-md-6 text-end"></div>
       </div>
@@ -24,34 +24,33 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="details in section_details" :key="details.id">
-          <td>{{ details.id }}</td>
+        <tr v-for="confirmed in confirmed_details" :key="confirmed.id">
+          <td>{{confirmed.id }}</td>
 
-          <td>{{ convert_date(details.date) }}</td>
+          <td>{{ convert_date(confirmed.date) }}</td>
 
-          <td>{{ details.item_name }}</td>
+          <td>{{ confirmed.item_name }}</td>
 
-          <td>{{ details.description_of_item }}</td>
+          <td>{{ confirmed.description_of_item }}</td>
 
-          <td>{{ details.quantity }}</td>
+          <td>{{ confirmed.quantity }}</td>
 
-          <td>{{ details.invoice }}</td>
+          <td>{{ confirmed.invoice }}</td>
 
-          <td>{{ details.remarks }}</td>
+          <td>{{ confirmed.remarks }}</td>
 
           <td>
             <button
               type="button"
               class="btn btn-sm btn-secondary"
               data-toggle="modal"
-              data-target=".view"
-              @click="view_arrival(details)"
+              data-target=".confirmedPageview"
+              @click="view_confirmed(confirmed)"
             >
               view
             </button>
 
-            <button class="btn btn-success btn-sm m-0">Confirm</button>
-            <button class="btn btn-danger btn-sm m-0">Reject</button>
+         
           </td>
         </tr>
       </tbody>
@@ -60,7 +59,7 @@
     <!-- Modal -->
 
     <div
-      class="modal fade view"
+      class="modal fade confirmedPageview"
       tabindex="-1"
       role="dialog"
       aria-labelledby="myLargeModalLabel"
@@ -68,7 +67,7 @@
     >
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <view-arrival> </view-arrival>
+         <confirmedPage-view> </confirmedPage-view>
         </div>
       </div>
     </div>
@@ -82,18 +81,18 @@ export default {
  
   data() {
     return {
-      section_details: [],
+      confirmed_details: [],
     };
   },
 
   created() {
 
 
- this. get_section_details();
+ this. get_confirmed_details();
  var aj = this;
 
-bus.$on("item-confirmed ", function () {
-     aj.get_section_details();
+bus.$on("item-added ", function () {
+     aj.get_confirmed_details();
     });
 
   },
@@ -102,14 +101,14 @@ bus.$on("item-confirmed ", function () {
     convert_date(date) {
       return moment(date).format("DD-MM-YYYY");
     },
-    view_arrival(details) {
-      bus.$emit("store-details", details);
+    view_confirmed(confirmed) {
+      bus.$emit("confirmed-details", confirmed);
     },
 
-    get_section_details() {
+    get_confirmed_details() {
       axios
-        .get("/section-details")
-        .then((response) => (this.section_details = response.data));
+        .get("/confirmedDetails")
+        .then((response) => (this.confirmed_details = response.data));
     },
   },
 };

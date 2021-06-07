@@ -1,5 +1,10 @@
 @extends('layouts.main')
-
+@section('logout')
+<a class="dropdown-item" href="logout"><i
+    class="fa fa-power-off me-1 ms-1"></i> Logout</a>
+<div class="dropdown-divider"></div>
+    
+@endsection
 
 @section('sidebar0')
 
@@ -92,12 +97,12 @@
 
                     
  <div class="col-md-6 col-lg-4 col-xlg-3">
-    <div class="card card-hover">
+    <a href="/confirmedIitemPage"> <div class="card card-hover">
         <div class="box bg-success text-center">
             <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
-            <h6 class="text-white">Store Arrival Book</h6>
+            <h6 class="text-white">Confirmed Arrival Book</h6>
         </div>
-    </div>
+    </div></a>
 </div>
 @endsection
 

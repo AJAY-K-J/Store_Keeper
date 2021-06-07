@@ -34,7 +34,7 @@ return redirect('storedashboard');
 
 }elseif($user->role == 'section-in-charge'){
 
-    $request->session()->put('section-in-charge',$user->section);
+    $request->session()->put('section-in-charge',$user->id);
     return redirect('sectiondashboard');
     
 
@@ -71,7 +71,7 @@ public function userlogout(){
     if(Session()->has('store-keeper')){
 
         Session()->pull('store-keeper');
-        return redirect('login');
+        return redirect('/');
     }
 }
 

@@ -119,7 +119,7 @@
                       name="section"
                       v-model="arrivals.section"
                     >
-                      <option value="">Select section</option>
+                      <option value="">Select Section</option>
                       <option
                         v-for="section in section_details"
                         :key="section.id"
@@ -175,26 +175,22 @@
 
                 <div class="form-group">
                   <label for="officer" class="control-label col-form-label"
-                    >Name of officer
+                    >Arrival page no
                   </label>
                   <div class="col-sm-9">
-                    <select
+                   
+                   <input
+                      type="text"
                       class="form-control"
-                      id="store_officer"
-                      name="store_officer"
-                      v-model="arrivals.section_officer"
-                    >
-                      <option value="">Select Name</option>
-                      <option
-                        v-for="officer in section_officer"
-                        :key="officer.id"
-                      >
-                        {{ officer.name }}
-                      </option>
-                    </select>
+                      id="arrivals_page_no"
+                      name="arrivals_page_no"
+                      v-model="arrivals.arrivals_page_no"
+                      placeholder="Page No Here"
+                    />
+                 
                   </div>
-                  <small class="text-danger" v-if="errors.section_officer">{{
-                    errors.section_officer[0]
+                  <small class="text-danger" v-if="errors.arrivals_page_no">{{
+                    errors.arrivals_page_no[0]
                   }}</small>
                 </div>
               </div>
@@ -210,7 +206,7 @@
                       name="item_name"
                       v-model="arrivals.item_name"
                     >
-                      <option value="">Select item</option>
+                      <option value="">Select Item</option>
                       <option v-for="item in item_details" :key="item.id">
                         {{ item.name }}
                       </option>
@@ -299,7 +295,7 @@ export default {
         Dc_no: "",
         Dc_date: "",
         section: "",
-        section_officer: "",
+        arrivals_page_no: "",
         remarks: "",
       },
       errors: {},

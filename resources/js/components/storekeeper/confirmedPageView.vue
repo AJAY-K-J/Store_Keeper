@@ -55,6 +55,39 @@
 
           <hr />
         </div>
+<div class="row">
+          <div class="col-md-3">
+            <h5>GIR page no</h5>
+             <input
+              type="text"
+              class="form-control"
+              placeholder="GIR page no"
+              name="girno"
+             
+            />
+          </div>
+          <div class="col-md-3">
+            <h5>Select Category</h5>
+           <select
+              class="form-control"
+              id="category_name"
+              name="GIR_category"
+            
+            >
+              <option value="">Select category</option>
+              <option >
+              
+              </option>
+            </select>
+          </div>
+
+          
+
+        
+
+          <hr />
+        </div>
+
       </div>
     </div>
     <div class="row mt-4">
@@ -72,18 +105,11 @@
           <button
             class="btn btn-success btn-sm float-right"
             type="submit"
-            @click="confirm()"
+            @click="addToGIR()"
           >
-            confirm
+          Add TO GIR
           </button>
 
-          <button
-            class="btn btn-danger btn-sm float-right"
-            type="submit"
-            @click="reject()"
-          >
-            Reject
-          </button>
         </div>
       </div>
     </div>
@@ -93,17 +119,17 @@
 <script>
 export default {
   created() {
-    var vm = this;
-    bus.$on("store-details", function (details) {
-      vm.date = details.date;
-      vm.remarks = details.remarks;
-      vm.supplier = details.supplier;
-      vm.descripction_item = details.description_of_item;
-      vm.item_name = details.item_name;
-      vm.quantity = details.quantity;
-      vm.price = details.price;
-      vm.invoice = details.invoice;
-      vm.id = details.id;
+    var da= this;
+    bus.$on("confirmed-details", function (confirmed) {
+      da.date = confirmed.date;
+      da.remarks = confirmed.remarks;
+     da.supplier = confirmed.supplier;
+     da.descripction_item = confirmed.description_of_item;
+      da.item_name = confirmed.item_name;
+      da.quantity = confirmed.quantity;
+     da.price = confirmed.price;
+      da.invoice = confirmed.invoice;
+     da.id = confirmed.id;
     });
   },
   data() {
@@ -124,67 +150,25 @@ export default {
   },
 
   methods: {
-    confirm() {
+    addToGIR() {
       axios
-        .post("./section-confirm/" + this.id, {
+        .post("./addGoods/" + this.id, {
           remarks: this.remarks,
         })
         .then((response) => {
-          
           if (response.data == "Success") {
             Swal.fire("Confirmed!", "", "success");
 
             this.$refs.cancel_btn.click();
           }
 
-          bus.$emit("item-confirmed ");
+       
         })
         .catch((error) => {
           this.errors = error.response.data.errors.remarks;
         });
     },
-    reject() {
 
-Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, reject it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    axios.post("./section-reject/" + this.id).then((response) => {
-          
-          if (response.data == "Success") {
-               Swal.fire(
-      'Rejected!',
-      'Your item has been rejected.',
-      'success'
-    );
-
-            this.$refs.cancel_btn.click();
-          }
-
-          bus.$emit("item-confirmed ");
-        });
-
-
-
-
-
-
- 
-  }
-})
-
-
-
-
-
-  
-    },
   },
 };
 </script>

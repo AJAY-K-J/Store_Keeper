@@ -40,7 +40,8 @@ Vue.component('designation-list', require('./components/storekeeper/designationl
 Vue.component('add-new-section', require('./components/storekeeper/addsection.vue').default);
 Vue.component('section-list', require('./components/storekeeper/sectionlist.vue').default);
 
-
+Vue.component('confirmed-details', require('./components/storekeeper/confirmedPage.vue').default);
+Vue.component('confirmedPage-view', require('./components/storekeeper/confirmedPageView.vue').default);
 
 
 
