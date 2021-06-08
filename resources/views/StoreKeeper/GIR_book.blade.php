@@ -18,8 +18,8 @@
 
 @section('sidebar2')
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="adddesignations" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span
-        class="hide-menu">Add Designations</span></a></li>
+    href="addsuppliers" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span
+        class="hide-menu">Add Supplier</span></a></li>
     
 @endsection
 @section('sidebar3')

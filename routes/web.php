@@ -5,13 +5,18 @@ use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\storekeeper\StoreArrivalController;
 use App\Http\Controllers\storekeeper\UserController;
 use App\Http\Controllers\storekeeper\RoleController;
-use App\Http\Controllers\storekeeper\DesignationController;
+use App\Http\Controllers\storekeeper\SupplierController;
 use App\Http\Controllers\storekeeper\CategoryController;
 use App\Http\Controllers\storekeeper\ItemController;
 use App\Http\Controllers\storekeeper\SectionController;
 use App\Http\Controllers\sections\SectionPageController;
 use App\Http\Controllers\sections\SectionResponseController;
 use App\Http\Controllers\storekeeper\ConfirmedItemsController;
+use App\Http\Controllers\storemanager\ManagerPageController ;
+use App\Http\Controllers\storemanager\ManagerResponseController;
+use App\Http\Controllers\office\OfficePageController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +46,7 @@ Route::get('/adduser',[UserController::class,'index']);
 
 Route::get('/addroles',[RoleController::class,'index']);
 
-Route::get('/adddesignations',[DesignationController::class,'index']);
+Route::get('/addsuppliers',[SupplierController::class,'index']);
 
 Route::get('/addcategories',[CategoryController::class,'index']);
 
@@ -61,11 +66,16 @@ Route::get('/sectionlogout',[SectionPageController::class,'logout']);
 Route::post('/section-confirm/{id}',[SectionResponseController::class,'confirm']);
 Route::post('/section-reject/{id}',[SectionResponseController::class,'reject']);
 
+Route::get('/managerdashboard',[ManagerPageController::class,'index']);
+Route::get('/manager-details',[ManagerPageController::class,'managerlist']);
+Route::get('/arrivalbook',[ManagerPageController::class,'arrivalbook']);
+Route::get('/store-details',[ManagerPageController::class,'storelist']);
 
 
+Route::post('/manager-confirm/{id}',[ManagerResponseController::class,'confirm']);
+Route::post('/manager-reject/{id}',[ManagerResponseController::class,'reject']);
 
-
-
+Route::get('/officedashboard',[OfficePageController::class,'index']);
 
 
 //Auth::routes();

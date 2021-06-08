@@ -18,8 +18,8 @@
 
 @section('sidebar2')
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="adddesignations" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span
-        class="hide-menu">Add Designations</span></a></li>
+    href="addsuppliers" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span
+        class="hide-menu">Add Supplier</span></a></li>
     
 @endsection
 @section('sidebar3')
@@ -213,23 +213,23 @@
     <div class="col-md-12">
 
        
-        <designation-list> </designation-list>
+        <supplier-list> </supplier-list>
 
 
         <!-- Modal -->
-        <div class="modal fade" id="add-designation" data-backdrop="static" tabindex="-1" role="dialog"
+        <div class="modal fade" id="add-supplier" data-backdrop="static" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">ADD DESIGNATION</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">ADD SUPPLIER</h5>
                       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>-->
                     </div>
                     <div class="modal-body">
 
-                        <add-new-designation > </add-new-designation>
+                        <add-new-supplier > </add-new-supplier>
                     </div>
 
                 </div>

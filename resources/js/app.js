@@ -34,8 +34,8 @@ Vue.component('item-list', require('./components/storekeeper/itemlist.vue').defa
 Vue.component('add-new-role', require('./components/storekeeper/addrole.vue').default);
 Vue.component('role-list', require('./components/storekeeper/rolelist.vue').default);
 
-Vue.component('add-new-designation', require('./components/storekeeper/adddesignation.vue').default);
-Vue.component('designation-list', require('./components/storekeeper/designationlist.vue').default);
+Vue.component('add-new-supplier', require('./components/storekeeper/addsupplier.vue').default);
+Vue.component('supplier-list', require('./components/storekeeper/supplierlist.vue').default);
 
 Vue.component('add-new-section', require('./components/storekeeper/addsection.vue').default);
 Vue.component('section-list', require('./components/storekeeper/sectionlist.vue').default);
@@ -47,6 +47,22 @@ Vue.component('confirmedPage-view', require('./components/storekeeper/confirmedP
 
 Vue.component('sectiondashboard-table', require('./components/section/sectiondashboard.vue').default);
 Vue.component('view-arrival', require('./components/section/view_arrival.vue').default);
+
+Vue.component('managerdashboard-table', require('./components/storemanager/managerdashboard.vue').default);
+Vue.component('manager-view-arrival', require('./components/storemanager/manager_view.vue').default);
+Vue.component('arrival-book-table', require('./components/storemanager/arrivalbook.vue').default);
+Vue.component('store-view-arrival', require('./components/storemanager/storeview.vue').default);
+
+
+
+Vue.component('office-dashboard-table', require('./components/office/officedashboard.vue').default);
+
+
+
+
+
+
+
 
 /**
 /**

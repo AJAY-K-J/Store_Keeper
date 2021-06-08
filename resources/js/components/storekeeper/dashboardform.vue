@@ -144,7 +144,11 @@
                       class="form-control form-height"
                       name="description_of_item"
                       v-model="arrivals.description_of_item"
-                    ></textarea>
+                     
+                    >  </textarea>
+<!---->
+
+
                   </div>
                   <small
                     class="text-danger"
@@ -207,10 +211,11 @@
                       v-model="arrivals.item_name"
                     >
                       <option value="">Select Item</option>
-                      <option v-for="item in item_details" :key="item.id">
+                      <option v-for="item in item_details" :key="item.id" v-bind:value="{id:item.id, description:item.description_item}">
                         {{ item.name }}
                       </option>
                     </select>
+                    
                   </div>
 
                   <small class="text-danger" v-if="errors.item_name">{{
@@ -287,7 +292,7 @@ export default {
       arrivals: {
         date: "",
         supplier: "",
-        description_of_item: "",
+        description_of_item:'',
         item_name: "",
         quantity: "",
         price: "",
@@ -298,6 +303,7 @@ export default {
         arrivals_page_no: "",
         remarks: "",
       },
+     
       errors: {},
     };
   },

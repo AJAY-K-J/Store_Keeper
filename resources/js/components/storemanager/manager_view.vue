@@ -55,51 +55,6 @@
 
           <hr />
         </div>
-<div class="row">
-          <div class="col-md-3">
-            <h5>GIR page no</h5>
-             <input
-              type="text"
-              class="form-control"
-              placeholder="GIR page no"
-              name="girno"
-             
-            />
-          </div>
-          <div class="col-md-3">
-            <h5>Select Category</h5>
-           <select
-              class="form-control"
-              id="category_name"
-              name="GIR_category"
-            
-            >
-              <option value="">Select category</option>
-              <option value="kardex" >Kardex
-              
-              </option>
-               <option value="dsr" >DSR
-              
-              </option>
-            </select>
-          </div>
-
-           <div class="col-md-3">
-            <h5>Category page no</h5>
-             <input
-              type="text"
-              class="form-control"
-              placeholder="Category page no"
-              name="category_page_no"
-             
-            />
-          </div>
-
-        
-
-          <hr />
-        </div>
-
       </div>
     </div>
     <div class="row mt-4">
@@ -117,11 +72,18 @@
           <button
             class="btn btn-success btn-sm float-right"
             type="submit"
-            @click="addToGIR()"
+            @click="confirmed()"
           >
-          Add TO GIR
+            confirm
           </button>
 
+          <button
+            class="btn btn-danger btn-sm float-right"
+            type="submit"
+            @click="rejected()"
+          >
+            Reject
+          </button>
         </div>
       </div>
     </div>
@@ -131,17 +93,21 @@
 <script>
 export default {
   created() {
-    var da= this;
-    bus.$on("confirmed-details", function (confirmed) {
-      da.date = confirmed.date;
-      da.remarks = confirmed.remarks;
-     da.supplier = confirmed.supplier;
-     da.descripction_item = confirmed.description_of_item;
-      da.item_name = confirmed.item_name;
-      da.quantity = confirmed.quantity;
-     da.price = confirmed.price;
-      da.invoice = confirmed.invoice;
-     da.id = confirmed.id;
+
+
+    var vm = this;
+    bus.$on("store-data", function (manager) {
+
+      vm.date = manager.date;
+      vm.remarks = manager.remarks;
+      vm.supplier = manager.supplier;
+      vm.descripction_item =manager.description_of_item;
+      vm.item_name =manager.item_name;
+      vm.quantity = manager.quantity;
+      vm.price = manager.price;
+      vm.invoice = manager.invoice;
+      vm.id = manager.id;
+     
     });
   },
   data() {
@@ -149,7 +115,7 @@ export default {
       id: "",
       date: "",
       supplier: "",
-      descripction_item: "",
+      descripction_item:'',
       item_name: "",
       quantity: "",
       price: "",
@@ -162,25 +128,67 @@ export default {
   },
 
   methods: {
-    addToGIR() {
+    confirmed() {
       axios
-        .post("./addGoods/" + this.id, {
+        .post("./manager-confirm/" + this.id, {
           remarks: this.remarks,
         })
         .then((response) => {
+          
           if (response.data == "Success") {
             Swal.fire("Confirmed!", "", "success");
 
             this.$refs.cancel_btn.click();
           }
 
-       
+          bus.$emit("manager-response");
         })
         .catch((error) => {
           this.errors = error.response.data.errors.remarks;
         });
     },
+    rejected() {
 
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, reject it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    axios.post("./manager-reject/" + this.id,  {remarks: this.remarks}).then((response) => {
+          
+          if (response.data == "Success") {
+               Swal.fire(
+      'Rejected!',
+      'Your item has been rejected.',
+      'success'
+    );
+
+            this.$refs.cancel_btn.click();
+          }
+
+          bus.$emit("manager-response");
+        });
+
+
+
+
+
+
+ 
+  }
+})
+
+
+
+
+
+  
+    },
   },
 };
 </script>

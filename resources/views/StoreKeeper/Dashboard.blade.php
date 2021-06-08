@@ -23,8 +23,8 @@
 
 @section('sidebar2')
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="adddesignations" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span
-        class="hide-menu">Add Designations</span></a></li>
+    href="addsuppliers" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span
+        class="hide-menu">Add Supplier</span></a></li>
     
 @endsection
 @section('sidebar3')
@@ -126,7 +126,7 @@
                         <div class="card card-hover">
                             <div class="box bg-danger text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
-                                <h6 class="text-white">Cadex</h6>
+                                <h6 class="text-white">Kardex</h6>
                             </div>
                         </div>
                     </div>

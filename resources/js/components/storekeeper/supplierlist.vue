@@ -3,54 +3,53 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-6 bold">
-          <h5 class="card-title mb-0">DESIGNATION LIST</h5>
+          <h5 class="card-title mb-0">SUPPLIER LIST</h5>
         </div>
         <div class="col-md-6 text-end">
           <button
             type="button"
             class="btn btn-sm btn-success text-end"
             data-toggle="modal"
-            data-target="#add-designation"
+            data-target="#add-supplier"
             name=""
           >
-            Add New Designation
+            Add New Supplier
           </button>
         </div>
-        <div v-if="msg" class="alert alert-success mt-1" role="alert">
-          New Designation Added
-        </div>
+      
       </div>
     </div>
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
-  <th scope="col">Designation Name</th>
-       
-        
+  <th scope="col">supplier Name</th>
+        <th scope="col">Description</th>
+         <th scope="col">GST No</th>
           <th scope="col">Status</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="designation in designations" :key="designation.id">
-          <td scope="row">{{ designation.id }}</td>
-          <td>{{designation.name }}</td>
-       
+        <tr v-for="supplier in suppliers" :key="supplier.id">
+          <td scope="row">{{ supplier.id }}</td>
+          <td>{{supplier.name }}</td>
+        <td>{{supplier.description }}</td>
+         <td>{{supplier.gst }}</td>
          
-          <td>{{designation.status }}</td>
+          <td>{{supplier.status }}</td>
           <td>
             <button
               type="button"
               class="btn btn-sm btn-success text-end"
               data-toggle="modal"
-              data-target="#edit-designation"
+              data-target="#edit-supplier"
               name=""
-              @click="edit_designation(designation)"
+              @click="edit_supplier(supplier)"
             >
               edit
             </button>
-           <button class="btn btn-danger btn-sm m-0" @click="delete_designation(designation.id)">Delete</button></td>
+           <button class="btn btn-danger btn-sm m-0" @click="delete_supplier(supplier.id)">Delete</button></td>
           
         </tr>
       </tbody>
@@ -61,19 +60,19 @@
 
     <!-- Modal -->
 
-    <div class="modal fade" id="edit-designation" data-backdrop="static" tabindex="-1" role="dialog"
+    <div class="modal fade" id="edit-supplier" data-backdrop="static" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">EDIT DESIGNATION</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">EDIT SUPPLIER</h5>
                           <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>-->
                         </div>
                         <div class="modal-body">
 
-                            <add-new-designation :edit='true'> </add-new-designation>
+                            <add-new-supplier :edit='true'> </add-new-supplier>
                         </div>
 
                     </div>
@@ -88,40 +87,37 @@
 export default {
   data() {
     return {
-      msg: false,
-      name: "",
-  designations: {},
+     
+  suppliers: {},
     };
   },
 
   created() {
-    this.get_designation();
+    this.get_supplier();
     var vm = this;
-    bus.$on("designation-added", function () {
-      vm.get_designation();
-      vm.showmsg();
+    bus.$on("supplier-added", function () {
+      vm.get_supplier();
+   
     });
   },
 
   methods: {
-    get_designation() {
-      axios.get("/api/add_designation").then((response) => (this.designations = response.data));
+    get_supplier() {
+      axios.get("/api/add_supplier").then((response) => (this.suppliers = response.data));
     },
 
-    showmsg() {
-      this.msg = true;
-    },
+ 
 
-    edit_designation(designation) {
-      bus.$emit("edit-designation",designation);
+    edit_supplier(supplier) {
+      bus.$emit("edit-supplier",supplier);
    
     },
-    delete_designation(id){
+    delete_supplier(id){
    
- axios.delete('/api/add_designation/'+id).then((response) => {
+ axios.delete('/api/add_supplier/'+id).then((response) => {
           console.log(response);
           if (response.data == "Success") {
-          this.get_designation();
+          this.get_supplier();
           }
 
         

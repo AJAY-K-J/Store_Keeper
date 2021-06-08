@@ -40,7 +40,8 @@ return redirect('storedashboard');
 
 }elseif($user->role == 'store-manager'){
 
-
+    $request->session()->put('store-manager',$user->id);
+    return redirect('managerdashboard');
 
 }elseif($user->role == 'office'){
 
