@@ -3755,17 +3755,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["edit", "item_details", "section_details", "section_officer"],
   created: function created() {},
   data: function data() {
     return {
+      items: {},
       arrivals: {
         date: "",
         supplier: "",
         description_of_item: '',
-        item_name: "",
+        item_name: '',
         quantity: "",
         price: "",
         invoice: "",
@@ -3795,6 +3800,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
 
         if (response.data == "Success") {
+          Swal.fire("Successfully Added!", "", "success");
+
           _this.clear_data();
         }
 
@@ -3903,14 +3910,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["category_details"],
   data: function data() {
     return {
-      msg: false,
-      name: "",
       items: {}
     };
   },
@@ -3919,7 +3922,6 @@ __webpack_require__.r(__webpack_exports__);
     var vm = this;
     bus.$on("item-added", function () {
       vm.get_item();
-      vm.showmsg();
     });
   },
   methods: {
@@ -3929,9 +3931,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/add_item").then(function (response) {
         return _this.items = response.data;
       });
-    },
-    showmsg: function showmsg() {
-      this.msg = true;
     },
     edit_item: function edit_item(items) {
       bus.$emit("edit-item", items);
@@ -4046,13 +4045,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      msg: false,
-      name: "",
       roles: {}
     };
   },
@@ -4061,7 +4056,6 @@ __webpack_require__.r(__webpack_exports__);
     var vm = this;
     bus.$on("role-added", function () {
       vm.get_role();
-      vm.showmsg();
     });
   },
   methods: {
@@ -4071,9 +4065,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/add_role").then(function (response) {
         return _this.roles = response.data;
       });
-    },
-    showmsg: function showmsg() {
-      this.msg = true;
     },
     edit_role: function edit_role(role) {
       bus.$emit("edit-role", role);
@@ -4188,13 +4179,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      msg: false,
-      name: "",
       sections: {}
     };
   },
@@ -4203,7 +4190,6 @@ __webpack_require__.r(__webpack_exports__);
     var vm = this;
     bus.$on("section-added", function () {
       vm.get_section();
-      vm.showmsg();
     });
   },
   methods: {
@@ -4213,9 +4199,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/add_section").then(function (response) {
         return _this.sections = response.data;
       });
-    },
-    showmsg: function showmsg() {
-      this.msg = true;
     },
     edit_section: function edit_section(section) {
       bus.$emit("edit-section", section);
@@ -4472,14 +4455,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["role_details"],
   data: function data() {
     return {
-      msg: false,
-      name: "",
       list: {}
     };
   },
@@ -4488,7 +4467,6 @@ __webpack_require__.r(__webpack_exports__);
     var vm = this;
     bus.$on("user-added", function () {
       vm.get_user();
-      vm.showmsg();
     });
   },
   methods: {
@@ -4498,9 +4476,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/adduser").then(function (response) {
         return _this.list = response.data;
       });
-    },
-    showmsg: function showmsg() {
-      this.msg = true;
     },
     edit_user: function edit_user(lis) {
       bus.$emit("edit-user", lis);
@@ -67536,7 +67511,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { id: "category_name", name: "category_name" },
+                  attrs: { name: "category_name" },
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -69421,25 +69396,13 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.item_details, function(item) {
-                            return _c(
-                              "option",
-                              {
-                                key: item.id,
-                                domProps: {
-                                  value: {
-                                    id: item.id,
-                                    description: item.description_item
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(item.name) +
-                                    "\n                      "
-                                )
-                              ]
-                            )
+                            return _c("option", { key: item.id }, [
+                              _vm._v(
+                                "\n                     " +
+                                  _vm._s(item.name) +
+                                  " \n                      "
+                              )
+                            ])
                           })
                         ],
                         2
@@ -69604,27 +69567,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm.msg
-          ? _c(
-              "div",
-              {
-                staticClass: "alert alert-success mt-1",
-                attrs: { role: "alert" }
-              },
-              [_vm._v("\n        New Item Added\n      ")]
-            )
-          : _vm._e()
-      ])
-    ]),
+    _vm._m(0),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -69701,7 +69647,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -69728,28 +69674,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 bold" }, [
-      _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("ITEM LIST")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 text-end" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-sm btn-success text-end",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#add-item",
-            name: ""
-          }
-        },
-        [_vm._v("\n          Add New Item\n        ")]
-      )
+    return _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6 bold" }, [
+          _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("ITEM LIST")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 text-end" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-success text-end",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#add-item",
+                name: ""
+              }
+            },
+            [_vm._v("\n          Add New Item\n        ")]
+          )
+        ])
+      ])
     ])
   },
   function() {
@@ -69808,27 +69754,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm.msg
-          ? _c(
-              "div",
-              {
-                staticClass: "alert alert-success mt-1",
-                attrs: { role: "alert" }
-              },
-              [_vm._v("\n        New Role Added\n      ")]
-            )
-          : _vm._e()
-      ])
-    ]),
+    _vm._m(0),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -69897,7 +69826,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -69917,28 +69846,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 bold" }, [
-      _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("ROLE LIST")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 text-end" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-sm btn-success text-end",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#add-role",
-            name: ""
-          }
-        },
-        [_vm._v("\n          Add New Role\n        ")]
-      )
+    return _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6 bold" }, [
+          _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("ROLE LIST")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 text-end" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-success text-end",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#add-role",
+                name: ""
+              }
+            },
+            [_vm._v("\n          Add New Role\n        ")]
+          )
+        ])
+      ])
     ])
   },
   function() {
@@ -69993,27 +69922,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm.msg
-          ? _c(
-              "div",
-              {
-                staticClass: "alert alert-success mt-1",
-                attrs: { role: "alert" }
-              },
-              [_vm._v("\n        New Section Added\n      ")]
-            )
-          : _vm._e()
-      ])
-    ]),
+    _vm._m(0),
     _vm._v(" "),
     _c("table", { staticClass: "table text-center" }, [
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -70086,7 +69998,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -70106,28 +70018,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 bold" }, [
-      _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("SECTION LIST")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 text-end" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-sm btn-success text-end",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#add-section",
-            name: ""
-          }
-        },
-        [_vm._v("\n          Add New Section\n        ")]
-      )
+    return _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6 bold" }, [
+          _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("SECTION LIST")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 text-end" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-success text-end",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#add-section",
+                name: ""
+              }
+            },
+            [_vm._v("\n          Add New Section\n        ")]
+          )
+        ])
+      ])
     ])
   },
   function() {
@@ -70366,27 +70278,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm.msg
-          ? _c(
-              "div",
-              {
-                staticClass: "alert alert-success mt-1",
-                attrs: { role: "alert" }
-              },
-              [_vm._v("\n        New User Added\n      ")]
-            )
-          : _vm._e()
-      ])
-    ]),
+    _vm._m(0),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -70448,7 +70343,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -70472,28 +70367,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 bold" }, [
-      _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("USERS LIST")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 text-end" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-sm btn-success text-end",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#add-user",
-            name: ""
-          }
-        },
-        [_vm._v("\n          Add New User\n        ")]
-      )
+    return _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6 bold" }, [
+          _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("USERS LIST")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 text-end" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-success text-end",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#add-user",
+                name: ""
+              }
+            },
+            [_vm._v("\n          Add New User\n        ")]
+          )
+        ])
+      ])
     ])
   },
   function() {

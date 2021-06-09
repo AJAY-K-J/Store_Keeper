@@ -23,7 +23,7 @@
 
             <select
               class="form-control"
-              id="category_name"
+           
               name="category_name"
               v-model="items.category_name"
             >

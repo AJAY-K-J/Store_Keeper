@@ -16,9 +16,7 @@
             Add New User
           </button>
         </div>
-        <div v-if="msg" class="alert alert-success mt-1" role="alert">
-          New User Added
-        </div>
+      
       </div>
     </div>
     <table class="table">
@@ -94,8 +92,7 @@ export default {
     props: [ "role_details",],
   data() {
     return {
-      msg: false,
-      name: "",
+     
       list: {},
     };
   },
@@ -105,7 +102,7 @@ export default {
     var vm = this;
     bus.$on("user-added", function () {
       vm.get_user();
-      vm.showmsg();
+ 
     });
   },
 
@@ -114,9 +111,7 @@ export default {
       axios.get("/api/adduser").then((response) => (this.list = response.data));
     },
 
-    showmsg() {
-      this.msg = true;
-    },
+
 
     edit_user(lis) {
       bus.$emit("edit-user",lis);

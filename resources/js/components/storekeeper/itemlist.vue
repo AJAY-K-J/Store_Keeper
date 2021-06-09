@@ -16,9 +16,7 @@
             Add New Item
           </button>
         </div>
-        <div v-if="msg" class="alert alert-success mt-1" role="alert">
-          New Item Added
-        </div>
+    
       </div>
     </div>
     <table class="table">
@@ -89,8 +87,7 @@ export default {
    props: ["category_details"],
   data() {
     return {
-      msg: false,
-      name: "",
+    
   items: {},
     };
   },
@@ -102,7 +99,7 @@ export default {
     var vm = this;
     bus.$on("item-added", function () {
       vm.get_item();
-      vm.showmsg();
+   
     });
   },
 
@@ -111,9 +108,6 @@ export default {
       axios.get("/api/add_item").then((response) => (this.items = response.data));
     },
 
-    showmsg() {
-      this.msg = true;
-    },
 
     edit_item(items) {
       bus.$emit("edit-item",items);

@@ -17,7 +17,7 @@ class CreateStorearrivalsTable extends Migration
             $table->id();
 
             $table->date('date');
-            $table->text('supplier');
+            $table->string('supplier');
 
             $table->text('description_of_item');
             $table->string('item_name');

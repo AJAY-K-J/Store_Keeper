@@ -16,9 +16,7 @@
             Add New Role
           </button>
         </div>
-        <div v-if="msg" class="alert alert-success mt-1" role="alert">
-          New Role Added
-        </div>
+       
       </div>
     </div>
     <table class="table">
@@ -87,8 +85,7 @@
 export default {
   data() {
     return {
-      msg: false,
-      name: "",
+    
      roles: {},
     };
   },
@@ -98,7 +95,7 @@ export default {
     var vm = this;
     bus.$on("role-added", function () {
       vm.get_role();
-      vm.showmsg();
+    
     });
   },
 
@@ -107,9 +104,7 @@ export default {
       axios.get("/api/add_role").then((response) => (this.roles = response.data));
     },
 
-    showmsg() {
-      this.msg = true;
-    },
+
 
     edit_role(role) {
       bus.$emit("edit-role",role);

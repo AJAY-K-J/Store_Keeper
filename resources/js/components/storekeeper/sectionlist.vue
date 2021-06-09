@@ -16,9 +16,7 @@
             Add New Section
           </button>
         </div>
-        <div v-if="msg" class="alert alert-success mt-1" role="alert">
-          New Section Added
-        </div>
+     
       </div>
     </div>
     <table class="table text-center">
@@ -87,8 +85,7 @@
 export default {
   data() {
     return {
-      msg: false,
-      name: "",
+   
      sections: {},
     };
   },
@@ -98,7 +95,7 @@ export default {
     var vm = this;
     bus.$on("section-added", function () {
       vm.get_section();
-      vm.showmsg();
+   
     });
   },
 
@@ -107,9 +104,7 @@ export default {
       axios.get("/api/add_section").then((response) => (this.sections = response.data));
     },
 
-    showmsg() {
-      this.msg = true;
-    },
+
 
     edit_section(section) {
       bus.$emit("edit-section",section);

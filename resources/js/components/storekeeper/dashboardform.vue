@@ -172,6 +172,9 @@
                     />
                   </div>
 
+
+                  
+
                   <small class="text-danger" v-if="errors.invoice">{{
                     errors.invoice[0]
                   }}</small>
@@ -211,9 +214,10 @@
                       v-model="arrivals.item_name"
                     >
                       <option value="">Select Item</option>
-                      <option v-for="item in item_details" :key="item.id" v-bind:value="{id:item.id, description:item.description_item}">
-                        {{ item.name }}
+                      <option  v-for="item in item_details" :key="item.id" >
+                     {{item.name }} 
                       </option>
+                
                     </select>
                     
                   </div>
@@ -285,15 +289,24 @@ import moment from "moment";
 export default {
   props: ["edit", "item_details", "section_details", "section_officer"],
 
-  created() {},
+  created() {
+
+
+
+
+  },
+
 
   data() {
     return {
+items:{},
+  
       arrivals: {
         date: "",
         supplier: "",
         description_of_item:'',
-        item_name: "",
+        item_name: '',
+     
         quantity: "",
         price: "",
         invoice: "",
@@ -320,11 +333,18 @@ export default {
     },
 
     addarrivals() {
+
+
+
+
+
       axios
         .post("./api/addarrivals", this.arrivals)
         .then((response) => {
           console.log(response);
           if (response.data == "Success") {
+
+            Swal.fire("Successfully Added!", "", "success");
             this.clear_data();
           }
 
