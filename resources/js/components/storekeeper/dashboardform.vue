@@ -39,7 +39,7 @@
                   >
                   <div class="col-sm-9">
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
                       id="quantity"
                       name="quantity"
@@ -77,13 +77,21 @@
                     >Details of supplier</label
                   >
                   <div class="col-sm-9">
-                    <textarea
-                      class="form-control form-height"
-                      id="supplier"
+                    <select
+                      class="form-control"
+                      id="itemname"
+                      name="item_name"
                       v-model="arrivals.supplier"
-                      name="supplier"
-                    ></textarea>
+                    >
+                      <option value="">Select Supplier</option>
+                      <option  v-for="suppliers in supplier_details" :key="suppliers.id" v-bind:value="suppliers.id" >
+                     {{suppliers.name }} 
+                      </option>
+                
+                    </select>
+                    
                   </div>
+
                   <small class="text-danger" v-if="errors.supplier">{{
                     errors.supplier[0]
                   }}</small>
@@ -122,7 +130,7 @@
                       <option value="">Select Section</option>
                       <option
                         v-for="section in section_details"
-                        :key="section.id"
+                        :key="section.id" v-bind:value="section.id"
                       >
                         {{ section.name }}
                       </option>
@@ -214,7 +222,7 @@
                       v-model="arrivals.item_name"
                     >
                       <option value="">Select Item</option>
-                      <option  v-for="item in item_details" :key="item.id" >
+                      <option  v-for="item in item_details" :key="item.id" v-bind:value="item.id" >
                      {{item.name }} 
                       </option>
                 
@@ -287,7 +295,7 @@
 <script>
 import moment from "moment";
 export default {
-  props: ["edit", "item_details", "section_details", "section_officer"],
+  props: ["edit", "item_details", "section_details", "section_officer","supplier_details"],
 
   created() {
 
@@ -341,7 +349,7 @@ items:{},
       axios
         .post("./api/addarrivals", this.arrivals)
         .then((response) => {
-          console.log(response);
+  
           if (response.data == "Success") {
 
             Swal.fire("Successfully Added!", "", "success");

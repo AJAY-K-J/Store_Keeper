@@ -34,7 +34,7 @@
         <tr v-for="supplier in suppliers" :key="supplier.id">
           <td scope="row">{{ supplier.id }}</td>
           <td>{{supplier.name }}</td>
-        <td>{{supplier.description }}</td>
+        <td>{{supplier.Details }}</td>
          <td>{{supplier.gst }}</td>
          
           <td>{{supplier.status }}</td>

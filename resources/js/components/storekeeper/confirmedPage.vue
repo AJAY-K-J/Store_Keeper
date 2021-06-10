@@ -31,7 +31,7 @@
 
           <td>{{ confirmed.item_name }}</td>
 
-          <td>{{ confirmed.description_of_item }}</td>
+          <td>{{ confirmed.description_item }}</td>
 
           <td>{{ confirmed.quantity }}</td>
 

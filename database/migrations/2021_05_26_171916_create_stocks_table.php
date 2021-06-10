@@ -15,12 +15,30 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('purchase_id');
-            $table->string('product_id');
-            $table->string('catagory_id');
-            $table->string('quantity');
+            $table->integer('product_id');
+            $table->date('product_date');
+            $table->string('product_supplier_id');
             $table->string('section_id');
-            $table->string('status');
+            $table->string('item_id');
+
+            $table->float('quantity');
+            $table->float('price');
+
+            $table->string('invoice');
+            $table->string('Dc_no');
+
+            $table->date('Dc_date');
+
+
+            $table->string('arrivals_page_no')->default(0);
+
+            $table->string('gir_page_no')->default(0);
+
+            $table->string('category_book');
+            $table->string('category_book_page_no')->default(0);
+            $table->string('purchase_order_no');
+            $table->date('purchase_order_date');
+            $table->text('remarks')->default(null);
             $table->timestamps();
         });
     }

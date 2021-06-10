@@ -40,8 +40,8 @@ if($request->id){
   if($request->gst){
     $Supplier->gst=$request->gst;
 }
-if($request->description){
-    $Supplier->description=$request->description;
+if($request->Details){
+    $Supplier->Details=$request->Details;
 }
 
 

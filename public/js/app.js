@@ -2085,8 +2085,8 @@ __webpack_require__.r(__webpack_exports__);
     bus.$on("store-details", function (details) {
       vm.date = details.date;
       vm.remarks = details.remarks;
-      vm.supplier = details.supplier;
-      vm.descripction_item = details.description_of_item;
+      vm.supplier_details = details.Details;
+      vm.descripction_item = details.description_item;
       vm.item_name = details.item_name;
       vm.quantity = details.quantity;
       vm.price = details.price;
@@ -2098,7 +2098,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       id: "",
       date: "",
-      supplier: "",
+      supplier_details: "",
       descripction_item: "",
       item_name: "",
       quantity: "",
@@ -2139,7 +2139,9 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, reject it!'
       }).then(function (result) {
         if (result.isConfirmed) {
-          axios.post("./section-reject/" + _this2.id).then(function (response) {
+          axios.post("./section-reject/" + _this2.id, {
+            remarks: _this2.remarks
+          }).then(function (response) {
             if (response.data == "Success") {
               Swal.fire('Rejected!', 'Your item has been rejected.', 'success');
 
@@ -2960,7 +2962,7 @@ __webpack_require__.r(__webpack_exports__);
         vm.clear_data();
         vm.suppliers.id = supplier.id;
         vm.suppliers.name = supplier.name;
-        vm.suppliers.description = supplier.description;
+        vm.suppliers.Details = supplier.Details;
         vm.suppliers.gst = supplier.gst;
       });
     }
@@ -2969,7 +2971,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       suppliers: {
         name: "",
-        description: "",
+        Details: "",
         gst: ""
       },
       errors: {}
@@ -3099,13 +3101,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      msg: false,
-      name: "",
       category: {}
     };
   },
@@ -3114,7 +3112,6 @@ __webpack_require__.r(__webpack_exports__);
     var vm = this;
     bus.$on("category-added", function () {
       vm.get_category();
-      vm.showmsg();
     });
   },
   methods: {
@@ -3124,9 +3121,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/add_category").then(function (response) {
         return _this.category = response.data;
       });
-    },
-    showmsg: function showmsg() {
-      this.msg = true;
     },
     edit_category: function edit_category(category) {
       bus.$emit("edit-category", category);
@@ -3280,6 +3274,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3410,42 +3406,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     var da = this;
-    bus.$on("confirmed-details", function (confirmed) {
-      da.date = confirmed.date;
-      da.remarks = confirmed.remarks;
-      da.supplier = confirmed.supplier;
-      da.descripction_item = confirmed.description_of_item;
-      da.item_name = confirmed.item_name;
-      da.quantity = confirmed.quantity;
-      da.price = confirmed.price;
-      da.invoice = confirmed.invoice;
-      da.id = confirmed.id;
-    });
+    bus.$on("confirmed-details", function (confirmed) {});
   },
   data: function data() {
     return {
-      id: "",
-      date: "",
-      supplier: "",
-      descripction_item: "",
-      item_name: "",
-      quantity: "",
-      price: "",
-      invoice: "",
-      remarks: "",
+      lot: {
+        product_id: "",
+        product_date: "",
+        product_supplier_id: "",
+        section_id: "",
+        item_id: "",
+        quantity: "",
+        price: "",
+        invoice: "",
+        Dc_no: "",
+        Dc_date: "",
+        arrivals_page_no: "",
+        gir_page_no: "",
+        category_book: "",
+        category_book_page_no: "",
+        purchase_order_no: "",
+        purchase_order_date: "",
+        remarks: "",
+        supplier_details: '',
+        item_name: ''
+      },
       errors: {}
     };
   },
   methods: {
+    convert_date: function convert_date(date) {
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format("DD-MM-YYYY");
+    },
     addToGIR: function addToGIR() {
       var _this = this;
 
-      axios.post("./addGoods/" + this.id, {
-        remarks: this.remarks
-      }).then(function (response) {
+      axios.post("./addtogir").then(function (response) {
         if (response.data == "Success") {
           Swal.fire("Confirmed!", "", "success");
 
@@ -3759,9 +3768,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["edit", "item_details", "section_details", "section_officer"],
+  props: ["edit", "item_details", "section_details", "section_officer", "supplier_details"],
   created: function created() {},
   data: function data() {
     return {
@@ -3797,8 +3814,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("./api/addarrivals", this.arrivals).then(function (response) {
-        console.log(response);
-
         if (response.data == "Success") {
           Swal.fire("Successfully Added!", "", "success");
 
@@ -4725,8 +4740,8 @@ __webpack_require__.r(__webpack_exports__);
     bus.$on("store-data", function (manager) {
       vm.date = manager.date;
       vm.remarks = manager.remarks;
-      vm.supplier = manager.supplier;
-      vm.descripction_item = manager.description_of_item;
+      vm.supplier_details = manager.Details;
+      vm.descripction_item = manager.description_item;
       vm.item_name = manager.item_name;
       vm.quantity = manager.quantity;
       vm.price = manager.price;
@@ -4738,7 +4753,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       id: "",
       date: "",
-      supplier: "",
+      supplier_details: "",
       descripction_item: '',
       item_name: "",
       quantity: "",
@@ -5017,8 +5032,8 @@ __webpack_require__.r(__webpack_exports__);
     bus.$on("arrival-data", function (element) {
       vm.date = element.date;
       vm.remarks = element.remarks;
-      vm.supplier = element.supplier;
-      vm.descripction_item = element.description_of_item;
+      vm.supplier_details = element.Details;
+      vm.descripction_item = element.description_item;
       vm.item_name = element.item_name;
       vm.quantity = element.quantity;
       vm.price = element.price;
@@ -5030,7 +5045,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       id: "",
       date: "",
-      supplier: "",
+      supplier_details: "",
       descripction_item: '',
       item_name: "",
       quantity: "",
@@ -67062,7 +67077,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(details.item_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(details.description_of_item))]),
+            _c("td", [_vm._v(_vm._s(details.description_item))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(details.quantity))]),
             _vm._v(" "),
@@ -67201,7 +67216,7 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Details of supplier")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.supplier))])
+            _c("p", [_vm._v(_vm._s(_vm.supplier_details))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
@@ -68255,34 +68270,34 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-12" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Description")]),
+              _c("label", [_vm._v("Details")]),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.suppliers.description,
-                    expression: "suppliers.description"
+                    value: _vm.suppliers.Details,
+                    expression: "suppliers.Details"
                   }
                 ],
                 staticClass: "form-control form-height",
-                attrs: { name: "description", placeholder: "Description" },
-                domProps: { value: _vm.suppliers.description },
+                attrs: { name: "Details", placeholder: "Details" },
+                domProps: { value: _vm.suppliers.Details },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.suppliers, "description", $event.target.value)
+                    _vm.$set(_vm.suppliers, "Details", $event.target.value)
                   }
                 }
               })
             ]),
             _vm._v(" "),
-            _vm.errors.description
+            _vm.errors.Details
               ? _c("small", { staticClass: "text-danger" }, [
-                  _vm._v(_vm._s(_vm.errors.description[0]))
+                  _vm._v(_vm._s(_vm.errors.Details[0]))
                 ])
               : _vm._e()
           ])
@@ -68341,27 +68356,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm.msg
-          ? _c(
-              "div",
-              {
-                staticClass: "alert alert-success mt-1",
-                attrs: { role: "alert" }
-              },
-              [_vm._v("\n        New Category Added\n      ")]
-            )
-          : _vm._e()
-      ])
-    ]),
+    _vm._m(0),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -68434,7 +68432,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -68454,28 +68452,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 bold" }, [
-      _c("h5", { staticClass: "card-title mb-0" }, [_vm._v("CATEGORY LIST")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 text-end" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-sm btn-success text-end",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#add-category",
-            name: ""
-          }
-        },
-        [_vm._v("\n          Add New Category\n        ")]
-      )
+    return _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6 bold" }, [
+          _c("h5", { staticClass: "card-title mb-0" }, [
+            _vm._v("CATEGORY LIST")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 text-end" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-success text-end",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#add-category",
+                name: ""
+              }
+            },
+            [_vm._v("\n          Add New Category\n        ")]
+          )
+        ])
+      ])
     ])
   },
   function() {
@@ -68545,7 +68545,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(confirmed.item_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(confirmed.description_of_item))]),
+            _c("td", [_vm._v(_vm._s(confirmed.description_item))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(confirmed.quantity))]),
             _vm._v(" "),
@@ -68675,25 +68675,25 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Date")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.date))])
+            _c("p", [_vm._v(_vm._s(_vm.convert_date()))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Details of supplier")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.supplier))])
+            _c("p", [_vm._v(_vm._s())])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Descripction of item")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.descripction_item))])
+            _c("p", [_vm._v(_vm._s())])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Name of item")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.item_name))])
+            _c("p", [_vm._v(_vm._s())])
           ])
         ]),
         _vm._v(" "),
@@ -68703,19 +68703,19 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Quantity")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.quantity))])
+            _c("p", [_vm._v(_vm._s())])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Price")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.price))])
+            _c("p", [_vm._v(_vm._s())])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Invoice No")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.invoice))])
+            _c("p", [_vm._v(_vm._s())])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
@@ -68726,19 +68726,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.remarks,
-                  expression: "remarks"
+                  value: _vm.lot.remarks,
+                  expression: "lot.remarks"
                 }
               ],
               staticClass: "form-control form-height",
               attrs: { name: "remarks" },
-              domProps: { value: _vm.remarks },
+              domProps: { value: _vm.lot.remarks },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.remarks = $event.target.value
+                  _vm.$set(_vm.lot, "remarks", $event.target.value)
                 }
               }
             })
@@ -68747,7 +68747,9 @@ var render = function() {
           _c("hr")
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2)
       ])
     ]),
     _vm._v(" "),
@@ -68761,7 +68763,7 @@ var render = function() {
               staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { "data-dismiss": "modal", type: "button" }
             },
-            [_vm._v("\n            Cancel\n          ")]
+            [_vm._v("\n          Cancel\n        ")]
           ),
           _vm._v(" "),
           _c(
@@ -68775,7 +68777,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n          Add TO GIR\n          ")]
+            [_vm._v("\n          Add TO GIR\n        ")]
           )
         ])
       ])
@@ -68817,13 +68819,9 @@ var staticRenderFns = [
           [
             _c("option", { attrs: { value: "" } }, [_vm._v("Select category")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "kardex" } }, [
-              _vm._v("Kardex\n              \n              ")
-            ]),
+            _c("option", { attrs: { value: "kardex" } }, [_vm._v("Kardex")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "dsr" } }, [
-              _vm._v("DSR\n              \n              ")
-            ])
+            _c("option", { attrs: { value: "dsr" } }, [_vm._v("DSR")])
           ]
         )
       ]),
@@ -68837,6 +68835,40 @@ var staticRenderFns = [
             type: "text",
             placeholder: "Category page no",
             name: "category_page_no"
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("h5", [_vm._v("Purchase Order no")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            placeholder: "Purchase Order no",
+            name: "Purchase_no"
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("hr")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("h5", [_vm._v("Purchase Order Date")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "date",
+            placeholder: "Purchase Order date",
+            name: "Purchase_order_date"
           }
         })
       ]),
@@ -68956,7 +68988,7 @@ var render = function() {
                         ],
                         staticClass: "form-control",
                         attrs: {
-                          type: "text",
+                          type: "number",
                           id: "quantity",
                           name: "quantity",
                           placeholder: "Quantity Here"
@@ -69047,31 +69079,63 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-sm-9" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.arrivals.supplier,
-                            expression: "arrivals.supplier"
-                          }
-                        ],
-                        staticClass: "form-control form-height",
-                        attrs: { id: "supplier", name: "supplier" },
-                        domProps: { value: _vm.arrivals.supplier },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.arrivals.supplier,
+                              expression: "arrivals.supplier"
                             }
-                            _vm.$set(
-                              _vm.arrivals,
-                              "supplier",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "itemname", name: "item_name" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.arrivals,
+                                "supplier",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                        }
-                      })
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Select Supplier")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.supplier_details, function(suppliers) {
+                            return _c(
+                              "option",
+                              {
+                                key: suppliers.id,
+                                domProps: { value: suppliers.id }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                     " +
+                                    _vm._s(suppliers.name) +
+                                    " \n                      "
+                                )
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      )
                     ]),
                     _vm._v(" "),
                     _vm.errors.supplier
@@ -69177,13 +69241,20 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.section_details, function(section) {
-                            return _c("option", { key: section.id }, [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(section.name) +
-                                  "\n                      "
-                              )
-                            ])
+                            return _c(
+                              "option",
+                              {
+                                key: section.id,
+                                domProps: { value: section.id }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(section.name) +
+                                    "\n                      "
+                                )
+                              ]
+                            )
                           })
                         ],
                         2
@@ -69396,13 +69467,17 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.item_details, function(item) {
-                            return _c("option", { key: item.id }, [
-                              _vm._v(
-                                "\n                     " +
-                                  _vm._s(item.name) +
-                                  " \n                      "
-                              )
-                            ])
+                            return _c(
+                              "option",
+                              { key: item.id, domProps: { value: item.id } },
+                              [
+                                _vm._v(
+                                  "\n                     " +
+                                    _vm._s(item.name) +
+                                    " \n                      "
+                                )
+                              ]
+                            )
                           })
                         ],
                         2
@@ -70109,7 +70184,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(supplier.name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(supplier.description))]),
+            _c("td", [_vm._v(_vm._s(supplier.Details))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(supplier.gst))]),
             _vm._v(" "),
@@ -70466,7 +70541,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(element.item_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(element.description_of_item))]),
+            _c("td", [_vm._v(_vm._s(element.description_item))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(element.quantity))]),
             _vm._v(" "),
@@ -70600,7 +70675,7 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Details of supplier")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.supplier))])
+            _c("p", [_vm._v(_vm._s(_vm.supplier_details))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
@@ -70761,7 +70836,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(manager.item_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(manager.description_of_item))]),
+            _c("td", [_vm._v(_vm._s(manager.description_item))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(manager.quantity))]),
             _vm._v(" "),
@@ -70905,7 +70980,7 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Details of supplier")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.supplier))])
+            _c("p", [_vm._v(_vm._s(_vm.supplier_details))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [

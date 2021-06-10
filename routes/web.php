@@ -38,9 +38,10 @@ Route::get('/logout',[UserAuthController::class,'userlogout']);
 
 
 Route::get('/storedashboard',[StoreArrivalController::class,'index']);
-
 Route::get('/confirmedIitemPage',[ConfirmedItemsController::class,'index']);
 Route::get('/confirmedDetails',[ConfirmedItemsController::class,'confirmedItems']);
+
+Route::post('/addtogir',[ConfirmedItemsController::class,'store']);
 
 Route::get('/adduser',[UserController::class,'index']);
 
@@ -77,7 +78,7 @@ Route::post('/manager-reject/{id}',[ManagerResponseController::class,'reject']);
 
 Route::get('/officedashboard',[OfficePageController::class,'index']);
 
-
+Route::get('/officedashboar',[OfficePageController::class,'indexx']);
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

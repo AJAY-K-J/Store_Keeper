@@ -31,7 +31,7 @@
 
           <td>{{ details.item_name }}</td>
 
-          <td>{{ details.description_of_item }}</td>
+          <td>{{ details.description_item }}</td>
 
           <td>{{ details.quantity }}</td>
 

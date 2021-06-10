@@ -38,17 +38,17 @@
       <div class="row">
         <div class="col-12">
           <div class="form-group">
-            <label>Description</label>
+            <label>Details</label>
             <textarea
               class="form-control form-height"
-              name="description"
-              placeholder="Description"
-              v-model="suppliers.description"
+              name="Details"
+              placeholder="Details"
+              v-model="suppliers.Details"
             ></textarea>
           </div>
 
-          <small class="text-danger" v-if="errors.description">{{
-            errors.description[0]
+          <small class="text-danger" v-if="errors.Details">{{
+            errors.Details[0]
           }}</small>
         </div>
       </div>
@@ -86,7 +86,7 @@ export default {
         vm.clear_data();
         vm.suppliers.id = supplier.id;
         vm.suppliers.name = supplier.name;
-        vm.suppliers.description = supplier.description;
+        vm.suppliers.Details = supplier.Details;
         vm.suppliers.gst = supplier.gst;
       });
     }
@@ -96,7 +96,7 @@ export default {
     return {
       suppliers: {
         name: "",
-        description: "",
+       Details: "",
         gst: "",
       },
       errors: {},

@@ -8,21 +8,21 @@
         <div class="row">
           <div class="col-md-3">
             <h5>Date</h5>
-            <p>{{ date }}</p>
+            <p>{{ convert_date() }}</p>
           </div>
           <div class="col-md-3">
             <h5>Details of supplier</h5>
-            <p>{{ supplier }}</p>
+            <p>{{  }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Descripction of item</h5>
-            <p>{{ descripction_item }}</p>
+            <p>{{  }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Name of item</h5>
-            <p>{{ item_name }}</p>
+            <p>{{ }}</p>
           </div>
         </div>
 
@@ -31,16 +31,16 @@
         <div class="row">
           <div class="col-md-3">
             <h5>Quantity</h5>
-            <p>{{ quantity }}</p>
+            <p>{{  }}</p>
           </div>
           <div class="col-md-3">
             <h5>Price</h5>
-            <p>{{ price }}</p>
+            <p>{{ }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Invoice No</h5>
-            <p>{{ invoice }}</p>
+            <p>{{  }}</p>
           </div>
 
           <div class="col-md-3">
@@ -49,57 +49,67 @@
             <textarea
               class="form-control form-height"
               name="remarks"
-              v-model="remarks"
+              v-model="lot.remarks"
             ></textarea>
           </div>
 
           <hr />
         </div>
-<div class="row">
+        <div class="row">
           <div class="col-md-3">
             <h5>GIR page no</h5>
-             <input
+            <input
               type="text"
               class="form-control"
               placeholder="GIR page no"
               name="girno"
-             
             />
           </div>
           <div class="col-md-3">
             <h5>Select Category</h5>
-           <select
-              class="form-control"
-              id="category_name"
-              name="GIR_category"
-            
-            >
+            <select class="form-control" id="category_name" name="GIR_category">
               <option value="">Select category</option>
-              <option value="kardex" >Kardex
-              
-              </option>
-               <option value="dsr" >DSR
-              
-              </option>
+              <option value="kardex">Kardex</option>
+              <option value="dsr">DSR</option>
             </select>
           </div>
 
-           <div class="col-md-3">
+          <div class="col-md-3">
             <h5>Category page no</h5>
-             <input
+            <input
               type="text"
               class="form-control"
               placeholder="Category page no"
               name="category_page_no"
-             
             />
           </div>
 
-        
+          <div class="col-md-3">
+            <h5>Purchase Order no</h5>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Purchase Order no"
+              name="Purchase_no"
+            />
+          </div>
 
           <hr />
         </div>
 
+        <div class="row">
+          <div class="col-md-3">
+            <h5>Purchase Order Date</h5>
+            <input
+              type="date"
+              class="form-control"
+              placeholder="Purchase Order date"
+              name="Purchase_order_date"
+            />
+          </div>
+
+          <hr />
+        </div>
       </div>
     </div>
     <div class="row mt-4">
@@ -119,9 +129,8 @@
             type="submit"
             @click="addToGIR()"
           >
-          Add TO GIR
+            Add TO GIR
           </button>
-
         </div>
       </div>
     </div>
@@ -129,58 +138,62 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   created() {
-    var da= this;
+    var da = this;
     bus.$on("confirmed-details", function (confirmed) {
-      da.date = confirmed.date;
-      da.remarks = confirmed.remarks;
-     da.supplier = confirmed.supplier;
-     da.descripction_item = confirmed.description_of_item;
-      da.item_name = confirmed.item_name;
-      da.quantity = confirmed.quantity;
-     da.price = confirmed.price;
-      da.invoice = confirmed.invoice;
-     da.id = confirmed.id;
+   
     });
   },
   data() {
     return {
-      id: "",
-      date: "",
-      supplier: "",
-      descripction_item: "",
-      item_name: "",
-      quantity: "",
-      price: "",
-      invoice: "",
+      lot: {
+        product_id: "",
+        product_date: "",
+        product_supplier_id: "",
+        section_id: "",
+        item_id: "",
+        quantity: "",
+        price: "",
+        invoice: "",
+        Dc_no: "",
+        Dc_date: "",
+        arrivals_page_no: "",
+        gir_page_no: "",
+        category_book: "",
+        category_book_page_no: "",
+        purchase_order_no: "",
+        purchase_order_date: "",
+        remarks: "",
+        supplier_details :'',
+        item_name:'',
 
-      remarks: "",
+      },
 
       errors: {},
     };
   },
 
   methods: {
+    convert_date(date) {
+      return moment(date).format("DD-MM-YYYY");
+    },
+
     addToGIR() {
       axios
-        .post("./addGoods/" + this.id, {
-          remarks: this.remarks,
-        })
+        .post("./addtogir")
         .then((response) => {
           if (response.data == "Success") {
             Swal.fire("Confirmed!", "", "success");
 
             this.$refs.cancel_btn.click();
           }
-
-       
         })
         .catch((error) => {
           this.errors = error.response.data.errors.remarks;
         });
     },
-
   },
 };
 </script>

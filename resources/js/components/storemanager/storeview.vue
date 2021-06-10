@@ -12,7 +12,7 @@
           </div>
           <div class="col-md-3">
             <h5>Details of supplier</h5>
-            <p>{{ supplier }}</p>
+            <p>{{ supplier_details }}</p>
           </div>
 
           <div class="col-md-3">
@@ -85,8 +85,8 @@ export default {
 
       vm.date = element.date;
       vm.remarks = element.remarks;
-      vm.supplier =element.supplier;
-      vm.descripction_item =element.description_of_item;
+      vm.supplier_details =element.Details;
+      vm.descripction_item =element.description_item;
       vm.item_name =element.item_name;
       vm.quantity =element.quantity;
       vm.price = element.price;
@@ -99,7 +99,7 @@ export default {
     return {
       id: "",
       date: "",
-      supplier: "",
+      supplier_details: "",
       descripction_item:'',
       item_name: "",
       quantity: "",

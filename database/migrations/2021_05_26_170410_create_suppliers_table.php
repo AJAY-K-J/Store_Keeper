@@ -17,7 +17,7 @@ class CreateSuppliersTable extends Migration
             $table->id();
             $table->string('name');
              $table->string('gst');
-             $table->string('description');
+             $table->string('Details');
             $table->string('status')->default(0);
             $table->timestamps();
         });

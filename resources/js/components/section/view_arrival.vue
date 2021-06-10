@@ -12,7 +12,7 @@
           </div>
           <div class="col-md-3">
             <h5>Details of supplier</h5>
-            <p>{{ supplier }}</p>
+            <p>{{ supplier_details }}</p>
           </div>
 
           <div class="col-md-3">
@@ -97,8 +97,8 @@ export default {
     bus.$on("store-details", function (details) {
       vm.date = details.date;
       vm.remarks = details.remarks;
-      vm.supplier = details.supplier;
-      vm.descripction_item = details.description_of_item;
+      vm.supplier_details = details.Details;
+      vm.descripction_item = details.description_item;
       vm.item_name = details.item_name;
       vm.quantity = details.quantity;
       vm.price = details.price;
@@ -110,7 +110,7 @@ export default {
     return {
       id: "",
       date: "",
-      supplier: "",
+      supplier_details: "",
       descripction_item: "",
       item_name: "",
       quantity: "",
@@ -155,7 +155,9 @@ Swal.fire({
   confirmButtonText: 'Yes, reject it!'
 }).then((result) => {
   if (result.isConfirmed) {
-    axios.post("./section-reject/" + this.id).then((response) => {
+    axios.post("./section-reject/" + this.id, {
+          remarks: this.remarks,
+        }).then((response) => {
           
           if (response.data == "Success") {
                Swal.fire(

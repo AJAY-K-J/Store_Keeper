@@ -31,7 +31,7 @@
 
           <td>{{manager.item_name }}</td>
 
-          <td>{{ manager.description_of_item }}</td>
+          <td>{{ manager.description_item }}</td>
 
           <td>{{manager.quantity }}</td>
 

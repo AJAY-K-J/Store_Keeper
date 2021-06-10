@@ -16,9 +16,7 @@
             Add New Category
           </button>
         </div>
-        <div v-if="msg" class="alert alert-success mt-1" role="alert">
-          New Category Added
-        </div>
+      
       </div>
     </div>
     <table class="table">
@@ -87,8 +85,7 @@
 export default {
   data() {
     return {
-      msg: false,
-      name: "",
+   
      category: {},
     };
   },
@@ -98,7 +95,7 @@ export default {
     var vm = this;
     bus.$on("category-added", function () {
       vm.get_category();
-      vm.showmsg();
+   
     });
   },
 
@@ -107,9 +104,7 @@ export default {
       axios.get("/api/add_category").then((response) => (this.category = response.data));
     },
 
-    showmsg() {
-      this.msg = true;
-    },
+ 
 
     edit_category(category) {
       bus.$emit("edit-category",category);

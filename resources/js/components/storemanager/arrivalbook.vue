@@ -31,7 +31,7 @@
 
           <td>{{element.item_name }}</td>
 
-          <td>{{element.description_of_item }}</td>
+          <td>{{element.description_item }}</td>
 
           <td>{{element.quantity }}</td>
 
