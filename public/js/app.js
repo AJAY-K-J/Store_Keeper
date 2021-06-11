@@ -3240,6 +3240,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.get_confirmed_details();
     var aj = this;
+    bus.$on("addedGIR", function () {
+      aj.get_confirmed_details();
+    });
     bus.$on("item-added ", function () {
       aj.get_confirmed_details();
     });
@@ -3415,14 +3418,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
-    var da = this;
-    bus.$on("confirmed-details", function (confirmed) {});
+    var akku = this;
+    bus.$on("confirmed-details", function (confirmed) {
+      akku.supplier_details = confirmed.Details;
+      akku.description_item = confirmed.description_item;
+      akku.item_name = confirmed.item_name;
+      akku.lot.product_id = confirmed.id;
+      akku.lot.product_date = confirmed.date;
+      akku.lot.product_supplier_id = confirmed.supplier_id;
+      akku.lot.section_id = confirmed.section_id;
+      akku.lot.item_id = confirmed.item_id;
+      akku.lot.quantity = confirmed.quantity;
+      akku.lot.price = confirmed.price;
+      akku.lot.invoice = confirmed.invoice;
+      akku.lot.Dc_no = confirmed.Dc_no;
+      akku.lot.Dc_date = confirmed.Dc_date;
+      akku.lot.arrivals_page_no = confirmed.arrivals_page_no;
+      akku.lot.remarks = confirmed.remarks;
+    });
   },
   data: function data() {
     return {
+      item_name: "",
+      supplier_details: "",
+      description_item: "",
       lot: {
         product_id: "",
         product_date: "",
@@ -3440,9 +3494,7 @@ __webpack_require__.r(__webpack_exports__);
         category_book_page_no: "",
         purchase_order_no: "",
         purchase_order_date: "",
-        remarks: "",
-        supplier_details: '',
-        item_name: ''
+        remarks: ""
       },
       errors: {}
     };
@@ -3454,14 +3506,16 @@ __webpack_require__.r(__webpack_exports__);
     addToGIR: function addToGIR() {
       var _this = this;
 
-      axios.post("./addtogir").then(function (response) {
+      axios.post("./addtogir", this.lot).then(function (response) {
         if (response.data == "Success") {
           Swal.fire("Confirmed!", "", "success");
 
           _this.$refs.cancel_btn.click();
+
+          bus.$emit("addedGIR");
         }
       })["catch"](function (error) {
-        _this.errors = error.response.data.errors.remarks;
+        _this.errors = error.response.data.errors;
       });
     }
   }
@@ -68675,25 +68729,25 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Date")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.convert_date()))])
+            _c("p", [_vm._v(_vm._s(_vm.convert_date(_vm.lot.product_date)))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Details of supplier")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s())])
+            _c("p", [_vm._v(_vm._s(_vm.supplier_details))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Descripction of item")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s())])
+            _c("p", [_vm._v(_vm._s(_vm.description_item))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Name of item")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s())])
+            _c("p", [_vm._v(_vm._s(_vm.item_name))])
           ])
         ]),
         _vm._v(" "),
@@ -68703,19 +68757,19 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Quantity")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s())])
+            _c("p", [_vm._v(_vm._s(_vm.lot.quantity))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Price")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s())])
+            _c("p", [_vm._v(_vm._s(_vm.lot.price))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Invoice No")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s())])
+            _c("p", [_vm._v(_vm._s(_vm.lot.invoice))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
@@ -68747,9 +68801,215 @@ var render = function() {
           _c("hr")
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-3" }, [
+            _c("h5", [_vm._v("GIR page no")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lot.gir_page_no,
+                  expression: "lot.gir_page_no"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "number",
+                placeholder: "GIR page no",
+                name: "gir_page_no"
+              },
+              domProps: { value: _vm.lot.gir_page_no },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lot, "gir_page_no", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.gir_page_no
+              ? _c("small", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.gir_page_no[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-3" }, [
+            _c("h5", [_vm._v("Select Category")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.lot.category_book,
+                    expression: "lot.category_book"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "category_name", name: "category_book" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.lot,
+                      "category_book",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("Select category")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "kardex" } }, [
+                  _vm._v("Kardex")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "dsr" } }, [_vm._v("DSR")])
+              ]
+            ),
+            _vm._v(" "),
+            _vm.errors.category_book
+              ? _c("small", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.category_book[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-3" }, [
+            _c("h5", [_vm._v("Category page no")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lot.category_book_page_no,
+                  expression: "lot.category_book_page_no"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Category page no",
+                name: "category_book_page_no"
+              },
+              domProps: { value: _vm.lot.category_book_page_no },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.lot,
+                    "category_book_page_no",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.category_book_page_no
+              ? _c("small", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.category_book_page_no[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-3" }, [
+            _c("h5", [_vm._v("Purchase Order no")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lot.purchase_order_no,
+                  expression: "lot.purchase_order_no"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Purchase Order no",
+                name: "purchase_order_no"
+              },
+              domProps: { value: _vm.lot.purchase_order_no },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lot, "purchase_order_no", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.purchase_order_no
+              ? _c("small", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.purchase_order_no[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("hr")
+        ]),
         _vm._v(" "),
-        _vm._m(2)
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-3" }, [
+            _c("h5", [_vm._v("Purchase Order Date")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lot.purchase_order_date,
+                  expression: "lot.purchase_order_date"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "date",
+                placeholder: "Purchase Order date",
+                name: "purchase_order_date"
+              },
+              domProps: { value: _vm.lot.purchase_order_date },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lot, "purchase_order_date", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.purchase_order_date
+              ? _c("small", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.purchase_order_date[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("hr")
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -68791,89 +69051,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("h4", { staticClass: "card-title text-center" }, [
       _c("b", [_vm._v("ITEM DETAILS ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-3" }, [
-        _c("h5", [_vm._v("GIR page no")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "GIR page no", name: "girno" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-3" }, [
-        _c("h5", [_vm._v("Select Category")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: { id: "category_name", name: "GIR_category" }
-          },
-          [
-            _c("option", { attrs: { value: "" } }, [_vm._v("Select category")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "kardex" } }, [_vm._v("Kardex")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "dsr" } }, [_vm._v("DSR")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-3" }, [
-        _c("h5", [_vm._v("Category page no")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            placeholder: "Category page no",
-            name: "category_page_no"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-3" }, [
-        _c("h5", [_vm._v("Purchase Order no")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            placeholder: "Purchase Order no",
-            name: "Purchase_no"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("hr")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-3" }, [
-        _c("h5", [_vm._v("Purchase Order Date")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "date",
-            placeholder: "Purchase Order date",
-            name: "Purchase_order_date"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("hr")
     ])
   }
 ]
@@ -69091,7 +69268,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { id: "itemname", name: "item_name" },
+                          attrs: { id: "supplier", name: "supplier" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter

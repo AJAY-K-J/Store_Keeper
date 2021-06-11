@@ -15,7 +15,7 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
+            $table->integer('product_id')->unique();
             $table->date('product_date');
             $table->string('product_supplier_id');
             $table->string('section_id');

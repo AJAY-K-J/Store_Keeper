@@ -90,6 +90,9 @@ export default {
 
  this. get_confirmed_details();
  var aj = this;
+ bus.$on("addedGIR", function () {
+     aj.get_confirmed_details();
+    });
 
 bus.$on("item-added ", function () {
      aj.get_confirmed_details();

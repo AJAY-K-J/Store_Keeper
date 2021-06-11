@@ -79,8 +79,8 @@
                   <div class="col-sm-9">
                     <select
                       class="form-control"
-                      id="itemname"
-                      name="item_name"
+                      id="supplier"
+                      name="supplier"
                       v-model="arrivals.supplier"
                     >
                       <option value="">Select Supplier</option>
