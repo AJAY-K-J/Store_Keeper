@@ -43,7 +43,8 @@ Vue.component('section-list', require('./components/storekeeper/sectionlist.vue'
 Vue.component('confirmed-details', require('./components/storekeeper/confirmedPage.vue').default);
 Vue.component('confirmedPage-view', require('./components/storekeeper/confirmedPageView.vue').default);
 
-
+Vue.component('gir-list', require('./components/storekeeper/GIRlist.vue').default);
+Vue.component('gir-view', require('./components/storekeeper/GIRview.vue').default);
 
 Vue.component('sectiondashboard-table', require('./components/section/sectiondashboard.vue').default);
 Vue.component('view-arrival', require('./components/section/view_arrival.vue').default);

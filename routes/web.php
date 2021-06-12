@@ -9,6 +9,7 @@ use App\Http\Controllers\storekeeper\SupplierController;
 use App\Http\Controllers\storekeeper\CategoryController;
 use App\Http\Controllers\storekeeper\ItemController;
 use App\Http\Controllers\storekeeper\SectionController;
+use App\Http\Controllers\storekeeper\GoodsPageController;
 use App\Http\Controllers\sections\SectionPageController;
 use App\Http\Controllers\sections\SectionResponseController;
 use App\Http\Controllers\storekeeper\ConfirmedItemsController;
@@ -42,6 +43,8 @@ Route::get('/confirmedIitemPage',[ConfirmedItemsController::class,'index']);
 Route::get('/confirmedDetails',[ConfirmedItemsController::class,'confirmedItems']);
 
 Route::post('/addtogir',[ConfirmedItemsController::class,'store']);
+Route::get('/girlist',[GoodsPageController::class,'index']);
+Route::get('/goodslist',[GoodsPageController::class,'goodslist']);
 
 Route::get('/adduser',[UserController::class,'index']);
 
