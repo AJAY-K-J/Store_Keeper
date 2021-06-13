@@ -45,6 +45,8 @@ Route::get('/confirmedDetails',[ConfirmedItemsController::class,'confirmedItems'
 Route::post('/addtogir',[ConfirmedItemsController::class,'store']);
 Route::get('/girlist',[GoodsPageController::class,'index']);
 Route::get('/goodslist',[GoodsPageController::class,'goodslist']);
+Route::get('/getsection',[GoodsPageController::class,'sectionName']);
+Route::post('/allot_item',[GoodsPageController::class,'allot']);
 
 Route::get('/adduser',[UserController::class,'index']);
 

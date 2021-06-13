@@ -108,6 +108,9 @@ class ConfirmedItemsController extends Controller
         if ($request->quantity) {
             $store->quantity = $request->quantity;
         }
+        if ($request->quantity) {
+            $store->balance_quantity = $request->quantity;
+        }
         if ($request->price) {
             $store->price = $request->price;
         }

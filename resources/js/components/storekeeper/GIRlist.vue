@@ -49,7 +49,12 @@
             >
               view
             </button>
-
+ <button
+             type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#allotview"
+@click="allot_goods(goods)"
+            >
+              Allot
+            </button>
          
           </td>
         </tr>
@@ -71,6 +76,32 @@
         </div>
       </div>
     </div>
+
+<!-- ########################################################################################################### -->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="allotview" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="allotview">Allot goods</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+     <section-allot>   </section-allot>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+<!-- ############################################################################################ -->
+
   </div>
 </template>
 
@@ -89,6 +120,12 @@ export default {
 
 
  this. get_goods_list();
+
+   var cm = this;
+      bus.$on("item-alloted", function () {
+        cm. get_goods_list();
+    
+      });
  
 
   },
@@ -100,6 +137,11 @@ export default {
     view_goods(goods) {
       bus.$emit("GIR-Book", goods);
     },
+
+allot_goods(goods) {
+      bus.$emit("allot-goods", goods);
+    },
+
 
     get_goods_list() {
       axios

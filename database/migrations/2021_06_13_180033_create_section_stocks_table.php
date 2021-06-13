@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeesTable extends Migration
+class CreateSectionStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('section_stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('desigination');
-            $table->string('email')->unique();;
-            $table->string('status');
+            $table->string('product_id');
+            $table->string('item_id');
+            $table->string('section_name');
+            $table->float('quantity');
+            $table->float('quantity_stock');
+            $table->string('status')->default('0');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('section_stocks');
     }
 }
