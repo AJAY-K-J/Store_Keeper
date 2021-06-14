@@ -46,12 +46,12 @@
 
                    
 <div class="col-md-6 col-lg-4 col-xlg-3">
-   <div class="card card-hover">
+ <a href="/sectionstock" > <div class="card card-hover">
        <div class="box bg-success text-center">
            <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
            <h6 class="text-white">Section Store Book</h6>
        </div>
-   </div>
+   </div></a>
 </div>
 @endsection
 
@@ -60,12 +60,12 @@
                    
                     <!-- Column -->
                     <div class="col-md-6 col-lg-4 col-xlg-3">
-                        <div class="card card-hover">
+                        <a href="/sectionreturn" >   <div class="card card-hover">
                             <div class="box bg-warning text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
                                 <h6 class="text-white">Section Return book</h6>
                             </div>
-                        </div>
+                        </div></a>
                     </div>
 @endsection
 

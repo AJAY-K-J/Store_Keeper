@@ -10,8 +10,14 @@ use App\Http\Controllers\storekeeper\CategoryController;
 use App\Http\Controllers\storekeeper\ItemController;
 use App\Http\Controllers\storekeeper\SectionController;
 use App\Http\Controllers\storekeeper\GoodsPageController;
+use App\Http\Controllers\storekeeper\CategoryBookController;
+
 use App\Http\Controllers\sections\SectionPageController;
 use App\Http\Controllers\sections\SectionResponseController;
+use App\Http\Controllers\sections\SectionStockPageController;
+use App\Http\Controllers\sections\SectionStockController;
+use App\Http\Controllers\sections\DeprecatedStockController;
+
 use App\Http\Controllers\storekeeper\ConfirmedItemsController;
 use App\Http\Controllers\storemanager\ManagerPageController ;
 use App\Http\Controllers\storemanager\ManagerResponseController;
@@ -61,17 +67,32 @@ Route::get('/additems',[ItemController::class,'index']);
 Route::get('/addsections',[SectionController::class,'index']);
 
 
+Route::get('/kardex',[CategoryBookController::class,'kardexindex']);
+Route::get('/dsr',[CategoryBookController::class,'dsrindex']);
+Route::get('/dsrdetails',[CategoryBookController::class,'dsrdetails']);
+Route::get('/kardexdetails',[CategoryBookController::class,'kardexdetails']);
 
-
+// ###############################################################################
 
 Route::get('/sectiondashboard',[SectionPageController::class,'index']);
 Route::get('/section-details',[SectionPageController::class,'sectionItem']);
 Route::get('/sectionlogout',[SectionPageController::class,'logout']);
 
+Route::get('/sectionreturn',[SectionPageController::class,'sectionReturn']);
+
 
 Route::post('/section-confirm/{id}',[SectionResponseController::class,'confirm']);
 Route::post('/section-reject/{id}',[SectionResponseController::class,'reject']);
 
+
+Route::get('/sectionstock',[SectionStockPageController::class,'index']);
+Route::get('/sectionstockdetails',[SectionStockController::class,'sectionStock']);
+
+Route::post('/section-deprecated/{id}',[DeprecatedStockController::class,'store']);
+Route::get('/depreciateddetails',[DeprecatedStockController::class,'depreciatedStock']);
+
+
+// ############################################################################
 Route::get('/managerdashboard',[ManagerPageController::class,'index']);
 Route::get('/manager-details',[ManagerPageController::class,'managerlist']);
 Route::get('/arrivalbook',[ManagerPageController::class,'arrivalbook']);
@@ -80,6 +101,8 @@ Route::get('/store-details',[ManagerPageController::class,'storelist']);
 
 Route::post('/manager-confirm/{id}',[ManagerResponseController::class,'confirm']);
 Route::post('/manager-reject/{id}',[ManagerResponseController::class,'reject']);
+
+// #############################################################################
 
 Route::get('/officedashboard',[OfficePageController::class,'index']);
 

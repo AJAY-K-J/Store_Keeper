@@ -23,6 +23,7 @@ class CreateStocksTable extends Migration
 
             $table->float('quantity');
             $table->float('balance_quantity')->default(0);
+            $table->float('deprecated_quantity')->default(0);
             $table->float('price');
 
             $table->string('invoice');

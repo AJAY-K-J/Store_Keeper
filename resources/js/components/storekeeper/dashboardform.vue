@@ -103,7 +103,7 @@
                   >
                   <div class="col-sm-9">
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
                       id="price"
                       name="price"

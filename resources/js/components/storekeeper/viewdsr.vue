@@ -8,21 +8,21 @@
         <div class="row">
           <div class="col-md-3">
             <h5>Date</h5>
-            <p>{{ convert_date(list.product_date) }}</p>
+            <p>{{ convert_date(list.product_date ) }}</p>
           </div>
           <div class="col-md-3">
             <h5>Supplier Name</h5>
-            <p>{{ list.supplier_name }}</p>
+            <p>{{list.supplier_name}}</p>
           </div>
 
           <div class="col-md-3">
             <h5>GST no</h5>
-            <p>{{ list.supplier_gst }}</p>
+            <p>{{list.supplier_gst}}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Name of item</h5>
-            <p>{{ list.name_item }}</p>
+            <p>{{list.name_item }}</p>
           </div>
         </div>
 
@@ -31,21 +31,21 @@
         <div class="row">
           <div class="col-md-3">
             <h5>Description of item</h5>
-            <p>{{ list.item_description }}</p>
+            <p>{{list.item_description}}</p>
           </div>
           <div class="col-md-3">
             <h5>Invoice</h5>
-            <p>{{ list.invoice }}</p>
+            <p>{{list.invoice }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>DC No</h5>
-            <p>{{ list.Dc_no }}</p>
+            <p>{{list.Dc_no}}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Purchase Order</h5>
-            <p>{{ list.purchase_order_no }}</p>
+            <p>{{list.purchase_order_no}}</p>
           </div>
 
           <hr />
@@ -53,21 +53,21 @@
         <div class="row">
           <div class="col-md-3">
             <h5>GIR page no</h5>
-            <p>{{ list.gir_page_no }}</p>
+            <p>{{list.gir_page_no}}</p>
           </div>
           <div class="col-md-3">
             <h5>Category</h5>
-            <p>{{ list.category_book }}</p>
+            <p>{{list.category_book}}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Category page no</h5>
-            <p>{{ list.category_book_page_no }}</p>
+            <p>{{list.category_book_page_no }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Quantity</h5>
-            <p>{{ list.quantity }}</p>
+            <p>{{list.quantity}}</p>
           </div>
 
           <hr />
@@ -76,15 +76,15 @@
         <div class="row">
           <div class="col-md-3">
             <h5>Price</h5>
-            <p>{{ list.price }}</p>
+            <p>{{list.price }}</p>
           </div>
-          <div class="col-md-3">
+           <div class="col-md-3">
             <h5>Purchase Order Date</h5>
-            <p>{{ list.purchase_order_date }}</p>
+            <p>{{list.purchase_order_date }}</p>
           </div>
-          <div class="col-md-3">
+           <div class="col-md-3">
             <h5>Arrival page no</h5>
-            <p>{{ list.arrivals_page_no }}</p>
+            <p>{{list.arrivals_page_no}}</p>
           </div>
 
           <hr />
@@ -112,24 +112,24 @@
 import moment from "moment";
 export default {
   created() {
-    var amitha = this;
-    bus.$on("GIR-Book", function (goods) {
-      amitha.list.product_id = goods.product_id;
-      amitha.list.product_date = goods.product_date;
-      amitha.list.supplier_name = goods.supplier_name;
-      amitha.list.supplier_gst = goods.gst;
-      amitha.list.name_item = goods.item_name;
-      amitha.list.item_description = goods.description_item;
-      amitha.list.invoice = goods.invoice;
-      amitha.list.Dc_no = goods.Dc_no;
-      amitha.list.purchase_order_no = goods.purchase_order_no;
-      amitha.list.gir_page_no = goods.gir_page_no;
-      amitha.list.category_book = goods.category_book;
-      amitha.list.category_book_page_no = goods.category_book_page_no;
-      amitha.list.quantity = goods.quantity;
-      amitha.list.price = goods.price;
-      amitha.list.purchase_order_date = goods.purchase_order_date;
-      amitha.list.arrivals_page_no = goods.arrivals_page_no;
+    var amal = this;
+    bus.$on("dsr-stock", function (stocks) {
+      amal.list.product_id = stocks.product_id;
+      amal.list.product_date = stocks.product_date;
+      amal.list.supplier_name = stocks.supplier_name;
+      amal.list.supplier_gst = stocks.gst;
+      amal.list.name_item = stocks.item_name;
+      amal.list.item_description = stocks.description_item;
+      amal.list.invoice = stocks.invoice;
+      amal.list.Dc_no = stocks.Dc_no;
+      amal.list.purchase_order_no = stocks.purchase_order_no;
+      amal.list.gir_page_no = stocks.gir_page_no;
+      amal.list.category_book = stocks.category_book;
+      amal.list.category_book_page_no = stocks.category_book_page_no;
+      amal.list.quantity = stocks.quantity;
+      amal.list.price = stocks.price;
+      amal.list.purchase_order_date = stocks.purchase_order_date;
+      amal.list.arrivals_page_no = stocks.arrivals_page_no;
     });
   },
   data() {

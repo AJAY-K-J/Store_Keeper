@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectionReturnsTable extends Migration
+class CreateDeprecatedStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,18 @@ class CreateSectionReturnsTable extends Migration
      */
     public function up()
     {
-        Schema::create('section_returns', function (Blueprint $table) {
+        Schema::create('deprecated_stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('section_id');
-            $table->string('catagory_id');
+
             $table->string('product_id');
-            $table->string('quantity');
-            $table->string('return_remarks');
-            $table->string('return_status');
-            $table->string('status');
+            $table->string('item_id');
+            $table->string('section_name');
+            $table->float('deprecated_quantity');
+         
+            $table->string('status')->default('0');
+
+
+
             $table->timestamps();
         });
     }
@@ -33,6 +36,6 @@ class CreateSectionReturnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_section__returns');
+        Schema::dropIfExists('deprecated_stocks');
     }
 }

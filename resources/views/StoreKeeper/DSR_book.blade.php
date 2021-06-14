@@ -119,23 +119,23 @@
 
                     <!-- Column -->
                     <div class="col-md-6 col-lg-2 col-xlg-3">
-                        <div class="card card-hover">
+                        <a href="/kardex">   <div class="card card-hover">
                             <div class="box bg-danger text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
-                                <h6 class="text-white">Cadex</h6>
+                                <h6 class="text-white">Kardex</h6>
                             </div>
-                        </div>
+                        </div></a>
                     </div>
 @endsection
 @section('Column5')
  <!-- Column -->
  <div class="col-md-6 col-lg-2 col-xlg-3">
-    <div class="card card-hover">
+    <a href="/dsr">   <div class="card card-hover">
         <div class="box bg-info text-center">
             <h1 class="font-light text-white"><i class="mdi mdi-arrow-all"></i></h1>
-            <h6 class="text-white">Full Width</h6>
+            <h6 class="text-white">DSR Book</h6>
         </div>
-    </div>
+    </div></a>
 </div>
 <!-- Column -->
 @endsection
@@ -207,5 +207,5 @@
 
 @section('main')
 
-DSR
+<dsr-book> </dsr-book> 
     @endsection

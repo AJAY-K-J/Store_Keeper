@@ -82,6 +82,17 @@ class GoodsPageController extends Controller
         ]);
 
 
+        $store=SectionStock::where([['product_id',$request->product_id],['item_id',$request->item_id],['section_name',$request->section_name]])->first();
+
+        if($store){
+
+ $store->quantity = $store->quantity+ $request->quantity;
+           $store->quantity_stock =$store->quantity_stock+$request->quantity;
+
+
+        }
+         else{
+
         $store = new SectionStock;
 
         if ($request->product_id) {
@@ -106,7 +117,7 @@ class GoodsPageController extends Controller
         if ($request->section_name) {
             $store->section_name = $request->section_name;
         }
-
+    }
        if( $store->save()){
 
 $stock=Stock::where('product_id', $request->product_id)->first();

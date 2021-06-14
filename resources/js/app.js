@@ -47,8 +47,23 @@ Vue.component('gir-list', require('./components/storekeeper/GIRlist.vue').defaul
 Vue.component('gir-view', require('./components/storekeeper/GIRview.vue').default);
 Vue.component('section-allot', require('./components/storekeeper/sectionallot.vue').default);
 
+Vue.component('dsr-book', require('./components/storekeeper/dsrbook.vue').default);
+Vue.component('view-dsr-stock', require('./components/storekeeper/viewdsr.vue').default);
+
+Vue.component('kardex-book', require('./components/storekeeper/kardexbook.vue').default);
+Vue.component('view-kardex-stock', require('./components/storekeeper/viewkardex.vue').default);
+
+// ###############################################################################################
+
 Vue.component('sectiondashboard-table', require('./components/section/sectiondashboard.vue').default);
 Vue.component('view-arrival', require('./components/section/view_arrival.vue').default);
+Vue.component('section-store-book', require('./components/section/sectionstorebook.vue').default);
+Vue.component('view-section-stock', require('./components/section/viewsectionstock.vue').default);
+
+Vue.component('section-return', require('./components/section/sectionreturn.vue').default);
+Vue.component('view-depreciated-stock', require('./components/section/depreciatedstocks.vue').default);
+
+// ##################################################################################################
 
 Vue.component('managerdashboard-table', require('./components/storemanager/managerdashboard.vue').default);
 Vue.component('manager-view-arrival', require('./components/storemanager/manager_view.vue').default);
