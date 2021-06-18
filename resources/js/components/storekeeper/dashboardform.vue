@@ -145,23 +145,32 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="item" class="control-label col-form-label"
-                    >Description of item</label
+                    >Entry Type</label
                   >
                   <div class="col-sm-9">
-                    <textarea
-                      class="form-control form-height"
-                      name="description_of_item"
-                      v-model="arrivals.description_of_item"
-                     
-                    >  </textarea>
-<!---->
+                   
+<!----><select
+                      class="form-control"
+                      id="stock_type"
+                      name="stock_type"
+                      v-model="arrivals.stock_type"
+                    >
+                      <option value="">Select Type</option>
+                      <option  value="Local entry" >
+                Local entry
+                      </option>
+                      <option  value="Gem-consignee" >
+                Gem-consignee
+                      </option>
+                
+                    </select>
 
 
                   </div>
                   <small
                     class="text-danger"
-                    v-if="errors.description_of_item"
-                    >{{ errors.description_of_item[0] }}</small
+                    v-if="errors.stock_type"
+                    >{{ errors.stock_type[0] }}</small
                   >
                 </div>
 
@@ -312,7 +321,7 @@ items:{},
       arrivals: {
         date: "",
         supplier: "",
-        description_of_item:'',
+        stock_type:'',
         item_name: '',
      
         quantity: "",

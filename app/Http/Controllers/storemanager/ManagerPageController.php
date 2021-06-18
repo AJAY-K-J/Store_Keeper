@@ -35,6 +35,7 @@ public function managerlist(){
           'storearrivals.date',
           'storearrivals.supplier',
           'storearrivals.quantity',
+          'storearrivals.approvedquantity',
           'storearrivals.price',
           'storearrivals.invoice',
           'storearrivals.Dc_no',

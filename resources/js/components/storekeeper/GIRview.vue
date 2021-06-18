@@ -80,7 +80,7 @@
           </div>
           <div class="col-md-3">
             <h5>Purchase Order Date</h5>
-            <p>{{ list.purchase_order_date }}</p>
+            <p>{{ convert_date( list.purchase_order_date) }}</p>
           </div>
           <div class="col-md-3">
             <h5>Arrival page no</h5>
@@ -126,7 +126,7 @@ export default {
       amitha.list.gir_page_no = goods.gir_page_no;
       amitha.list.category_book = goods.category_book;
       amitha.list.category_book_page_no = goods.category_book_page_no;
-      amitha.list.quantity = goods.quantity;
+      amitha.list.quantity = goods.approvedquantity;
       amitha.list.price = goods.price;
       amitha.list.purchase_order_date = goods.purchase_order_date;
       amitha.list.arrivals_page_no = goods.arrivals_page_no;

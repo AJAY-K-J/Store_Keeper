@@ -18,6 +18,12 @@ class SectionResponseController extends Controller
 
     public function confirm(Request $request){
 
+
+$request->validate([
+
+    'approvedquantity' => 'required|integer|min:1'
+
+]);
     
         if($request->id){
 
@@ -25,6 +31,10 @@ $record=storearrival::find($request->id);
 
 if($record){
     $record->remarks=$request->remarks;
+
+    $record->approvedquantity=$request->approvedquantity;
+    $record->rejectedquantity=  $record->quantity - $request->approvedquantity;
+
     $record->sign_of_insp_officer=1;
 
 }

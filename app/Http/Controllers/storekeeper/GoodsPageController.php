@@ -36,6 +36,7 @@ class GoodsPageController extends Controller
                 'stocks.invoice',
                 'stocks.Dc_no',
                 'stocks.quantity',
+                'stocks.approvedquantity',
                 'stocks.balance_quantity',
                 'stocks.product_date',
                 'stocks.product_id',
@@ -77,7 +78,7 @@ class GoodsPageController extends Controller
         $request->validate([
 
             'section_name' => 'Required',
-            'quantity' => 'Required',
+            'quantity' => 'Required|integer|min:1',
 
         ]);
 

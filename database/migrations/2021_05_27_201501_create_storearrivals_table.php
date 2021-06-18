@@ -19,10 +19,15 @@ class CreateStorearrivalsTable extends Migration
             $table->date('date');
             $table->string('supplier');
 
-            $table->text('description_of_item');
+            $table->string('stock_type');
             $table->string('item_name');
 
             $table->float('quantity');
+
+
+            $table->float('approvedquantity')->default(0);
+            $table->float('rejectedquantity')->default(0);
+
             $table->float('price');
 
             $table->string('invoice')->default('0');
@@ -35,7 +40,9 @@ class CreateStorearrivalsTable extends Migration
             $table->string('sign_of_ask')->default('1');
 
             $table->string('sign_of_insp_officer')->default('0');
+
             $table->string('store_officer')->default('0');
+            $table->string('gem_officer')->default('0');
             
             $table->text('remarks')->default(null);
             $table->timestamps();

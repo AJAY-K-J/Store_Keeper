@@ -23,7 +23,7 @@ class StoreArrivalController extends Controller
     {
 
         $item_details=Item::all();
-$section_details=Section::all();
+$section_details=Section::all()->where('status','=','1');
 $supplier_details=Supplier::all();
 $section_officer=User::all()->where('role','=','section-in-charge');
         return view('storekeeper.dashboard',compact('item_details','section_details','section_officer','supplier_details'));
@@ -56,7 +56,7 @@ $section_officer=User::all()->where('role','=','section-in-charge');
             'supplier' => 'Required',
             'price' => 'Required',
             'section' => 'Required',
-            'description_of_item' => 'Required',
+            'stock_type' => 'Required',
             'invoice' => 'Required',
            
             'item_name' => 'Required',
@@ -88,9 +88,15 @@ $section_officer=User::all()->where('role','=','section-in-charge');
         if ($request->section) {
             $store->section = $request->section;
         }
-        if ($request->description_of_item) {
-            $store->description_of_item = $request->description_of_item;
+        if ($request->stock_type) {
+            $store->stock_type = $request->stock_type;
         }
+
+        if ($request->stock_type =='Gem-consignee') {
+            $store->gem_officer = 1;
+        }
+
+
         if ($request->invoice) {
             $store->invoice = $request->invoice;
         }

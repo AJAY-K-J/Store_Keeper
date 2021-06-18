@@ -22,7 +22,7 @@ class DeprecatedStockController extends Controller
         $request->validate([
 
 
-            'Depreciated_Quantity' => 'Required',
+            'Depreciated_Quantity' => 'Required|integer|min:1',
 
         ]);
 
@@ -30,6 +30,8 @@ class DeprecatedStockController extends Controller
         $store = DeprecatedStock::where([['product_id', $request->productId], ['item_id', $request->item_id], ['section_name', $request->section_name]])->first();
 
         if ($store) {
+
+            
 
             $store->deprecated_quantity = $store->deprecated_quantity + $request->Depreciated_Quantity;
         } else {
@@ -62,14 +64,14 @@ class DeprecatedStockController extends Controller
 
             $stock = Stock::where('product_id', $request->productId)->first();
 
-            $stock->deprecated_quantity = $stock->deprecated + $request->Depreciated_Quantity;
+            $stock->deprecated_quantity = $stock->deprecated_quantity + $request->Depreciated_Quantity;
 
             if ($stock->save()) {
 
 
                 $section_stock = SectionStock::where('product_id', $request->productId)->first();
 
-                $section_stock->quantity = $section_stock->quantity - $request->Depreciated_Quantity;
+                $section_stock->quantity_stock = $section_stock->quantity_stock- $request->Depreciated_Quantity;
 
                 $section_stock->save();
                 return 'Success';

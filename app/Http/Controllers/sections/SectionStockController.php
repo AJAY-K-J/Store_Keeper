@@ -32,6 +32,7 @@ class SectionStockController extends Controller
                     'section_stocks.item_id',
                     'section_stocks.section_name',
                     'section_stocks.quantity',
+                      'section_stocks.quantity_stock',
                     'items.name as item_name',
                     'items.description_item',
                 ])

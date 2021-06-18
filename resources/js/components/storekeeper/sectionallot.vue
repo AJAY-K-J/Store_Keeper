@@ -9,14 +9,10 @@
           </div>
         </div>
         <div class="col-6">
-          <div class="form-group">
+          <div class="form-group" >
             <label>Section Name</label>
 
-            <select
-              class="form-control"
-              name="section_name"
-              v-model="items.section_name"
-            >
+            <select class="form-control" name="section_name" v-model="items.section_name">
               <option value="">Select Section</option>
               <option v-for="section in section_details" :key="section.id">
                 {{ section.name }}
@@ -37,11 +33,17 @@
               >Quantity</label
             >
             <div class="col-sm-9">
-              <textarea
-                class="form-control form-height"
-                name="quantity"
-                v-model="items.quantity"
-              ></textarea>
+            
+
+
+               <input
+                      type="number"
+                      class="form-control"
+                      id="quantity"
+                      name="quantity"
+                      v-model="items.quantity"
+                      placeholder="Quantity Here"
+                    />
             </div>
 
             <small class="text-danger" v-if="errors.quantity">{{
@@ -83,16 +85,22 @@ export default {
       amal.balance_quantity = goods.balance_quantity;
       amal.items.product_id = goods.product_id;
       amal.items.item_id = goods.item_id;
+
+
     });
   },
 
   data() {
     return {
+
+
+
+
       balance_quantity: "",
       items: {
         product_id: "",
         item_id: "",
-        section_name: "",
+        section_name:'',
         quantity: "",
       },
       errors: {},
@@ -115,7 +123,7 @@ export default {
       axios
         .post("./allot_item", this.items)
         .then((response) => {
-          console.log(response);
+       
           if (response.data == "Success") {
             Swal.fire("New Item Added!", "", "success");
 
@@ -124,16 +132,20 @@ export default {
           }
 
           bus.$emit("item-alloted");
-        })
-        .catch((error) => {
+        }).catch((error) => {
           this.errors = error.response.data.errors;
         });
     },
 
     getsection() {
+
+
+
       axios
         .get("/getsection")
         .then((response) => (this.section_details = response.data));
+
+
     },
   },
 };

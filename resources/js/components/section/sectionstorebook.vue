@@ -15,7 +15,7 @@
      
           <th scope="col">Item</th>
           <th scope="col">Description of item</th>
-          <th scope="col">Quantity</th>
+          <th scope="col">Quantity in Section</th>
 
        
           <th scope="col">Actions</th>
@@ -31,7 +31,7 @@
 
           <td>{{ stocks.description_item }}</td>
 
-          <td>{{ stocks.quantity }}</td>
+          <td>{{ stocks.quantity_stock }}</td>
 
 
 

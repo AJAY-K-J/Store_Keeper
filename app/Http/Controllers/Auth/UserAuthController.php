@@ -9,72 +9,62 @@ use App\Models\User;
 
 class UserAuthController extends Controller
 {
-    
-public function usercheck(Request $request){
+
+    public function usercheck(Request $request)
+    {
 
 
- $request->validate([
+        $request->validate([
 
-   'username'=>'required',
-   'password'=>'required',
+            'username' => 'required',
+            'password' => 'required',
 
- ]);
+        ]);
 
- $user= User::where('username','=',$request->username)->first();
+        $user = User::where('username', '=', $request->username)->first();
 
- if($user){
+        if ($user) {
 
-    if($request->password == $user->password){
+            if ($request->password == $user->password) {
 
-if($user->role == 'store-keeper'){
-
-
-$request->session()->put('store-keeper',$user->id);
-return redirect('storedashboard');
-
-}elseif($user->role == 'section-in-charge'){
-
-    $request->session()->put('section-in-charge',$user->id);
-    return redirect('sectiondashboard');
-    
-
-}elseif($user->role == 'store-manager'){
-
-    $request->session()->put('store-manager',$user->id);
-    return redirect('managerdashboard');
-
-}elseif($user->role == 'office'){
+                if ($user->role == 'store-keeper') {
 
 
-}else{
-    return back()->with('fail','Invalid user');
+                    $request->session()->put('store-keeper', $user->id);
+                    return redirect('storedashboard');
+                } elseif ($user->role == 'section-in-charge') {
 
-}
+                    $request->session()->put('section-in-charge', $user->id);
+                    return redirect('sectiondashboard');
+                } elseif ($user->role == 'store-manager') {
 
-
-
-
-    }else{
-        return back()->with('fail','Invalid password');
+                    $request->session()->put('store-manager', $user->id);
+                    return redirect('managerdashboard');
+                } elseif ($user->role == 'office') {
+                    $request->session()->put('office', $user->id);
+                    return redirect('officedashboard');
+                } elseif ($user->role == 'GEM-consignee') {
+                    $request->session()->put('consignee', $user->id);
+                    return redirect('gem-dashboard');
+                } else {
+                    return back()->with('fail', 'Invalid user');
+                }
+            } else {
+                return back()->with('fail', 'Invalid password');
+            }
+        } else {
+            return back()->with('fail', 'No account found');
+        }
     }
 
 
- }else{
-     return back()->with('fail','No account found');
- }
+    public function userlogout()
+    {
 
+        if (Session()->has('store-keeper')) {
 
-}
-
-
-public function userlogout(){
-
-    if(Session()->has('store-keeper')){
-
-        Session()->pull('store-keeper');
-        return redirect('/');
+            Session()->pull('store-keeper');
+            return redirect('/');
+        }
     }
-}
-
-
 }

@@ -186,7 +186,10 @@ export default {
       akku.lot.section_id = confirmed.section_id;
       akku.lot.item_id = confirmed.item_id;
 
-      akku.lot.quantity = confirmed.quantity;
+     
+       akku.lot.quantity = confirmed.quantity;
+       akku.lot.approvedquantity = confirmed.approvedquantity;
+       
       akku.lot.price = confirmed.price;
       akku.lot.invoice = confirmed.invoice;
       akku.lot.Dc_no = confirmed.Dc_no;
@@ -210,6 +213,7 @@ export default {
         section_id: "",
         item_id: "",
         quantity: "",
+        approvedquantity:'',
         price: "",
         invoice: "",
         Dc_no: "",

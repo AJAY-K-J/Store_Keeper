@@ -43,7 +43,26 @@
             <p>{{ invoice }}</p>
           </div>
 
-          <div class="col-md-3">
+       <div class="col-md-3">
+            <h5>Approved Quantity</h5>
+             <input
+                      type="number"
+                      class="form-control"
+                      id="approvedquantity"
+                      name="approvedquantity"
+                      v-model="approvedquantity"
+                      placeholder="Approved Quantity"
+                    />
+
+ <small class="text-danger" v-if="errors.approvedquantity">{{
+                    errors.approvedquantity[0]
+                  }}</small>
+          </div>
+
+        </div>
+   <hr />
+ <div class="row">
+    <div class="col-md-12">
             <h5>Remarks</h5>
 
             <textarea
@@ -53,8 +72,10 @@
             ></textarea>
           </div>
 
+ </div>
+
+
           <hr />
-        </div>
       </div>
     </div>
     <div class="row mt-4">
@@ -118,6 +139,7 @@ export default {
       invoice: "",
 
       remarks: "",
+      approvedquantity:'',
 
       errors: {},
     };
@@ -127,7 +149,7 @@ export default {
     confirm() {
       axios
         .post("./section-confirm/" + this.id, {
-          remarks: this.remarks,
+          remarks: this.remarks,approvedquantity:this.approvedquantity
         })
         .then((response) => {
           
@@ -140,7 +162,7 @@ export default {
           bus.$emit("item-confirmed ");
         })
         .catch((error) => {
-          this.errors = error.response.data.errors.remarks;
+          this.errors = error.response.data.errors;
         });
     },
     reject() {

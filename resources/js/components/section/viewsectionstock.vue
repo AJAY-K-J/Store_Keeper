@@ -84,7 +84,7 @@ vm.Dlist.productId=stocks.product_id;
 vm.Dlist.itemName= stocks.item_name;
 
 vm.Dlist.itemDec=stocks.description_item ;
-vm.Dlist.itemQuantity=stocks.quantity;
+vm.Dlist.itemQuantity=stocks.quantity_stock;
 
 vm.Dlist.item_id=stocks.item_id;
 vm.Dlist.section_name=stocks.section_name;

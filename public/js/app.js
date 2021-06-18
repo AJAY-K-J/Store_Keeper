@@ -2037,7 +2037,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2418,6 +2417,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     var vm = this;
@@ -2444,6 +2464,7 @@ __webpack_require__.r(__webpack_exports__);
       price: "",
       invoice: "",
       remarks: "",
+      approvedquantity: '',
       errors: {}
     };
   },
@@ -2452,7 +2473,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("./section-confirm/" + this.id, {
-        remarks: this.remarks
+        remarks: this.remarks,
+        approvedquantity: this.approvedquantity
       }).then(function (response) {
         if (response.data == "Success") {
           Swal.fire("Confirmed!", "", "success");
@@ -2462,7 +2484,7 @@ __webpack_require__.r(__webpack_exports__);
 
         bus.$emit("item-confirmed ");
       })["catch"](function (error) {
-        _this.errors = error.response.data.errors.remarks;
+        _this.errors = error.response.data.errors;
       });
     },
     reject: function reject() {
@@ -2591,7 +2613,7 @@ __webpack_require__.r(__webpack_exports__);
       vm.Dlist.productId = stocks.product_id;
       vm.Dlist.itemName = stocks.item_name;
       vm.Dlist.itemDec = stocks.description_item;
-      vm.Dlist.itemQuantity = stocks.quantity;
+      vm.Dlist.itemQuantity = stocks.quantity_stock;
       vm.Dlist.item_id = stocks.item_id;
       vm.Dlist.section_name = stocks.section_name;
     });
@@ -2778,6 +2800,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      errors: {},
       goods_details: []
     };
   },
@@ -2950,7 +2973,7 @@ __webpack_require__.r(__webpack_exports__);
       amitha.list.gir_page_no = goods.gir_page_no;
       amitha.list.category_book = goods.category_book;
       amitha.list.category_book_page_no = goods.category_book_page_no;
-      amitha.list.quantity = goods.quantity;
+      amitha.list.quantity = goods.approvedquantity;
       amitha.list.price = goods.price;
       amitha.list.purchase_order_date = goods.purchase_order_date;
       amitha.list.arrivals_page_no = goods.arrivals_page_no;
@@ -4060,6 +4083,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -4294,6 +4319,7 @@ __webpack_require__.r(__webpack_exports__);
       akku.lot.section_id = confirmed.section_id;
       akku.lot.item_id = confirmed.item_id;
       akku.lot.quantity = confirmed.quantity;
+      akku.lot.approvedquantity = confirmed.approvedquantity;
       akku.lot.price = confirmed.price;
       akku.lot.invoice = confirmed.invoice;
       akku.lot.Dc_no = confirmed.Dc_no;
@@ -4314,6 +4340,7 @@ __webpack_require__.r(__webpack_exports__);
         section_id: "",
         item_id: "",
         quantity: "",
+        approvedquantity: '',
         price: "",
         invoice: "",
         Dc_no: "",
@@ -4660,6 +4687,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["edit", "item_details", "section_details", "section_officer", "supplier_details"],
@@ -4670,7 +4706,7 @@ __webpack_require__.r(__webpack_exports__);
       arrivals: {
         date: "",
         supplier: "",
-        description_of_item: '',
+        stock_type: '',
         item_name: '',
         quantity: "",
         price: "",
@@ -5314,6 +5350,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     this.getsection();
@@ -5330,7 +5368,7 @@ __webpack_require__.r(__webpack_exports__);
       items: {
         product_id: "",
         item_id: "",
-        section_name: "",
+        section_name: '',
         quantity: ""
       },
       errors: {},
@@ -5351,8 +5389,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("./allot_item", this.items).then(function (response) {
-        console.log(response);
-
         if (response.data == "Success") {
           Swal.fire("New Item Added!", "", "success");
 
@@ -6460,6 +6496,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -69623,15 +69660,7 @@ var render = function() {
                   }
                 },
                 [_vm._v("\n            view\n          ")]
-              ),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-success btn-sm m-0" }, [
-                _vm._v("Confirm")
-              ]),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-danger btn-sm m-0" }, [
-                _vm._v("Reject")
-              ])
+              )
             ])
           ])
         }),
@@ -69869,7 +69898,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(stocks.description_item))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(stocks.quantity))]),
+            _c("td", [_vm._v(_vm._s(stocks.quantity_stock))]),
             _vm._v(" "),
             _c("td", [
               _c(
@@ -69959,7 +69988,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Description of item")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity in Section")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Actions")])
       ])
@@ -70041,6 +70070,47 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
+            _c("h5", [_vm._v("Approved Quantity")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.approvedquantity,
+                  expression: "approvedquantity"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "number",
+                id: "approvedquantity",
+                name: "approvedquantity",
+                placeholder: "Approved Quantity"
+              },
+              domProps: { value: _vm.approvedquantity },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.approvedquantity = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.approvedquantity
+              ? _c("small", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.approvedquantity[0]))
+                ])
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
             _c("h5", [_vm._v("Remarks")]),
             _vm._v(" "),
             _c("textarea", {
@@ -70064,10 +70134,10 @@ var render = function() {
                 }
               }
             })
-          ]),
-          _vm._v(" "),
-          _c("hr")
-        ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr")
       ])
     ]),
     _vm._v(" "),
@@ -70081,7 +70151,7 @@ var render = function() {
               staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { "data-dismiss": "modal", type: "button" }
             },
-            [_vm._v("\n          Cancel\n        ")]
+            [_vm._v("\n           Cancel\n         ")]
           ),
           _vm._v(" "),
           _c(
@@ -70095,7 +70165,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n          confirm\n        ")]
+            [_vm._v("\n           confirm\n         ")]
           ),
           _vm._v(" "),
           _c(
@@ -70109,7 +70179,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n          Reject\n        ")]
+            [_vm._v("\n           Reject\n         ")]
           )
         ])
       ])
@@ -70306,7 +70376,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(goods.category_book))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(goods.quantity))]),
+            _c("td", [_vm._v(_vm._s(goods.balance_quantity))]),
             _vm._v(" "),
             _c("td", [
               _c(
@@ -70433,7 +70503,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Category")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity in Store")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Actions")])
       ])
@@ -70571,7 +70641,9 @@ var render = function() {
           _c("div", { staticClass: "col-md-3" }, [
             _c("h5", [_vm._v("Purchase Order Date")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.list.purchase_order_date))])
+            _c("p", [
+              _vm._v(_vm._s(_vm.convert_date(_vm.list.purchase_order_date)))
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
@@ -71822,6 +71894,8 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(confirmed.quantity))]),
             _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(confirmed.approvedquantity))]),
+            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(confirmed.invoice))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(confirmed.remarks))]),
@@ -71907,6 +71981,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Description of item")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Approved Quantity")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Invoice No")]),
         _vm._v(" "),
@@ -72673,40 +72749,66 @@ var render = function() {
                         staticClass: "control-label col-form-label",
                         attrs: { for: "item" }
                       },
-                      [_vm._v("Description of item")]
+                      [_vm._v("Entry Type")]
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-sm-9" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.arrivals.description_of_item,
-                            expression: "arrivals.description_of_item"
-                          }
-                        ],
-                        staticClass: "form-control form-height",
-                        attrs: { name: "description_of_item" },
-                        domProps: { value: _vm.arrivals.description_of_item },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.arrivals.stock_type,
+                              expression: "arrivals.stock_type"
                             }
-                            _vm.$set(
-                              _vm.arrivals,
-                              "description_of_item",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "stock_type", name: "stock_type" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.arrivals,
+                                "stock_type",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                        }
-                      })
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Select Type")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Local entry" } }, [
+                            _vm._v(
+                              "\n                Local entry\n                      "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Gem-consignee" } }, [
+                            _vm._v(
+                              "\n                Gem-consignee\n                      "
+                            )
+                          ])
+                        ]
+                      )
                     ]),
                     _vm._v(" "),
-                    _vm.errors.description_of_item
+                    _vm.errors.stock_type
                       ? _c("small", { staticClass: "text-danger" }, [
-                          _vm._v(_vm._s(_vm.errors.description_of_item[0]))
+                          _vm._v(_vm._s(_vm.errors.stock_type[0]))
                         ])
                       : _vm._e()
                   ]),
@@ -73756,7 +73858,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-9" }, [
-                _c("textarea", {
+                _c("input", {
                   directives: [
                     {
                       name: "model",
@@ -73765,8 +73867,13 @@ var render = function() {
                       expression: "items.quantity"
                     }
                   ],
-                  staticClass: "form-control form-height",
-                  attrs: { name: "quantity" },
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "number",
+                    id: "quantity",
+                    name: "quantity",
+                    placeholder: "Quantity Here"
+                  },
                   domProps: { value: _vm.items.quantity },
                   on: {
                     input: function($event) {
@@ -75008,6 +75115,8 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(manager.quantity))]),
             _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(manager.approvedquantity))]),
+            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(manager.invoice))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(manager.remarks))]),
@@ -75029,15 +75138,7 @@ var render = function() {
                   }
                 },
                 [_vm._v("\n            view\n          ")]
-              ),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-success btn-sm m-0" }, [
-                _vm._v("Confirm")
-              ]),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-danger btn-sm m-0" }, [
-                _vm._v("Reject")
-              ])
+              )
             ])
           ])
         }),
@@ -75101,6 +75202,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Description of item")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Approved Quantity")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Invoice No")]),
         _vm._v(" "),

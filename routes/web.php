@@ -23,6 +23,9 @@ use App\Http\Controllers\storemanager\ManagerPageController ;
 use App\Http\Controllers\storemanager\ManagerResponseController;
 use App\Http\Controllers\office\OfficePageController;
 
+use App\Http\Controllers\GEM_consignee\GemConsigneeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -104,9 +107,17 @@ Route::post('/manager-reject/{id}',[ManagerResponseController::class,'reject']);
 
 // #############################################################################
 
-Route::get('/officedashboard',[OfficePageController::class,'index']);
 
-Route::get('/officedashboar',[OfficePageController::class,'indexx']);
+
+Route::get('/officedashboard',[OfficePageController::class,'index']);
 //Auth::routes();
+
+// #############################################################################
+
+Route::get('/gem-dashboard',[GemConsigneeController::class,'index']);
+
+
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

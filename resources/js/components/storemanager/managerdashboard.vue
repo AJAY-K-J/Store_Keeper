@@ -18,6 +18,7 @@
           <th scope="col">Item</th>
           <th scope="col">Description of item</th>
           <th scope="col">Quantity</th>
+               <th scope="col">Approved Quantity</th>
           <th scope="col">Invoice No</th>
           <th scope="col">Remarks</th>
           <th scope="col">Actions</th>
@@ -35,6 +36,8 @@
 
           <td>{{manager.quantity }}</td>
 
+           <td>{{manager.approvedquantity }}</td>
+
           <td>{{ manager.invoice }}</td>
 
           <td>{{ manager.remarks }}</td>
@@ -50,8 +53,6 @@
               view
             </button>
 
-            <button class="btn btn-success btn-sm m-0">Confirm</button>
-            <button class="btn btn-danger btn-sm m-0">Reject</button>
           </td>
         </tr>
       </tbody>

@@ -32,6 +32,7 @@ class ConfirmedItemsController extends Controller
                 'storearrivals.date',
                 'storearrivals.supplier',
                 'storearrivals.quantity',
+                'storearrivals.approvedquantity',
                 'storearrivals.price',
                 'storearrivals.invoice',
                 'storearrivals.Dc_no',
@@ -53,7 +54,7 @@ class ConfirmedItemsController extends Controller
 
 
             ])
-            ->where([['sign_of_ask', 1],['store_officer', 1], ['sign_of_insp_officer', 1]])
+            ->where([['sign_of_ask', 1],['store_officer', 1], ['sign_of_insp_officer', 1],['gem_officer', 0]])
             ->get();
 
 
@@ -107,9 +108,17 @@ class ConfirmedItemsController extends Controller
 
         if ($request->quantity) {
             $store->quantity = $request->quantity;
+
         }
-        if ($request->quantity) {
-            $store->balance_quantity = $request->quantity;
+
+        if ($request->approvedquantity) {
+            $store->approvedquantity = $request->approvedquantity;
+
+        }
+
+
+        if ($request->approvedquantity) {
+            $store->balance_quantity = $request->approvedquantity;
         }
         if ($request->price) {
             $store->price = $request->price;

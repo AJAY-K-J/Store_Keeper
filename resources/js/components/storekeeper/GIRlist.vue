@@ -19,7 +19,7 @@
           <th scope="col">Invoice No</th>
           <th scope="col">Purchase Order</th>
           <th scope="col">Category</th>
-          <th scope="col">Quantity</th>
+          <th scope="col">Quantity in Store</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -37,7 +37,7 @@
 
           <td>{{ goods.category_book }}</td>
 
-          <td>{{  goods.quantity }}</td>
+          <td>{{  goods.balance_quantity }}</td>
 
           <td>
             <button
@@ -112,6 +112,7 @@ export default {
  
   data() {
     return {
+      errors:{},
      goods_details: [],
     };
   },

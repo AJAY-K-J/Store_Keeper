@@ -15,9 +15,13 @@
 @endsection
 
 @section('sidebar1')
+
+
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="adduser" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span
-        class="hide-menu">Add User</span></a></li>
+    href="additems" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
+        class="hide-menu">Add Items</span></a></li>
+
+
     
 @endsection
 
@@ -30,8 +34,11 @@
 @section('sidebar3')
 
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="addroles" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span
-        class="hide-menu">Add Roles</span></a></li>
+    href="adduser" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span
+        class="hide-menu">Add User</span></a></li>
+
+
+
     
 @endsection
 @section('sidebar4')
@@ -49,10 +56,10 @@
 @endsection
 @section('sidebar6')
 
-<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="additems" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
-        class="hide-menu">Add Items</span></a></li>
     
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+    href="addroles" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span
+        class="hide-menu">Add Roles</span></a></li>
 @endsection
 @section('sidebar7')
 

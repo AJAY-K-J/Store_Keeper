@@ -50,8 +50,7 @@
               view
             </button>
 
-            <button class="btn btn-success btn-sm m-0">Confirm</button>
-            <button class="btn btn-danger btn-sm m-0">Reject</button>
+            
           </td>
         </tr>
       </tbody>

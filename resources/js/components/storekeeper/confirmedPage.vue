@@ -18,6 +18,7 @@
           <th scope="col">Item</th>
           <th scope="col">Description of item</th>
           <th scope="col">Quantity</th>
+          <th scope="col">Approved Quantity</th>
           <th scope="col">Invoice No</th>
           <th scope="col">Remarks</th>
           <th scope="col">Actions</th>
@@ -34,6 +35,7 @@
           <td>{{ confirmed.description_item }}</td>
 
           <td>{{ confirmed.quantity }}</td>
+            <td>{{ confirmed.approvedquantity }}</td>
 
           <td>{{ confirmed.invoice }}</td>
 
