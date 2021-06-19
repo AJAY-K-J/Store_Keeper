@@ -38,17 +38,20 @@
           <td>
             <button
               type="button"
-              class="btn btn-sm btn-success text-end"
+              class="btn btn-sm btn-light text-end"
               data-toggle="modal"
               data-target="#edit-role"
               name=""
               @click="edit_role(role)"
-            ></button>
+            >
+            
+              <i class="fas fa-edit"></i>
+            </button>
             <button
-              class="btn btn-danger btn-sm m-0"
+              class="btn btn-light  btn-sm m-0"
               @click="delete_role(role.id)"
             >
-              <i class="ti-trash"> </i>
+              <i class=" fas fa-trash"> </i>
             </button>
           </td>
         </tr>

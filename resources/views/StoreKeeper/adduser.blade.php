@@ -1,5 +1,10 @@
 @extends('layouts.main')
-
+@section('logout')
+<a class="dropdown-item" href="logout"><i
+    class="fa fa-power-off me-1 ms-1"></i> Logout</a>
+<div class="dropdown-divider"></div>
+    
+@endsection
 
 @section('sidebar0')
 
@@ -13,7 +18,7 @@
 
 
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="additems" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
+    href="additems" aria-expanded="false"><i class="mdi mdi-format-list-bulleted"></i><span
         class="hide-menu">Add Items</span></a></li>
 
 
@@ -22,7 +27,7 @@
 
 @section('sidebar2')
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="addsuppliers" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span
+    href="addsuppliers" aria-expanded="false"><i class="mdi mdi-worker"></i><span
         class="hide-menu">Add Supplier</span></a></li>
     
 @endsection
@@ -39,13 +44,13 @@
 @section('sidebar4')
 
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="addsections" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
+    href="addsections" aria-expanded="false"><i class="mdi mdi-flag-checkered"></i><span
         class="hide-menu">Add Sections</span></a></li>
     
 @endsection
 @section('sidebar5')
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="addcategories" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
+    href="addcategories" aria-expanded="false"><i class="mdi mdi-format-align-left"></i><span
         class="hide-menu">Add Categories</span></a></li>
     
 @endsection
@@ -53,7 +58,7 @@
 
     
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-    href="addroles" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span
+    href="addroles" aria-expanded="false"><i class="mdi mdi-crown"></i><span
         class="hide-menu">Add Roles</span></a></li>
 @endsection
 @section('sidebar7')
@@ -70,41 +75,38 @@
     
 @endsection
 
-<!-- Column -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
+ <!-- Column -->
+          <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                              <!-- ============================================================== -->
 
 
 
 
 @section('Column1')
 
-    <!-- Column -->
-    <div class="col-md-6 col-lg-2 col-xlg-3">
-        <a href="storedashboard">
-            <div class="card card-hover">
-                <div class="box bg-cyan text-center">
-                    <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
-                    <h6 class="text-white">Dashboard</h6>
-                </div>
-            </div>
-        </a>
-    </div>
-
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-2 col-xlg-3">
+                       <a href="/storedashboard"> <div class="card card-hover">
+                            <div class="box bg-cyan text-center">
+                                <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
+                                <h6 class="text-white">Dashboard</h6>
+                            </div>
+                        </div></a>
+                    </div>
+    
 @endsection
 
 
 
 @section('Column2')
-    <!-- Column -->
+ <!-- Column -->
 
-
-                      
+                    
  <div class="col-md-6 col-lg-4 col-xlg-3">
     <a href="/confirmedIitemPage"> <div class="card card-hover">
         <div class="box bg-success text-center">
-            <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
+            <h1 class="font-light text-white"><i class="mdi mdi-book-open-page-variant"></i></h1>
             <h6 class="text-white">Confirmed Arrival Book</h6>
         </div>
     </div></a>
@@ -113,68 +115,67 @@
 
 @section('Column3')
 
-
-    <!-- Column -->
-    <div class="col-md-6 col-lg-2 col-xlg-3">
-        <a href="/girlist"> <div class="card card-hover">
-            <div class="box bg-warning text-center">
-                <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
-                <h6 class="text-white">GR book</h6>
-            </div>
-        </div></a>
-    </div>
+                   
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-2 col-xlg-3">
+                        <a href="/girlist"> <div class="card card-hover">
+                            <div class="box bg-warning text-center">
+                                <h1 class="font-light text-white"><i class="mdi mdi-book-open-page-variant"></i></h1>
+                                <h6 class="text-white">GR book</h6>
+                            </div>
+                        </div></a>
+                    </div>
 @endsection
 @section('Column4')
 
-    <!-- Column -->
-  <!-- Column -->
-  <div class="col-md-6 col-lg-2 col-xlg-3">
-    <a href="/kardex">   <div class="card card-hover">
-        <div class="box bg-danger text-center">
-            <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
-            <h6 class="text-white">Kardex</h6>
+                   <!-- Column -->
+                   <div class="col-md-6 col-lg-2 col-xlg-3">
+                    <a href="/kardex">   <div class="card card-hover">
+                        <div class="box bg-danger text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-book-open-page-variant"></i></h1>
+                            <h6 class="text-white">Kardex Book</h6>
+                        </div>
+                    </div></a>
+                </div>
+@endsection
+@section('Column5')
+ <!-- Column -->
+ <div class="col-md-6 col-lg-2 col-xlg-3">
+    <a href="/dsr">   <div class="card card-hover">
+        <div class="box bg-info text-center">
+            <h1 class="font-light text-white"><i class="mdi mdi-book-open-page-variant"></i></h1>
+            <h6 class="text-white">DSR Book</h6>
         </div>
     </div></a>
 </div>
-@endsection
-@section('Column5')
-    <!-- Column -->
-    <div class="col-md-6 col-lg-2 col-xlg-3">
-        <a href="/dsr">   <div class="card card-hover">
-            <div class="box bg-info text-center">
-                <h1 class="font-light text-white"><i class="mdi mdi-arrow-all"></i></h1>
-                <h6 class="text-white">DSR Book</h6>
-            </div>
-        </div></a>
-    </div>
-    <!-- Column -->
+<!-- Column -->
 @endsection
 @section('Column6')
-    <!-- Column -->
-    <div class="col-md-6 col-lg-4 col-xlg-3">
+     <!-- Column -->
+     <div class="col-md-6 col-lg-4 col-xlg-3">
         <div class="card card-hover">
             <div class="box bg-danger text-center">
-                <h1 class="font-light text-white"><i class="mdi mdi-receipt"></i></h1>
-                <h6 class="text-white">Forms</h6>
+                <h1 class="font-light text-white"><i class="mdi mdi-book-open-page-variant"></i></h1>
+                <h6 class="text-white">Rejection Book </h6>
             </div>
         </div>
     </div>
 @endsection
 @section('Column7')
 
-    <!-- Column -->
-    <div class="col-md-6 col-lg-2 col-xlg-3">
-        <div class="card card-hover">
-            <div class="box bg-info text-center">
-                <h1 class="font-light text-white"><i class="mdi mdi-relative-scale"></i></h1>
-                <h6 class="text-white">Buttons</h6>
-            </div>
-        </div>
-    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-2 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="box bg-info text-center">
+                                <h1 class="font-light text-white"><i class="mdi mdi-relative-scale"></i></h1>
+                                <h6 class="text-white">Buttons</h6>
+                            </div>
+                        </div>
+                    </div>
 @endsection
 @section('Column8')
-    <!-- Column -->
-    <div class="col-md-6 col-lg-2 col-xlg-3">
+     <!-- Column -->
+     <div class="col-md-6 col-lg-2 col-xlg-3">
         <div class="card card-hover">
             <div class="box bg-cyan text-center">
                 <h1 class="font-light text-white"><i class="mdi mdi-pencil"></i></h1>
@@ -184,18 +185,18 @@
     </div>
 @endsection
 @section('Column9')
-    <div class="col-md-6 col-lg-2 col-xlg-3">
-        <div class="card card-hover">
-            <div class="box bg-success text-center">
-                <h1 class="font-light text-white"><i class="mdi mdi-calendar-check"></i></h1>
-                <h6 class="text-white">Calnedar</h6>
-            </div>
+<div class="col-md-6 col-lg-2 col-xlg-3">
+    <div class="card card-hover">
+        <div class="box bg-success text-center">
+            <h1 class="font-light text-white"><i class="mdi mdi-calendar-check"></i></h1>
+            <h6 class="text-white">Calnedar</h6>
         </div>
     </div>
+</div>
 @endsection
 @section('Column10')
-    <!-- Column -->
-    <div class="col-md-6 col-lg-2 col-xlg-3">
+     <!-- Column -->
+     <div class="col-md-6 col-lg-2 col-xlg-3">
         <div class="card card-hover">
             <div class="box bg-warning text-center">
                 <h1 class="font-light text-white"><i class="mdi mdi-alert"></i></h1>
@@ -204,7 +205,6 @@
         </div>
     </div>
 @endsection
-
 
 
 

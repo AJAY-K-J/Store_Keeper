@@ -40,15 +40,15 @@
           <td>
             <button
               type="button"
-              class="btn btn-sm btn-success text-end"
+              class="btn btn-sm btn-light text-end"
               data-toggle="modal"
               data-target="#edit-item"
               name=""
               @click="edit_item(item)"
             >
-              edit
+            <i class=" fas fa-edit"> </i>
             </button>
-            <button class="btn btn-danger btn-sm m-0" @click="delete_item(item.id)">Delete</button></td>
+            <button class="btn btn-light btn-sm m-0" @click="delete_item(item.id)"><i class=" fas fa-trash"> </i></button></td>
           
         </tr>
       </tbody>

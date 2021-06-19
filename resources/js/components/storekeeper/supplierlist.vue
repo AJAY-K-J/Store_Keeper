@@ -41,15 +41,15 @@
           <td>
             <button
               type="button"
-              class="btn btn-sm btn-success text-end"
+              class="btn btn-sm btn-light text-end"
               data-toggle="modal"
               data-target="#edit-supplier"
               name=""
               @click="edit_supplier(supplier)"
             >
-              edit
+             <i class=" fas fa-edit"> </i>
             </button>
-           <button class="btn btn-danger btn-sm m-0" @click="delete_supplier(supplier.id)">Delete</button></td>
+           <button class="btn btn-light btn-sm m-0" @click="delete_supplier(supplier.id)"><i class=" fas fa-trash"> </i></button></td>
           
         </tr>
       </tbody>

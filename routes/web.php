@@ -24,7 +24,7 @@ use App\Http\Controllers\storemanager\ManagerResponseController;
 use App\Http\Controllers\office\OfficePageController;
 
 use App\Http\Controllers\GEM_consignee\GemConsigneeController;
-
+use App\Http\Controllers\GEM_consignee\ConsigneeResponseController;
 
 
 /*
@@ -115,9 +115,9 @@ Route::get('/officedashboard',[OfficePageController::class,'index']);
 // #############################################################################
 
 Route::get('/gem-dashboard',[GemConsigneeController::class,'index']);
+Route::get('/consignee-details',[GemConsigneeController::class,'consigneeDetails']);
 
-
-
-
+Route::post('/gem-confirm/{id}',[ConsigneeResponseController::class,'gem_confirm']);
+Route::post('/gem-reject/{id}',[ConsigneeResponseController::class,'gem_reject']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

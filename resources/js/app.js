@@ -75,10 +75,10 @@ Vue.component('store-view-arrival', require('./components/storemanager/storeview
 Vue.component('office-dashboard-table', require('./components/office/officedashboard.vue').default);
 
 
+// ##################################################################################################
 
-
-
-
+Vue.component('gem-dashboard', require('./components/Gem_consignee/gemdashboard.vue').default);
+Vue.component('view-consignee', require('./components/Gem_consignee/viewconsignee.vue').default);
 
 
 /**

@@ -53,7 +53,7 @@
             >
               edit
             </button>-->
-            <button class="btn btn-danger btn-sm m-0" @click="delete_user(lis.id)">Delete</button></td>
+            <button class="btn btn-light btn-sm m-0" @click="delete_user(lis.id)"><i class=" fas fa-trash"> </i></button></td>
           
         </tr>
       </tbody>

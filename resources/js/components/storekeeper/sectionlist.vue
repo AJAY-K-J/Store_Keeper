@@ -39,15 +39,15 @@
           <td>
             <button
               type="button"
-              class="btn btn-sm btn-success text-end"
+              class="btn btn-sm btn-light text-end"
               data-toggle="modal"
               data-target="#edit-section"
               name=""
               @click="edit_section(section)"
             >
-              edit
+            <i class=" fas fa-edit"> </i>
             </button>
-           <button class="btn btn-danger btn-sm m-0" @click="delete_section(section.id)">Delete</button></td>
+           <button class="btn btn-light btn-sm m-0" @click="delete_section(section.id)"><i class=" fas fa-trash"> </i></button></td>
           
         </tr>
       </tbody>

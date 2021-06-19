@@ -91,6 +91,6 @@
 
 @section('main')
 
-
+<gem-dashboard> </gem-dashboard>
 
 @endsection
