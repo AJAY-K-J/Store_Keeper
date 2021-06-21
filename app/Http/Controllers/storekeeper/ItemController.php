@@ -20,7 +20,7 @@ $category_details=Category::all();
     
     public function itemlist(){
 
-        $item= Item::all();
+        $item= Item::paginate(5);
         return $item;
         
     }

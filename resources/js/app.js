@@ -9,6 +9,8 @@ export const bus = new Vue();
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -52,6 +54,9 @@ Vue.component('view-dsr-stock', require('./components/storekeeper/viewdsr.vue').
 
 Vue.component('kardex-book', require('./components/storekeeper/kardexbook.vue').default);
 Vue.component('view-kardex-stock', require('./components/storekeeper/viewkardex.vue').default);
+
+Vue.component('store-arrival-book', require('./components/storekeeper/storeArrivalBook.vue').default);
+Vue.component('arrival-details-view', require('./components/storekeeper/arrivalDetailsView.vue').default);
 
 // ###############################################################################################
 

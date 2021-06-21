@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-6 bold">
-          <h5 class="card-title mb-0">Confiremd Items</h5>
+          <h5 class="card-title mb-0">Arrival Register Details</h5>
         </div>
         <div class="col-md-6 text-end"></div>
       </div>
@@ -25,29 +25,29 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="confirmed in confirmed_details.data" :key="confirmed.id">
-          <td>{{ confirmed.id }}</td>
+        <tr v-for="arrivals in arrival_details.data" :key="arrivals.id">
+          <td>{{ arrivals.id }}</td>
 
-          <td>{{ convert_date(confirmed.date) }}</td>
+          <td>{{ convert_date(arrivals.date) }}</td>
 
-          <td>{{ confirmed.item_name }}</td>
+          <td>{{ arrivals.item_name }}</td>
 
-          <td>{{ confirmed.description_item }}</td>
+          <td>{{ arrivals.description_item }}</td>
 
-          <td>{{ confirmed.quantity }}</td>
-          <td>{{ confirmed.approvedquantity }}</td>
+          <td>{{ arrivals.quantity }}</td>
+          <td>{{ arrivals.approvedquantity }}</td>
 
-          <td>{{ confirmed.invoice }}</td>
+          <td>{{ arrivals.invoice }}</td>
 
-          <td>{{ confirmed.remarks }}</td>
+          <td>{{ arrivals.remarks }}</td>
 
           <td>
             <button
               type="button"
               class="btn btn-sm btn-secondary"
               data-toggle="modal"
-              data-target=".confirmedPageview"
-              @click="view_confirmed(confirmed)"
+              data-target=".arrivalsPageview"
+              @click="view_store_arrivals(arrivals)"
             >
               view
             </button>
@@ -58,8 +58,10 @@
     </div>
   <div class="card-footer">
       <pagination
-        :data="confirmed_details"
-        @pagination-change-page="get_confirmed_details"
+        :data="arrival_details"
+        
+        @pagination-change-page="
+    get_Arrival_details"
       ></pagination>
     </div>
 
@@ -68,7 +70,7 @@
     <!-- Modal -->
 
     <div
-      class="modal fade confirmedPageview"
+      class="modal fade arrivalsPageview"
       tabindex="-1"
       role="dialog"
       aria-labelledby="myLargeModalLabel"
@@ -76,7 +78,7 @@
     >
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <confirmedPage-view> </confirmedPage-view>
+          <arrival-details-view> </arrival-details-view>
         </div>
       </div>
     </div>
@@ -89,34 +91,29 @@ import moment from "moment";
 export default {
   data() {
     return {
-      confirmed_details: {},
+      arrival_details: {},
     };
   },
 
   created() {
-    this.get_confirmed_details();
-    var aj = this;
-    bus.$on("addedGIR", function () {
-      aj.get_confirmed_details();
-    });
+    this. get_Arrival_details();
 
-    bus.$on("item-added ", function () {
-      aj.get_confirmed_details();
-    });
+   
+
   },
 
   methods: {
     convert_date(date) {
       return moment(date).format("DD-MM-YYYY");
     },
-    view_confirmed(confirmed) {
-      bus.$emit("confirmed-details", confirmed);
+  view_store_arrivals(arrivals) {
+      bus.$emit("arrivals-details", arrivals);
     },
 
-    get_confirmed_details(page =1) {
+    get_Arrival_details(page =1) {
       axios
-        .get("/confirmedDetails?page=" + page)
-        .then((response) => (this.confirmed_details = response.data));
+        .get("/arrivalDetails?page=" + page)
+        .then((response) => (this.arrival_details = response.data));
     },
   },
 };

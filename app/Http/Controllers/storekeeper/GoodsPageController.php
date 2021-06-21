@@ -55,7 +55,7 @@ class GoodsPageController extends Controller
 
             ])
 
-            ->get();
+            ->paginate(5);
 
         return $goods_details;
     }

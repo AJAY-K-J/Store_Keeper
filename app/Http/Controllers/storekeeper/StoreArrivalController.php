@@ -11,6 +11,8 @@ use App\Models\Item;
 use App\Models\Section;
 use App\Models\Supplier;
 use App\Models\User;
+
+use Illuminate\Support\Facades\DB;
 class StoreArrivalController extends Controller
 {
     /**
@@ -163,4 +165,53 @@ $section_officer=User::all()->where('role','=','section-in-charge');
     {
         //
     }
+
+    public function storeArrivalbook(){
+
+return view('storekeeper.store_arrival_book');
+
+
+    }
+
+public function arrivalDetails(){
+
+    $section_details = DB::table('storearrivals')
+    ->join('sections', 'sections.id', '=', 'storearrivals.section')
+    ->join('items', 'items.id', '=', 'storearrivals.item_name')
+    ->join('suppliers', 'suppliers.id', '=', 'storearrivals.supplier')
+    ->select([
+
+        'storearrivals.id',
+        'storearrivals.date',
+        'storearrivals.supplier',
+        'storearrivals.quantity',
+         'storearrivals.approvedquantity',
+          'storearrivals.rejectedquantity',
+        'storearrivals.price',
+        'storearrivals.invoice',
+        'storearrivals.Dc_no',
+        'storearrivals.Dc_date',
+        'storearrivals.arrivals_page_no',
+        'storearrivals.sign_of_insp_officer',
+        'storearrivals.store_officer',
+  'storearrivals.gem_officer',
+        
+        'storearrivals.remarks',
+        'sections.name as section_name',
+        'suppliers.name as supplier_name',
+        'suppliers.gst',
+        'suppliers.Details',
+        'items.name as item_name',
+        'items.category_name',
+        'items.description_item',
+
+
+    ])
+  
+  ->  paginate(5);
+
+return $section_details;
+
+}
+    
 }

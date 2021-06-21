@@ -16,27 +16,26 @@
             Add New Item
           </button>
         </div>
-    
       </div>
-    </div>
+    
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
-  <th scope="col">Item Name</th>
+          <th scope="col">Item Name</th>
           <th scope="col">Category Name</th>
-        <th scope="col">Description of Item</th>
+          <th scope="col">Description of Item</th>
           <th scope="col">Status</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" :key="item.id">
+        <tr v-for="item in items.data" :key="item.id">
           <td scope="row">{{ item.id }}</td>
-          <td>{{item.name }}</td>
-          <td>{{item.category_name }}</td>
-         <td>{{item.description_item }}</td>
-          <td>{{item.status }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.category_name }}</td>
+          <td>{{ item.description_item }}</td>
+          <td>{{ item.status }}</td>
           <td>
             <button
               type="button"
@@ -46,84 +45,89 @@
               name=""
               @click="edit_item(item)"
             >
-            <i class=" fas fa-edit"> </i>
+              <i class="fas fa-edit"> </i>
             </button>
-            <button class="btn btn-light btn-sm m-0" @click="delete_item(item.id)"><i class=" fas fa-trash"> </i></button></td>
-          
+            <button
+              class="btn btn-light btn-sm m-0"
+              @click="delete_item(item.id)"
+            >
+              <i class="fas fa-trash"> </i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
-
-
-
+</div>
+  <div class="card-footer">
+      <pagination
+        :data="items"
+        @pagination-change-page="get_item"
+      ></pagination>
+    </div>
 
     <!-- Modal -->
 
-    <div class="modal fade" id="edit-item" data-backdrop="static" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">EDIT ITEM</h5>
-                          <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div
+      class="modal fade"
+      id="edit-item"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">EDIT ITEM</h5>
+            <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>-->
-                        </div>
-                        <div class="modal-body">
-
-                            <add-new-item  :edit='true' :category_details="category_details" > </add-new-item>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
+          </div>
+          <div class="modal-body">
+            <add-new-item :edit="true" :category_details="category_details">
+            </add-new-item>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-   props: ["category_details"],
+  props: ["category_details"],
   data() {
     return {
-    
-  items: {},
+      items: {},
     };
   },
 
   created() {
-
-
     this.get_item();
     var vm = this;
     bus.$on("item-added", function () {
       vm.get_item();
-   
     });
   },
 
   methods: {
-    get_item() {
-      axios.get("/api/add_item").then((response) => (this.items = response.data));
+    get_item(page=1) {
+      axios
+        .get("/api/add_item?page="+page)
+        .then((response) => (this.items = response.data));
     },
-
 
     edit_item(items) {
-      bus.$emit("edit-item",items);
-   
+      bus.$emit("edit-item", items);
     },
-    delete_item(id){
+    delete_item(id) {
+      axios.delete("/api/add_item/" + id).then((response) => {
    
- axios.delete('/api/add_item/'+id).then((response) => {
-          console.log(response);
-          if (response.data == "Success") {
+        if (response.data == "Success") {
           this.get_item();
-          }
-
-        
-        })
-
+        }
+      });
     },
   },
 };

@@ -7,8 +7,8 @@
         </div>
         <div class="col-md-6 text-end"></div>
       </div>
-    </div>
- 
+   
+
     <table class="table text-center">
       <thead>
         <tr>
@@ -24,20 +24,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for=" goods in  goods_details" :key=" goods.id">
-          <td>{{goods.gir_page_no }}</td>
+        <tr v-for="goods in goods_details.data" :key="goods.id">
+          <td>{{ goods.gir_page_no }}</td>
 
           <td>{{ goods.supplier_name }}</td>
 
-          <td>{{  goods.item_name}}</td>
+          <td>{{ goods.item_name }}</td>
 
-          <td>{{  goods.invoice }}</td>
+          <td>{{ goods.invoice }}</td>
 
           <td>{{ goods.purchase_order_no }}</td>
 
           <td>{{ goods.category_book }}</td>
 
-          <td>{{  goods.balance_quantity }}</td>
+          <td>{{ goods.balance_quantity }}</td>
 
           <td>
             <button
@@ -49,17 +49,29 @@
             >
               view
             </button>
- <button
-             type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#allotview"
-@click="allot_goods(goods)"
+            <button
+              type="button"
+              class="btn btn-sm btn-success"
+              data-toggle="modal"
+              data-target="#allotview"
+              @click="allot_goods(goods)"
             >
               Allot
             </button>
-         
           </td>
         </tr>
       </tbody>
     </table>
+     </div>
+
+
+
+        <div class="card-footer">
+      <pagination
+        :data="goods_details"
+        @pagination-change-page="get_goods_list"
+      ></pagination>
+    </div>
 
     <!-- Modal -->
 
@@ -72,36 +84,38 @@
     >
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <gir-view>  </gir-view>
+          <gir-view> </gir-view>
         </div>
       </div>
     </div>
 
-<!-- ########################################################################################################### -->
+    <!-- ########################################################################################################### -->
 
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="allotview" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="allotview">Allot goods</h5>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="allotview"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="allotview">Allot goods</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
+          </div>
+          <div class="modal-body">
+            <section-allot> </section-allot>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-     <section-allot>   </section-allot>
-      </div>
-    
     </div>
-  </div>
-</div>
 
-<!-- ############################################################################################ -->
-
+    <!-- ############################################################################################ -->
   </div>
 </template>
 
@@ -109,26 +123,20 @@
 import moment from "moment";
 
 export default {
- 
   data() {
     return {
-      errors:{},
-     goods_details: [],
+      errors: {},
+      goods_details: {},
     };
   },
 
   created() {
+    this.get_goods_list();
 
-
- this. get_goods_list();
-
-   var cm = this;
-      bus.$on("item-alloted", function () {
-        cm. get_goods_list();
-    
-      });
- 
-
+    var cm = this;
+    bus.$on("item-alloted", function () {
+      cm.get_goods_list();
+    });
   },
 
   methods: {
@@ -139,14 +147,13 @@ export default {
       bus.$emit("GIR-Book", goods);
     },
 
-allot_goods(goods) {
+    allot_goods(goods) {
       bus.$emit("allot-goods", goods);
     },
 
-
-    get_goods_list() {
+    get_goods_list(page = 1) {
       axios
-        .get("/goodslist")
+        .get("/goodslist?page=" + page)
         .then((response) => (this.goods_details = response.data));
     },
   },

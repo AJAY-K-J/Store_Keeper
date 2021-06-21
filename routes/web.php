@@ -48,8 +48,14 @@ Route::get('/logout',[UserAuthController::class,'userlogout']);
 
 
 Route::get('/storedashboard',[StoreArrivalController::class,'index']);
+Route::get('/storeArrivalbook',[StoreArrivalController::class,'storeArrivalbook']);
+Route::get('/arrivalDetails',[StoreArrivalController::class,'arrivalDetails']);
+
 Route::get('/confirmedIitemPage',[ConfirmedItemsController::class,'index']);
 Route::get('/confirmedDetails',[ConfirmedItemsController::class,'confirmedItems']);
+
+
+
 
 Route::post('/addtogir',[ConfirmedItemsController::class,'store']);
 Route::get('/girlist',[GoodsPageController::class,'index']);

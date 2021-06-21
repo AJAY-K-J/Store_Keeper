@@ -107,7 +107,7 @@ class SectionPageController extends Controller
 
                 ])
                 ->where([['sections.name', $user_detail], ['sign_of_insp_officer', 0]])
-                ->get();
+              ->  paginate(5);
 
             return $section_details;
         } else return redirect('/');

@@ -7,54 +7,58 @@
         </div>
         <div class="col-md-6 text-end"></div>
       </div>
+
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+
+            <th scope="col">Date</th>
+            <th scope="col">Item</th>
+            <th scope="col">Description of item</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Invoice No</th>
+            <th scope="col">Remarks</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody v-if="loading=== true">
+          <tr v-for="details in section_details.data" :key="details.id">
+            <td>{{ details.id }}</td>
+
+            <td>{{ convert_date(details.date) }}</td>
+
+            <td>{{ details.item_name }}</td>
+
+            <td>{{ details.description_item }}</td>
+
+            <td>{{ details.quantity }}</td>
+
+            <td>{{ details.invoice }}</td>
+
+            <td>{{ details.remarks }}</td>
+
+            <td>
+              <button
+                type="button"
+                class="btn btn-sm btn-secondary"
+                data-toggle="modal"
+                data-target=".view"
+                @click="view_arrival(details)"
+              >
+                view
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
- 
-    <table class="table text-center">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-
-          <th scope="col">Date</th>
-          <th scope="col">Item</th>
-          <th scope="col">Description of item</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Invoice No</th>
-          <th scope="col">Remarks</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="details in section_details" :key="details.id">
-          <td>{{ details.id }}</td>
-
-          <td>{{ convert_date(details.date) }}</td>
-
-          <td>{{ details.item_name }}</td>
-
-          <td>{{ details.description_item }}</td>
-
-          <td>{{ details.quantity }}</td>
-
-          <td>{{ details.invoice }}</td>
-
-          <td>{{ details.remarks }}</td>
-
-          <td>
-            <button
-              type="button"
-              class="btn btn-sm btn-secondary"
-              data-toggle="modal"
-              data-target=".view"
-              @click="view_arrival(details)"
-            >
-              view
-            </button>
-
-            
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card-footer">
+      <pagination
+        :data="section_details"
+        @pagination-change-page="get_section_details"
+      ></pagination>
+    </div>
 
     <!-- Modal -->
 
@@ -78,23 +82,21 @@
 import moment from "moment";
 
 export default {
- 
   data() {
     return {
-      section_details: [],
+      loading: false,
+      section_details: {},
     };
   },
 
   created() {
+    this.get_section_details();
 
+    var aj = this;
 
- this. get_section_details();
- var aj = this;
-
-bus.$on("item-confirmed ", function () {
-     aj.get_section_details();
+    bus.$on("item-confirmed ", function () {
+      aj.get_section_details();
     });
-
   },
 
   methods: {
@@ -105,10 +107,13 @@ bus.$on("item-confirmed ", function () {
       bus.$emit("store-details", details);
     },
 
-    get_section_details() {
+    get_section_details(page = 1) {
+      this.loading= false;
       axios
-        .get("/section-details")
+        .get("/section-details?page=" + page)
         .then((response) => (this.section_details = response.data));
+
+      this.loading= true;
     },
   },
 };

@@ -164,18 +164,18 @@
 @section('Column7')
 
                     <!-- Column -->
-                    <div class="col-md-6 col-lg-2 col-xlg-3">
-                        <div class="card card-hover">
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                      <a href="storeArrivalbook"> <div class="card card-hover">
                             <div class="box bg-info text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-relative-scale"></i></h1>
-                                <h6 class="text-white">Buttons</h6>
+                                <h6 class="text-white">Arrival Register Book</h6>
                             </div>
-                        </div>
+                        </div></a> 
                     </div>
 @endsection
 @section('Column8')
      <!-- Column -->
-     <div class="col-md-6 col-lg-2 col-xlg-3">
+     <div class="col-md-6 col-lg-3 col-xlg-3">
         <div class="card card-hover">
             <div class="box bg-cyan text-center">
                 <h1 class="font-light text-white"><i class="mdi mdi-pencil"></i></h1>
@@ -195,15 +195,7 @@
 </div>
 @endsection
 @section('Column10')
-     <!-- Column -->
-     <div class="col-md-6 col-lg-2 col-xlg-3">
-        <div class="card card-hover">
-            <div class="box bg-warning text-center">
-                <h1 class="font-light text-white"><i class="mdi mdi-alert"></i></h1>
-                <h6 class="text-white">Errors</h6>
-            </div>
-        </div>
-    </div>
+ 
 @endsection
 
 

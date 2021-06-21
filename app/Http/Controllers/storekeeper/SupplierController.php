@@ -15,7 +15,7 @@ class SupplierController extends Controller
 
     public function supplierlist(){
 
-        $supplier= Supplier::all();
+        $supplier= Supplier::paginate(5);
         return $supplier;
         
     }

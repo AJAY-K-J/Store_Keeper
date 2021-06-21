@@ -60,7 +60,7 @@ class CategoryBookController extends Controller
 
         ])
 ->where('category_book','=','DSR')
-        ->get();
+        ->paginate(5);
 
     return $goods_details;
 
@@ -106,7 +106,7 @@ class CategoryBookController extends Controller
 
         ])
 ->where('category_book','=','kardex')
-        ->get();
+        ->paginate(5);
 
     return $kardex_details;
 
