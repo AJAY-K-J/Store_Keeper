@@ -19,7 +19,7 @@
       
       </div>
     </div>
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -41,7 +41,7 @@
           <td>{{ lis.email }}</td>
           <td>{{ lis.section }}</td>
           <td>{{ lis.role }}</td>
-          <td>{{ lis.status }}</td>
+          <td v-if="lis.status == 0">  <span class="userstatus"> Active</span></td>
           <td>
            <!-- <button
               type="button"
@@ -138,4 +138,10 @@ export default {
   font-weight: bold;
   color: black;
 }
+
+.userstatus{
+color: green;
+}
+
+
 </style>

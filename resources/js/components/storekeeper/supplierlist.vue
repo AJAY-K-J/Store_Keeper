@@ -18,7 +18,7 @@
         </div>
       </div>
  
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -36,7 +36,7 @@
           <td>{{ supplier.Details }}</td>
           <td>{{ supplier.gst }}</td>
 
-          <td>{{ supplier.status }}</td>
+               <td v-if="supplier.status == 0">  <span class="supplierstatus"> Active</span></td>
           <td>
             <button
               type="button"
@@ -139,5 +139,10 @@ export default {
 .table thead th {
   font-weight: bold;
   color: black;
+}
+
+
+.supplierstatus{
+color: green;
 }
 </style>

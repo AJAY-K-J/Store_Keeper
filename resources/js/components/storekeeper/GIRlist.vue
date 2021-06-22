@@ -9,7 +9,7 @@
       </div>
    
 
-    <table class="table text-center">
+    <table class="table text-center table-hover">
       <thead>
         <tr>
           <th scope="col">GIR Page</th>

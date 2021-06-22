@@ -5,20 +5,10 @@
         <div class="col-md-6 bold">
           <h5 class="card-title mb-0">ROLE LIST</h5>
         </div>
-        <div class="col-md-6 text-end">
-          <button
-            type="button"
-            class="btn btn-sm btn-success text-end"
-            data-toggle="modal"
-            data-target="#add-role"
-            name=""
-          >
-            Add New Role
-          </button>
-        </div>
+        <div class="col-md-6 text-end"></div>
       </div>
     </div>
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -26,15 +16,15 @@
           <th scope="col">Role Name</th>
 
           <th scope="col">Status</th>
-          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="role in roles" :key="role.id">
-          <td scope="row">{{ role.id }}</td>
+          <td scope="row">{{role.id}}</td>
           <td>{{ role.name }}</td>
 
-          <td>{{ role.status }}</td>
+          <td v-if="role.status == 0">  <span class="rolestatus"> Active</span></td>
+          <!-- 
           <td>
             <button
               type="button"
@@ -44,45 +34,42 @@
               name=""
               @click="edit_role(role)"
             >
-            
               <i class="fas fa-edit"></i>
             </button>
             <button
-              class="btn btn-light  btn-sm m-0"
+              class="btn btn-light btn-sm m-0"
               @click="delete_role(role.id)"
             >
-              <i class=" fas fa-trash"> </i>
+              <i class="fas fa-trash"> </i>
+            </button>
+          </td> -->
+        </tr>
+
+        <tr v-if="roles.length == 0">
+          <td colspan="100%" class="text-center">
+            {{ loading ? "Loading..." : "No Roles Added" }}
+          </td>
+         
+        </tr>
+
+
+        <tr v-if="roles.length == 0 ">
+
+ <td colspan="100%" class="text-center">
+            <button
+              type="button"
+              class="btn btn-sm btn-success text-end"
+              @click="add_roles()"
+            >
+              Add Roles
             </button>
           </td>
+
         </tr>
       </tbody>
     </table>
 
     <!-- Modal -->
-
-    <div
-      class="modal fade"
-      id="edit-role"
-      data-backdrop="static"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">EDIT ROLE</h5>
-            <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>-->
-          </div>
-          <div class="modal-body">
-            <add-new-role :edit="true"> </add-new-role>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -90,7 +77,17 @@
 export default {
   data() {
     return {
+    
+      loading: false,
       roles: {},
+
+      roleInput: {
+        store_keeper: "Store-Keeper",
+        section_officer: "Section-Officer",
+        store_officer: "Store-Officer",
+        gem_consignee: "GeM-Consignee",
+        head_ofiice: "Head-Office",
+      },
     };
   },
 
@@ -103,15 +100,32 @@ export default {
   },
 
   methods: {
+
+
+    add_roles() {
+      this.loading = true;
+      axios
+        .post("./add_role", this.roleInput)
+        .then((response) => {
+          if (response.data == "Success") {
+          }
+
+          this.get_role();
+
+          this.loading = false;
+        })
+        .catch((error) => {
+          this.loading = false;
+          console.log(error.response.data);
+        });
+    },
+
     get_role() {
       axios
         .get("/api/add_role")
         .then((response) => (this.roles = response.data));
     },
 
-    edit_role(role) {
-      bus.$emit("edit-role", role);
-    },
     delete_role(id) {
       axios.delete("/api/add_role/" + id).then((response) => {
         console.log(response);
@@ -129,4 +143,10 @@ export default {
   font-weight: bold;
   color: black;
 }
+
+.rolestatus{
+
+  color: green;
+}
+
 </style>

@@ -104,7 +104,7 @@
 
                     
  <div class="col-md-6 col-lg-4 col-xlg-3">
-    <a href="/confirmedIitemPage"> <div class="card card-hover">
+    <a href="/confirmedItemPage"> <div class="card card-hover">
         <div class="box bg-success text-center">
             <h1 class="font-light text-white"><i class="mdi mdi-book-open-page-variant"></i></h1>
             <h6 class="text-white">Confirmed Arrival Book</h6>
@@ -153,12 +153,12 @@
 @section('Column6')
      <!-- Column -->
      <div class="col-md-6 col-lg-4 col-xlg-3">
-        <div class="card card-hover">
+       <a href="RejectedItemPage"> <div class="card card-hover">
             <div class="box bg-danger text-center">
                 <h1 class="font-light text-white"><i class="mdi mdi-book-open-page-variant"></i></h1>
                 <h6 class="text-white">Rejection Book </h6>
             </div>
-        </div>
+        </div></a>
     </div>
 @endsection
 @section('Column7')
@@ -197,6 +197,9 @@
 @section('Column10')
  
 @endsection
+
+
+
 
           <!-- ============================================================== -->
                     <!-- ============================================================== -->

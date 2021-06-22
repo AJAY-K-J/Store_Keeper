@@ -113,7 +113,7 @@ $section_officer=User::all()->where('role','=','section-in-charge');
             $store->Dc_no = $request->Dc_no;
         } if ($request->remarks) {
             $store->remarks = $request->remarks;
-        }
+        }else  $store->remarks = 'No remarks';
 
 
 

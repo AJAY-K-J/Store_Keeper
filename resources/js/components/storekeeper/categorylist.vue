@@ -19,7 +19,7 @@
       
       </div>
     </div>
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -35,7 +35,7 @@
           <td scope="row">{{ cat.id }}</td>
           <td>{{cat.name }}</td>
          
-          <td>{{ cat.status }}</td>
+          <td v-if="cat.status == 0">  <span class="Categorystatus"> Active</span></td>
           <td>
             <button
               type="button"
@@ -131,4 +131,9 @@ export default {
   font-weight: bold;
   color: black;
 }
+
+.Categorystatus{
+  color: green;
+}
+
 </style>

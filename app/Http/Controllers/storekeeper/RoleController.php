@@ -24,23 +24,67 @@ class RoleController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-
-            'name'=>'Required',
-
-            ]);
-
-if($request->id){
-    $Role=Role::find($request->id);
-}else
-    $Role = new Role;
-  if($request->name){
-      $Role->name=$request->name;
-  }
+      
+   
 
 
-$Role->save();
-return 'Success';     
+if($request->store_keeper){
+
+    $store_keeper=new Role;
+    $store_keeper->name=$request->store_keeper;
+
+$store_keeper->save();
+}
+
+
+
+
+if($request->section_officer){
+
+    $section_officer=new Role;
+    $section_officer->name=$request->section_officer;
+
+$section_officer->save();
+}
+
+
+
+if($request->store_officer){
+
+    $store_officer=new Role;
+    $store_officer->name=$request->store_officer;
+
+$store_officer->save();
+}
+
+
+if($request->gem_consignee){
+
+    $gem_consignee=new Role;
+    $gem_consignee->name=$request->gem_consignee;
+
+$gem_consignee->save();
+}
+
+
+
+
+if($request->head_ofiice){
+
+    $head_ofiice=new Role;
+    $head_ofiice->name=$request->head_ofiice;
+
+$head_ofiice->save();
+}
+
+
+
+return 'success';
+
+
+
+
+
         
     }
 
@@ -48,11 +92,16 @@ return 'Success';
 
 
 
-    public function destroy( $id)
-    {
-        $delete_role = Role::find($id);
-        $delete_role->delete();
-        return 'Success';
-    }
+    // public function destroy( $id)
+    // {
+    //     $delete_role = Role::find($id);
+    //     $delete_role->delete();
+    //     return 'Success';
+    // }
+
+
+    
+
+
 
 }

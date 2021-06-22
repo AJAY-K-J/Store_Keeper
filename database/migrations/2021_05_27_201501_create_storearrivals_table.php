@@ -44,7 +44,7 @@ class CreateStorearrivalsTable extends Migration
             $table->string('store_officer')->default('0');
             $table->string('gem_officer')->default('0');
             
-            $table->text('remarks')->default('null');
+            $table->text('remarks');
             $table->timestamps();
         });
     }

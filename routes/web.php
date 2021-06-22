@@ -11,6 +11,8 @@ use App\Http\Controllers\storekeeper\ItemController;
 use App\Http\Controllers\storekeeper\SectionController;
 use App\Http\Controllers\storekeeper\GoodsPageController;
 use App\Http\Controllers\storekeeper\CategoryBookController;
+use App\Http\Controllers\storekeeper\ConfirmedItemsController;
+use App\Http\Controllers\storekeeper\RejectedItemsController;
 
 use App\Http\Controllers\sections\SectionPageController;
 use App\Http\Controllers\sections\SectionResponseController;
@@ -18,7 +20,7 @@ use App\Http\Controllers\sections\SectionStockPageController;
 use App\Http\Controllers\sections\SectionStockController;
 use App\Http\Controllers\sections\DeprecatedStockController;
 
-use App\Http\Controllers\storekeeper\ConfirmedItemsController;
+
 use App\Http\Controllers\storemanager\ManagerPageController ;
 use App\Http\Controllers\storemanager\ManagerResponseController;
 use App\Http\Controllers\office\OfficePageController;
@@ -51,11 +53,11 @@ Route::get('/storedashboard',[StoreArrivalController::class,'index']);
 Route::get('/storeArrivalbook',[StoreArrivalController::class,'storeArrivalbook']);
 Route::get('/arrivalDetails',[StoreArrivalController::class,'arrivalDetails']);
 
-Route::get('/confirmedIitemPage',[ConfirmedItemsController::class,'index']);
+Route::get('/confirmedItemPage',[ConfirmedItemsController::class,'index']);
 Route::get('/confirmedDetails',[ConfirmedItemsController::class,'confirmedItems']);
 
-
-
+Route::get('/RejectedItemPage',[RejectedItemsController::class,'index']);
+Route::get('/rejectedDetails',[RejectedItemsController::class,'rejectedItems']);
 
 Route::post('/addtogir',[ConfirmedItemsController::class,'store']);
 Route::get('/girlist',[GoodsPageController::class,'index']);
@@ -66,6 +68,7 @@ Route::post('/allot_item',[GoodsPageController::class,'allot']);
 Route::get('/adduser',[UserController::class,'index']);
 
 Route::get('/addroles',[RoleController::class,'index']);
+Route::post('/add_role',[RoleController::class,'store']);
 
 Route::get('/addsuppliers',[SupplierController::class,'index']);
 

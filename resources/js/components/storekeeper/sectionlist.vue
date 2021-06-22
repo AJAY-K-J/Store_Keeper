@@ -19,7 +19,7 @@
      
       </div>
     </div>
-    <table class="table text-center">
+    <table class="table text-center table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -35,7 +35,8 @@
           <td scope="row">{{ section.id }}</td>
           <td>{{section.name }}</td>
          
-          <td>{{ section.status }}</td>
+         <td v-if="section.status == 1">  <span class="sectionstatus"> Active</span></td>
+         <td v-if="section.status == 0">  <span class="sectionstatus0"> Idle</span></td>
           <td>
             <button
               type="button"
@@ -131,4 +132,13 @@ export default {
   font-weight: bold;
   color: black;
 }
+
+.sectionstatus{
+  color: green;
+}
+.sectionstatus0{
+  color: rgb(163, 11, 74);
+}
+
+
 </style>

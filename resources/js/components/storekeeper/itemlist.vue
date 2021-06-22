@@ -18,14 +18,14 @@
         </div>
       </div>
     
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Item Name</th>
           <th scope="col">Category Name</th>
           <th scope="col">Description of Item</th>
-          <th scope="col">Status</th>
+     
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -35,7 +35,7 @@
           <td>{{ item.name }}</td>
           <td>{{ item.category_name }}</td>
           <td>{{ item.description_item }}</td>
-          <td>{{ item.status }}</td>
+       
           <td>
             <button
               type="button"

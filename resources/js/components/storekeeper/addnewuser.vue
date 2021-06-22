@@ -89,7 +89,7 @@
   <div class="col-12">
           
 </div>
-  <div v-if="user.role=='section-in-charge'" class="col-12">
+  <div v-if="user.role=='Section-Officer'" class="col-12">
           <div class="form-group">
             <label>Section</label>
             <select

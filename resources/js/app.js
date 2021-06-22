@@ -33,7 +33,7 @@ Vue.component('category-list', require('./components/storekeeper/categorylist.vu
 Vue.component('add-new-item', require('./components/storekeeper/additem.vue').default);
 Vue.component('item-list', require('./components/storekeeper/itemlist.vue').default);
 
-Vue.component('add-new-role', require('./components/storekeeper/addrole.vue').default);
+
 Vue.component('role-list', require('./components/storekeeper/rolelist.vue').default);
 
 Vue.component('add-new-supplier', require('./components/storekeeper/addsupplier.vue').default);
@@ -44,6 +44,9 @@ Vue.component('section-list', require('./components/storekeeper/sectionlist.vue'
 
 Vue.component('confirmed-details', require('./components/storekeeper/confirmedPage.vue').default);
 Vue.component('confirmedPage-view', require('./components/storekeeper/confirmedPageView.vue').default);
+
+Vue.component('rejected-book', require('./components/storekeeper/RejectedBook.vue').default);
+Vue.component('rejectedPage-view', require('./components/storekeeper/RejectedPageView.vue').default);
 
 Vue.component('gir-list', require('./components/storekeeper/GIRlist.vue').default);
 Vue.component('gir-view', require('./components/storekeeper/GIRview.vue').default);

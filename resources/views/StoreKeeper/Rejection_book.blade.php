@@ -200,6 +200,7 @@
 
 
 
+
           <!-- ============================================================== -->
                     <!-- ============================================================== -->
                               <!-- ============================================================== -->
@@ -209,36 +210,6 @@
 @section('main')
 
 
-<div class="row">
-
-    <div class="col-md-12">
-
-       
-        <section-list> </section-list>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="add-section" data-backdrop="static" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">ADD SECTION</h5>
-                      <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>-->
-                    </div>
-                    <div class="modal-body">
-
-                        <add-new-section > </add-new-section>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-
-    </div>
-</div>
-    @endsection
+<rejected-book> </rejected-book>
+  
+  @endsection

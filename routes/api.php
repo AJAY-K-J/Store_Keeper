@@ -49,7 +49,7 @@ Route::post('/add_item',[ItemController::class,'store']);
 Route::get('/add_item',[ItemController::class,'itemlist']);
 Route::delete('/add_item/{id}',[ItemController::class,'destroy']);
 
-Route::post('/add_role',[RoleController::class,'store']);
+
 Route::get('/add_role',[RoleController::class,'roleslist']);
 Route::delete('/add_role/{id}',[RoleController::class,'destroy']);
 
