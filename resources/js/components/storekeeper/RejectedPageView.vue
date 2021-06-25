@@ -90,7 +90,7 @@
     </div>
     <div class="row mt-4">
       <div class="col-12">
-        <div class="form-group text-end">
+        <div v-if="lot.disposedstatus == 0" class="form-group text-end">
           <button
             class="btn btn-secondary btn-sm float-right"
             data-dismiss="modal"
@@ -108,6 +108,23 @@
           <span class="disposedspan"> Item Disposed</span>
           </button>
         </div>
+
+
+            <div v-else class="form-group text-end">
+          <button
+            class="btn btn-secondary btn-sm float-right"
+            data-dismiss="modal"
+            ref="cancel_btn"
+            type="button"
+          >
+            Cancel
+          </button>
+
+      
+        </div>
+
+
+
       </div>
     </div>
   </div>
@@ -134,6 +151,7 @@ export default {
        akku.lot.quantity = rejected.quantity;
        akku.lot.approvedquantity = rejected.approvedquantity;
         akku.lot.rejectedquantity = rejected.rejectedquantity;
+        akku.lot.disposedstatus = rejected.disposedstatus;
        
       akku.lot.price = rejected.price;
       akku.lot.invoice = rejected.invoice;
@@ -160,6 +178,7 @@ export default {
         quantity: "",
         approvedquantity:'',
         rejectedquantity:'',
+        disposedstatus:'',
         price: "",
         invoice: "",
         Dc_no: "",
@@ -184,7 +203,7 @@ export default {
 
     disposed() {
       axios
-        .post("./disposeditem", )
+        .post('./disposed/'+this.lot.product_id)
         .then((response) => {
           if (response.data == "Success") {
             Swal.fire("Confirmed!", "", "success");

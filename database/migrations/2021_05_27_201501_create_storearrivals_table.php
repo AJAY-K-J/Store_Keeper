@@ -27,7 +27,7 @@ class CreateStorearrivalsTable extends Migration
 
             $table->float('approvedquantity')->default(0);
             $table->float('rejectedquantity')->default(0);
-
+$table->string('disposedstatus')->default('0');
             $table->float('price');
 
             $table->string('invoice')->default('0');

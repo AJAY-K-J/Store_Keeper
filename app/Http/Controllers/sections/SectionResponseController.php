@@ -54,7 +54,9 @@ return 'Success';
 $reject_record=storearrival::find($request->id);
 
 if($reject_record){
+
     $reject_record->remarks=$request->remarks;
+             $reject_record->rejectedquantity=$reject_record->quantity;
     $reject_record->sign_of_insp_officer=2;
 
 }

@@ -8,8 +8,9 @@
         <div class="col-md-6 text-end"></div>
       </div>
 
+<div class="table-responsive-sm">
 
-    <table class="table text-center table-hover table-danger">
+    <table class="table text-center table-hover table-danger table-sm ">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -20,6 +21,7 @@
           <th scope="col">Quantity</th>
           <th scope="col">Rejected Quantity</th>
           <th scope="col">Invoice No</th>
+          <th scope="col">Disposed Status</th>
           <th scope="col">Remarks</th>
           <th scope="col">Actions</th>
         </tr>
@@ -39,8 +41,10 @@
 
           <td>{{ rejected.invoice }}</td>
 
-          <td>{{ rejected.remarks }}</td>
-
+          
+          <td v-if="rejected.disposedstatus ==0 "><span class="spanPending">Pending</span></td>
+  <td v-if="rejected.disposedstatus ==1"><span class="spandisposed">Disposed</span></td>
+  <td>{{ rejected.remarks }}</td>
           <td>
             <button
               type="button"
@@ -55,6 +59,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     </div>
   <div class="card-footer">
       <pagination
@@ -90,6 +95,7 @@ export default {
   data() {
     return {
       rejected_details: {},
+      
     };
   },
 
@@ -98,7 +104,7 @@ export default {
     var aj = this;
  
 
-    bus.$on("disposed   ``````++", function () {
+    bus.$on("disposed", function () {
       aj.get_rejected_details();
     });
   },
@@ -121,4 +127,17 @@ export default {
 </script>
 
 <style>
+
+.spanPending{
+
+color: rgb(148, 21, 21);
+
+
+}
+.spandisposed{
+
+color: rgb(20, 187, 56);
+
+}
+
 </style>

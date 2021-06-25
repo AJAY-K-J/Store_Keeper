@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\storekeeper\StoreArrivalController;
 use App\Http\Controllers\storekeeper\UserController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\storekeeper\GoodsPageController;
 use App\Http\Controllers\storekeeper\CategoryBookController;
 use App\Http\Controllers\storekeeper\ConfirmedItemsController;
 use App\Http\Controllers\storekeeper\RejectedItemsController;
+use App\Http\Controllers\storekeeper\DisposedItemController;
 
 use App\Http\Controllers\sections\SectionPageController;
 use App\Http\Controllers\sections\SectionResponseController;
@@ -58,6 +60,9 @@ Route::get('/confirmedDetails',[ConfirmedItemsController::class,'confirmedItems'
 
 Route::get('/RejectedItemPage',[RejectedItemsController::class,'index']);
 Route::get('/rejectedDetails',[RejectedItemsController::class,'rejectedItems']);
+
+Route::post('/disposed/{id}',[RejectedItemsController::class,'dispose']);
+
 
 Route::post('/addtogir',[ConfirmedItemsController::class,'store']);
 Route::get('/girlist',[GoodsPageController::class,'index']);

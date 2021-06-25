@@ -20,7 +20,7 @@ class SectionPageController extends Controller
 
 
 
-        if (Session()->has('section-in-charge')) {
+        if (Session()->has('Section-Officer')) {
 
 
 
@@ -38,7 +38,7 @@ class SectionPageController extends Controller
 
 
 
-        if (Session()->has('section-in-charge')) {
+        if (Session()->has('Section-Officer')) {
 
 
 
@@ -67,9 +67,9 @@ class SectionPageController extends Controller
 
 
 
-        if (Session()->has('section-in-charge')) {
+        if (Session()->has('Section-Officer')) {
 
-            $user_id = Session('section-in-charge');
+            $user_id = Session('Section-Officer');
             $user_detail = User::where('id', '=',  $user_id)->pluck('section');
 
 
@@ -120,9 +120,9 @@ class SectionPageController extends Controller
 
     public function logout()
     {
-        if (Session()->has('section-in-charge')) {
+        if (Session()->has('Section-Officer')) {
 
-            Session()->pull('section-in-charge');
+            Session()->pull('Section-Officer');
             return redirect('/');
         }
     }

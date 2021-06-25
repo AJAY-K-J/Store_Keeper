@@ -15,9 +15,9 @@ class SectionStockController extends Controller
 
 
 
-        if (Session()->has('section-in-charge')) {
+        if (Session()->has('Section-Officer')) {
 
-            $user_id = Session('section-in-charge');
+            $user_id = Session('Section-Officer');
             $user_detail = User::where('id', '=',  $user_id)->pluck('section');
 
 

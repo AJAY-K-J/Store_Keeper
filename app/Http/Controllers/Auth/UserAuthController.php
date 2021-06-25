@@ -33,20 +33,25 @@ class UserAuthController extends Controller
 
                     $request->session()->put('Store-Keeper', $user->id);
                     return redirect('storedashboard');
+
                 } elseif ($user->role == 'Section-Officer') {
 
                     $request->session()->put('Section-Officer', $user->id);
                     return redirect('sectiondashboard');
+
                 } elseif ($user->role == 'Store-Officer') {
 
                     $request->session()->put('Store-Officer', $user->id);
                     return redirect('managerdashboard');
+
                 } elseif ($user->role == 'Head-Office') {
                     $request->session()->put('Head-Office', $user->id);
                     return redirect('officedashboard');
+
                 } elseif ($user->role == 'GeM-Consignee') {
                     $request->session()->put('GeM-Consignee', $user->id);
                     return redirect('gem-dashboard');
+
                 } else {
                     return back()->with('fail', 'Invalid user');
                 }
