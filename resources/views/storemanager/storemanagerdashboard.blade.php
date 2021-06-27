@@ -1,11 +1,6 @@
 @extends('layouts.main')
 
-@section('logout')
-<a class="dropdown-item" href="managerlogout"><i
-    class="fa fa-power-off me-1 ms-1"></i> Logout</a>
-<div class="dropdown-divider"></div>
-    
-@endsection
+
 
 @section('sidebar0')
 
@@ -63,7 +58,7 @@
                         <div class="card card-hover">
                             <div class="box bg-warning text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
-                                <h6 class="text-white"> </h6>
+                                <h6 class="text-white">**** </h6>
                             </div>
                         </div>
                     </div>
@@ -76,7 +71,7 @@
                         <div class="card card-hover">
                             <div class="box bg-danger text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
-                                <h6 class="text-white"></h6>
+                                <h6 class="text-white">****</h6>
                             </div>
                         </div>
                     </div>

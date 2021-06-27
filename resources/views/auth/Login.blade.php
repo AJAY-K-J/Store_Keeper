@@ -56,22 +56,26 @@
                         <span class="db"><img src="assets/images/logo.png" alt="logo" /></span>
                     </div>
                     <!-- Form -->
-                    <form method="POST" action="login">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="row pb-4">
                             <div class="col-12">
 
 
 
-                                @if (Session::get('fail'))
+                                {{-- @if (Session::get('fail'))
 
                                 <div class="alert alert-danger">
 
                                     {{ Session::get('fail')}}
                                 </div>
 
-                                @endif
-
+                                @endif --}}
+                                @if(session()->has('error'))
+                                <div class="alert alert-danger">
+                                     {{ session()->get('error') }}
+                                 </div>
+                             @endif
 
 
 

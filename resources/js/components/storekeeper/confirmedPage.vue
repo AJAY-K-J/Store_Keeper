@@ -100,7 +100,7 @@ export default {
       aj.get_confirmed_details();
     });
 
-    bus.$on("item-added ", function () {
+    bus.$on("item-added", function () {
       aj.get_confirmed_details();
     });
   },

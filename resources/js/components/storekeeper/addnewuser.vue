@@ -206,7 +206,7 @@ section_details:{},
 
     adduser() {
       axios
-        .post("./api/adduser", this.user)
+        .post("./register", this.user)
         .then((response) => {
          
           if (response.data == "Success") {

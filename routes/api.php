@@ -28,7 +28,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/addarrivals',[StoreArrivalController::class,'store']);
 
-Route::post('/adduser',[UserController::class,'store']);
+// Route::post('/adduser',[UserController::class,'store']);
 Route::get('/adduser',[UserController::class,'userslist']);
 Route::delete('/adduser/{id}',[UserController::class,'destroy']);
 

@@ -1,10 +1,5 @@
 @extends('layouts.main')
-@section('logout')
-<a class="dropdown-item" href="logout"><i
-    class="fa fa-power-off me-1 ms-1"></i> Logout</a>
-<div class="dropdown-divider"></div>
-    
-@endsection
+
 
 @section('sidebar0')
 
@@ -121,7 +116,7 @@
                         <a href="/girlist"> <div class="card card-hover">
                             <div class="box bg-warning text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-book-open-page-variant"></i></h1>
-                                <h6 class="text-white">GR book</h6>
+                                <h6 class="text-white">GIR book</h6>
                             </div>
                         </div></a>
                     </div>
@@ -179,7 +174,7 @@
         <div class="card card-hover">
             <div class="box bg-cyan text-center">
                 <h1 class="font-light text-white"><i class="mdi mdi-pencil"></i></h1>
-                <h6 class="text-white">Elements</h6>
+                <h6 class="text-white">****</h6>
             </div>
         </div>
     </div>
@@ -189,7 +184,7 @@
     <div class="card card-hover">
         <div class="box bg-success text-center">
             <h1 class="font-light text-white"><i class="mdi mdi-calendar-check"></i></h1>
-            <h6 class="text-white">Calnedar</h6>
+            <h6 class="text-white">****</h6>
         </div>
     </div>
 </div>

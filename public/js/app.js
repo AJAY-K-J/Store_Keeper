@@ -4192,7 +4192,7 @@ __webpack_require__.r(__webpack_exports__);
     adduser: function adduser() {
       var _this2 = this;
 
-      axios.post("./api/adduser", this.user).then(function (response) {
+      axios.post("./register", this.user).then(function (response) {
         if (response.data == "Success") {
           _this2.$refs.cancel_btn.click();
 
@@ -4847,7 +4847,7 @@ __webpack_require__.r(__webpack_exports__);
     bus.$on("addedGIR", function () {
       aj.get_confirmed_details();
     });
-    bus.$on("item-added ", function () {
+    bus.$on("item-added", function () {
       aj.get_confirmed_details();
     });
   },
@@ -5997,7 +5997,7 @@ __webpack_require__.r(__webpack_exports__);
         section_officer: "Section-Officer",
         store_officer: "Store-Officer",
         gem_consignee: "GeM-Consignee",
-        head_ofiice: "Head-Office"
+        head_ofiice: "SAS"
       }
     };
   },
@@ -6017,8 +6017,6 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data == "Success") {}
 
         _this.get_role();
-
-        _this.loading = false;
       })["catch"](function (error) {
         _this.loading = false;
         console.log(error.response.data);
@@ -12346,7 +12344,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.table thead th {\r\n  font-weight: bold;\r\n  color: black;\n}\n.rolestatus{\r\n\r\n  color: green;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.table thead th {\r\n  font-weight: bold;\r\n  color: black;\n}\n.rolestatus{\r\n\r\n  color: green;\n}\n.adduserspan{\r\n\r\n  font-weight: bold;\n}\n.boldmsg{\r\n  \r\n  font-weight: bold;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -76375,7 +76373,10 @@ var render = function() {
             ? _c("tr", [
                 _c(
                   "td",
-                  { staticClass: "text-center", attrs: { colspan: "100%" } },
+                  {
+                    staticClass: "text-center boldmsg",
+                    attrs: { colspan: "100%" }
+                  },
                   [
                     _vm._v(
                       "\n           " +
@@ -76396,7 +76397,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-sm btn-success text-end",
+                        staticClass: "btn btn-sm btn-success text-end px-4",
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
@@ -76404,7 +76405,11 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("\n             Add Roles\n           ")]
+                      [
+                        _c("span", { staticClass: "adduserspan" }, [
+                          _vm._v("Add Roles")
+                        ])
+                      ]
                     )
                   ]
                 )

@@ -46,7 +46,7 @@
         </tr>
 
         <tr v-if="roles.length == 0">
-          <td colspan="100%" class="text-center">
+          <td colspan="100%" class="text-center boldmsg">
             {{ loading ? "Loading..." : "No Roles Added" }}
           </td>
          
@@ -58,10 +58,10 @@
  <td colspan="100%" class="text-center">
             <button
               type="button"
-              class="btn btn-sm btn-success text-end"
+              class="btn btn-sm btn-success text-end px-4"
               @click="add_roles()"
             >
-              Add Roles
+              <span class="adduserspan">Add Roles</span>
             </button>
           </td>
 
@@ -86,7 +86,7 @@ export default {
         section_officer: "Section-Officer",
         store_officer: "Store-Officer",
         gem_consignee: "GeM-Consignee",
-        head_ofiice: "Head-Office",
+        head_ofiice: "SAS",
       },
     };
   },
@@ -112,7 +112,7 @@ export default {
 
           this.get_role();
 
-          this.loading = false;
+          
         })
         .catch((error) => {
           this.loading = false;
@@ -124,6 +124,9 @@ export default {
       axios
         .get("/api/add_role")
         .then((response) => (this.roles = response.data));
+
+
+
     },
 
     delete_role(id) {
@@ -147,6 +150,15 @@ export default {
 .rolestatus{
 
   color: green;
+}
+.adduserspan{
+
+  font-weight: bold;
+}
+.boldmsg{
+  
+  font-weight: bold;
+
 }
 
 </style>

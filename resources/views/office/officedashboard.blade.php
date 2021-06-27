@@ -1,11 +1,6 @@
 @extends('layouts.main')
 
-@section('logout')
-<a class="dropdown-item" href="officelogout"><i
-    class="fa fa-power-off me-1 ms-1"></i> Logout</a>
-<div class="dropdown-divider"></div>
-    
-@endsection
+
 
 @section('sidebar0')
 

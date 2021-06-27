@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+
+
 use App\Http\Controllers\storekeeper\StoreArrivalController;
 use App\Http\Controllers\storekeeper\UserController;
 use App\Http\Controllers\storekeeper\RoleController;
@@ -42,13 +46,25 @@ use App\Http\Controllers\GEM_consignee\ConsigneeResponseController;
 |
 */
 
+Route::get('register',[RegisterController::class,'register'])->name('register');
+Route::post('register',[RegisterController::class,'storeUser']);
+
+Route::get('login',[LoginController::class,'login'])->name('login');
+Route::post('login',[LoginController::class,'authenticate']);
+Route::get('logout',[LoginController::class,'logout'])->name('logout');
+
 Route::get('/', function () {
     return view('Auth.Login');
 });
 
 
-Route::post('/login',[UserAuthController::class,'usercheck']);
-Route::get('/logout',[UserAuthController::class,'userlogout']);
+// Route::get('/', function () {
+//     return view('Auth.Login');
+// });
+
+
+// Route::post('/login',[UserAuthController::class,'usercheck']);
+// Route::get('/logout',[UserAuthController::class,'userlogout']);
 
 
 Route::get('/storedashboard',[StoreArrivalController::class,'index']);
