@@ -5,8 +5,15 @@ window.Vue = require('vue').default;
 window.bus = new Vue();
 export const bus = new Vue();
 
+global.jQuery = require('jquery');
+var $ = global.jQuery;
+window.$ = $;
 
 
+import Swal from 'sweetalert2';
+window.Swal = Swal;
+
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 /**
  * The following block of code may be used to automatically register your
@@ -18,6 +25,9 @@ export const bus = new Vue();
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+Vue.component('change-password', require('./components/auth/passwordChange.vue').default);
+
 Vue.component('dashboard-form', require('./components/storekeeper/dashboardform.vue').default);
 
 Vue.component('add-new-user', require('./components/storekeeper/addnewuser.vue').default);
@@ -30,14 +40,62 @@ Vue.component('category-list', require('./components/storekeeper/categorylist.vu
 Vue.component('add-new-item', require('./components/storekeeper/additem.vue').default);
 Vue.component('item-list', require('./components/storekeeper/itemlist.vue').default);
 
-Vue.component('add-new-role', require('./components/storekeeper/addrole.vue').default);
+
 Vue.component('role-list', require('./components/storekeeper/rolelist.vue').default);
 
-Vue.component('add-new-designation', require('./components/storekeeper/adddesignation.vue').default);
-Vue.component('designation-list', require('./components/storekeeper/designationlist.vue').default);
+Vue.component('add-new-supplier', require('./components/storekeeper/addsupplier.vue').default);
+Vue.component('supplier-list', require('./components/storekeeper/supplierlist.vue').default);
 
 Vue.component('add-new-section', require('./components/storekeeper/addsection.vue').default);
 Vue.component('section-list', require('./components/storekeeper/sectionlist.vue').default);
+
+Vue.component('confirmed-details', require('./components/storekeeper/confirmedPage.vue').default);
+Vue.component('confirmedPage-view', require('./components/storekeeper/confirmedPageView.vue').default);
+
+Vue.component('rejected-book', require('./components/storekeeper/RejectedBook.vue').default);
+Vue.component('rejectedPage-view', require('./components/storekeeper/RejectedPageView.vue').default);
+
+Vue.component('gir-list', require('./components/storekeeper/GIRlist.vue').default);
+Vue.component('gir-view', require('./components/storekeeper/GIRview.vue').default);
+Vue.component('section-allot', require('./components/storekeeper/sectionallot.vue').default);
+
+Vue.component('dsr-book', require('./components/storekeeper/dsrbook.vue').default);
+Vue.component('view-dsr-stock', require('./components/storekeeper/viewdsr.vue').default);
+
+Vue.component('kardex-book', require('./components/storekeeper/kardexbook.vue').default);
+Vue.component('view-kardex-stock', require('./components/storekeeper/viewkardex.vue').default);
+
+Vue.component('store-arrival-book', require('./components/storekeeper/storeArrivalBook.vue').default);
+Vue.component('arrival-details-view', require('./components/storekeeper/arrivalDetailsView.vue').default);
+
+// ###############################################################################################
+
+Vue.component('sectiondashboard-table', require('./components/section/sectiondashboard.vue').default);
+Vue.component('view-arrival', require('./components/section/view_arrival.vue').default);
+Vue.component('section-store-book', require('./components/section/sectionstorebook.vue').default);
+Vue.component('view-section-stock', require('./components/section/viewsectionstock.vue').default);
+
+Vue.component('section-return', require('./components/section/sectionreturn.vue').default);
+Vue.component('view-depreciated-stock', require('./components/section/depreciatedstocks.vue').default);
+
+// ##################################################################################################
+
+Vue.component('managerdashboard-table', require('./components/storemanager/managerdashboard.vue').default);
+Vue.component('manager-view-arrival', require('./components/storemanager/manager_view.vue').default);
+Vue.component('arrival-book-table', require('./components/storemanager/arrivalbook.vue').default);
+Vue.component('store-view-arrival', require('./components/storemanager/storeview.vue').default);
+
+
+
+Vue.component('office-dashboard-table', require('./components/office/officedashboard.vue').default);
+
+
+// ##################################################################################################
+
+Vue.component('gem-dashboard', require('./components/Gem_consignee/gemdashboard.vue').default);
+Vue.component('view-consignee', require('./components/Gem_consignee/viewconsignee.vue').default);
+
+
 /**
 /**
  * Next, we will create a fresh Vue application instance and attach it to

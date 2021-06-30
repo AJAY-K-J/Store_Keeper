@@ -54,7 +54,7 @@ class ConfirmedItemsController extends Controller
 
 
             ])
-            ->where([['sign_of_ask', 1],['store_officer', 1], ['sign_of_insp_officer', 1],['gem_officer', 0]])
+            ->where([['sign_of_ask', 1],['store_officer', 1], ['sign_of_insp_officer', 1]])
             ->paginate(5);
 
 

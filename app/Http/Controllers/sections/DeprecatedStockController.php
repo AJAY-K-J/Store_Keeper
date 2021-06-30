@@ -8,6 +8,7 @@ use App\Models\DeprecatedStock;
 use App\Models\Stock;
 use App\Models\SectionStock;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
 
@@ -83,10 +84,9 @@ class DeprecatedStockController extends Controller
     public function depreciatedStock()
     {
         
-        if (Session()->has('Section-Officer')) {
+        if (Auth::user()->role == 'Section-Officer') {
 
-            $user_id = Session('Section-Officer');
-            $user_detail = User::where('id', '=',  $user_id)->pluck('section');
+          
 
 
             $data = DB::table('deprecated_stocks')
@@ -103,7 +103,7 @@ class DeprecatedStockController extends Controller
                     'items.name as item_name',
                     'items.description_item',
                 ])
-                ->where('section_name', '=', $user_detail)
+                ->where('section_name', '=',Auth::user()->section)
                 ->get();
 
             return   $data;

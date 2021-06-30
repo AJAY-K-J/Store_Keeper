@@ -64,6 +64,7 @@
 
     <div
       class="modal fade view"
+      data-backdrop="static"
       tabindex="-1"
       role="dialog"
       aria-labelledby="myLargeModalLabel"

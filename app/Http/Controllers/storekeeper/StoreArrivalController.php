@@ -53,16 +53,16 @@ $section_officer=User::all()->where('role','=','section-in-charge');
         $request->validate([
 
             'date' => 'Required',
-            'quantity' => 'required',
-            'Dc_date' => 'Required',
+            'quantity' => 'required|integer|min:1',
+            
             'supplier' => 'Required',
-            'price' => 'Required',
+            'price' => "required|regex:/^\d+(\.\d{1,2})?$/",
             'section' => 'Required',
             'stock_type' => 'Required',
             'invoice' => 'Required',
-           
+           'invoice_date' => 'Required',
             'item_name' => 'Required',
-            'Dc_no' => 'Required',
+            
 
         ]);
 
@@ -102,6 +102,11 @@ $section_officer=User::all()->where('role','=','section-in-charge');
         if ($request->invoice) {
             $store->invoice = $request->invoice;
         }
+ if ($request->invoice_date) {
+            $store->invoice_date = $request->invoice_date;
+        }
+
+        
         if ($request->arrivals_page_no) {
             $store->arrivals_page_no = $request->arrivals_page_no;
         }
@@ -115,6 +120,8 @@ $section_officer=User::all()->where('role','=','section-in-charge');
             $store->remarks = $request->remarks;
         }else  $store->remarks = 'No remarks';
 
+
+$store->rejectionremarks = 'No rejection remarks';
 
 
         $store->save();

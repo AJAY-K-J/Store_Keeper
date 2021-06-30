@@ -52,6 +52,7 @@ Route::post('register',[RegisterController::class,'storeUser']);
 Route::get('login',[LoginController::class,'login'])->name('login');
 Route::post('login',[LoginController::class,'authenticate']);
 Route::get('logout',[LoginController::class,'logout'])->name('logout');
+Route::post('/change-password',[LoginController::class,'change_password']);
 
 Route::get('/', function () {
     return view('Auth.Login');
@@ -63,7 +64,7 @@ Route::get('/', function () {
 // });
 
 
-// Route::post('/login',[UserAuthController::class,'usercheck']);
+
 // Route::get('/logout',[UserAuthController::class,'userlogout']);
 
 

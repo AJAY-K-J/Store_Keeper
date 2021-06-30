@@ -95,8 +95,11 @@
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                               
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
-                                        class="ti-settings me-1 ms-1"></i> Change Password</a>
+                                <a  type="button" data-toggle="modal" data-target="#ChangePassword" class="dropdown-item btn" >
+                                   
+                                    <i class="ti-settings me-1 ms-1"></i> Change Password</a>
+
+
                                 <div class="dropdown-divider"></div>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"><i
@@ -112,9 +115,33 @@
                 </div>
             </nav>
         </header>
+
+
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="ChangePassword" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ChangePasswordCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ChangePasswordTitle">CHANGE PASSWORD</h5>
+      
+        </div>
+        <div class="modal-body">
+         <change-password></change-password>
+        </div>
+     
+      </div>
+    </div>
+  </div>
+
+
+
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->

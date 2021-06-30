@@ -3,13 +3,13 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-6 bold">
-          <h5 class="card-title mb-0">Arrival Register Details</h5>
+          <h5 class="card-title mb-2">Arrival Register Details</h5>
         </div>
         <div class="col-md-6 text-end"></div>
       </div>
 
 
-    <table class="table text-center">
+    <table class="table text-center table-info" id="storeArrivalBook">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -98,7 +98,7 @@ export default {
   created() {
     this. get_Arrival_details();
 
-   
+
 
   },
 
@@ -114,6 +114,20 @@ export default {
       axios
         .get("/arrivalDetails?page=" + page)
         .then((response) => (this.arrival_details = response.data));
+        
+
+             $(document).ready( function () {
+    $('#storeArrivalBook').DataTable(
+      {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    }
+    );
+} );
+
+        
     },
   },
 };

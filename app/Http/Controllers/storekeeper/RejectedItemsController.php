@@ -42,6 +42,7 @@ class RejectedItemsController extends Controller
                 'storearrivals.sign_of_insp_officer',
                 'storearrivals.store_officer',
                 'storearrivals.remarks',
+                'storearrivals.rejectionremarks',
                 'sections.id as section_id',
                 'sections.name as section_name',
                 'suppliers.id as supplier_id',

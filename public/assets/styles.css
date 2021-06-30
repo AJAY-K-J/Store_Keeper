@@ -1,8 +1,6 @@
 
 
-.form-height{
-height: 0px !important;
-}
+
 
 .box{
     padding: 0!important;
@@ -21,4 +19,8 @@ border-bottom: 1px solid sienna!important;
 
 .inline{
     display: inline-block!important;
+}
+
+textarea.form-control {
+     height: none!important;
 }

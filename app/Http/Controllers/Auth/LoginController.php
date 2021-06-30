@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -65,6 +68,7 @@ class LoginController extends Controller
 
     public function logout() {
       Auth::logout();
+      Session::flush();
 
       return redirect('login');
     }
@@ -74,4 +78,39 @@ class LoginController extends Controller
 
       return view('home');
     }
+
+    public function change_password(Request $request)
+	{
+		$this->validate($request,[
+			'currentPassword' => 'required',
+			'password' => 'required|between:8,255|confirmed',
+            
+		]);
+
+		if(Hash::check($request->currentPassword,Auth::user()->password)) {
+            User::find(auth()->user()->id)->update(['password'=> Hash::make($request->password_confirmation)]);
+
+   
+
+           
+			return ['status'=>1,'response'=>'Password changed successfully'];
+		}
+		else
+			return ['status'=>0,'response'=>'Invalid Password'];
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

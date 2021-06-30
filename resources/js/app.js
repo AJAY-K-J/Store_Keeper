@@ -5,6 +5,12 @@ window.Vue = require('vue').default;
 window.bus = new Vue();
 export const bus = new Vue();
 
+global.jQuery = require('jquery');
+
+
+var $ = global.jQuery;
+window.$ = $;
+
 
 import Swal from 'sweetalert2';
 window.Swal = Swal;
@@ -21,6 +27,9 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+Vue.component('change-password', require('./components/auth/passwordChange.vue').default);
+
 Vue.component('dashboard-form', require('./components/storekeeper/dashboardform.vue').default);
 
 Vue.component('add-new-user', require('./components/storekeeper/addnewuser.vue').default);

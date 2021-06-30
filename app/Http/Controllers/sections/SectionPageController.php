@@ -4,9 +4,9 @@ namespace App\Http\Controllers\sections;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
-use App\Models\User;
-use App\Models\storearrival;
+
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SectionPageController extends Controller
@@ -20,7 +20,7 @@ class SectionPageController extends Controller
 
 
 
-        if (Session()->has('Section-Officer')) {
+        if (Auth::user()->role == 'Section-Officer') {
 
 
 
@@ -38,7 +38,7 @@ class SectionPageController extends Controller
 
 
 
-        if (Session()->has('Section-Officer')) {
+        if (Auth::user()->role == 'Section-Officer') {
 
 
 
@@ -67,10 +67,9 @@ class SectionPageController extends Controller
 
 
 
-        if (Session()->has('Section-Officer')) {
+        if (Auth::user()->role == 'Section-Officer') {
 
-            $user_id = Session('Section-Officer');
-            $user_detail = User::where('id', '=',  $user_id)->pluck('section');
+
 
 
 
@@ -106,24 +105,10 @@ class SectionPageController extends Controller
 
 
                 ])
-                ->where([['sections.name', $user_detail], ['sign_of_insp_officer', 0]])
-              ->  paginate(5);
+                ->where([['sections.name', Auth::user()->section], ['sign_of_insp_officer', 0]])
+                ->paginate(5);
 
             return $section_details;
         } else return redirect('/');
-    }
-
-
-
-
-
-
-    public function logout()
-    {
-        if (Session()->has('Section-Officer')) {
-
-            Session()->pull('Section-Officer');
-            return redirect('/');
-        }
     }
 }
