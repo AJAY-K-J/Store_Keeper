@@ -14,7 +14,18 @@ class LoginController extends Controller
     public function login()
     {
 
-      return view('auth.login');
+
+        $firstUser=User::first();
+
+if($firstUser){
+
+    return view('auth.login');
+}else{
+
+    return view('auth.firstUser');
+}
+
+    
     }
 
     public function authenticate(Request $request)

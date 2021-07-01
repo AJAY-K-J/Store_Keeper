@@ -46,8 +46,10 @@ use App\Http\Controllers\GEM_consignee\ConsigneeResponseController;
 |
 */
 
-Route::get('register',[RegisterController::class,'register'])->name('register');
+// Route::get('register',[RegisterController::class,'register'])->name('register');
+
 Route::post('register',[RegisterController::class,'storeUser']);
+
 
 Route::get('login',[LoginController::class,'login'])->name('login');
 Route::post('login',[LoginController::class,'authenticate']);
@@ -55,7 +57,7 @@ Route::get('logout',[LoginController::class,'logout'])->name('logout');
 Route::post('/change-password',[LoginController::class,'change_password']);
 
 Route::get('/', function () {
-    return view('Auth.Login');
+    return redirect('login');
 });
 
 
@@ -67,10 +69,16 @@ Route::get('/', function () {
 
 // Route::get('/logout',[UserAuthController::class,'userlogout']);
 
+// #############################################################################
+// Store-Keeper group
 
-Route::get('/storedashboard',[StoreArrivalController::class,'index']);
+Route::group(['middleware' => 'Store-Keeper'], function () {
+
+    Route::get('/storedashboard',[StoreArrivalController::class,'index']);
 Route::get('/storeArrivalbook',[StoreArrivalController::class,'storeArrivalbook']);
 Route::get('/arrivalDetails',[StoreArrivalController::class,'arrivalDetails']);
+
+
 
 Route::get('/confirmedItemPage',[ConfirmedItemsController::class,'index']);
 Route::get('/confirmedDetails',[ConfirmedItemsController::class,'confirmedItems']);
@@ -106,9 +114,15 @@ Route::get('/dsr',[CategoryBookController::class,'dsrindex']);
 Route::get('/dsrdetails',[CategoryBookController::class,'dsrdetails']);
 Route::get('/kardexdetails',[CategoryBookController::class,'kardexdetails']);
 
-// ###############################################################################
 
-Route::get('/sectiondashboard',[SectionPageController::class,'index']);
+});
+
+// #############################################################################
+// Section-Officer group
+
+Route::group(['middleware' => 'Section-Officer'], function () {
+
+    Route::get('/sectiondashboard',[SectionPageController::class,'index']);
 Route::get('/section-details',[SectionPageController::class,'sectionItem']);
 Route::get('/sectionlogout',[SectionPageController::class,'logout']);
 
@@ -125,30 +139,49 @@ Route::get('/sectionstockdetails',[SectionStockController::class,'sectionStock']
 Route::post('/section-deprecated/{id}',[DeprecatedStockController::class,'store']);
 Route::get('/depreciateddetails',[DeprecatedStockController::class,'depreciatedStock']);
 
-
-// ############################################################################
-Route::get('/managerdashboard',[ManagerPageController::class,'index']);
-Route::get('/manager-details',[ManagerPageController::class,'managerlist']);
-Route::get('/arrivalbook',[ManagerPageController::class,'arrivalbook']);
-Route::get('/store-details',[ManagerPageController::class,'storelist']);
-
-
-Route::post('/manager-confirm/{id}',[ManagerResponseController::class,'confirm']);
-Route::post('/manager-reject/{id}',[ManagerResponseController::class,'reject']);
+});
 
 // #############################################################################
+// Store-Officer group
 
+Route::group(['middleware' => 'Store-Officer'], function () {
 
+    Route::get('/managerdashboard',[ManagerPageController::class,'index']);
+    Route::get('/manager-details',[ManagerPageController::class,'managerlist']);
+    Route::get('/arrivalbook',[ManagerPageController::class,'arrivalbook']);
+    Route::get('/store-details',[ManagerPageController::class,'storelist']);
+    
+    
+    Route::post('/manager-confirm/{id}',[ManagerResponseController::class,'confirm']);
+    Route::post('/manager-reject/{id}',[ManagerResponseController::class,'reject']);
 
-Route::get('/officedashboard',[OfficePageController::class,'index']);
-//Auth::routes();
+});
 
 // #############################################################################
+// GeM-Consignee group
 
-Route::get('/gem-dashboard',[GemConsigneeController::class,'index']);
+
+Route::group(['middleware' => 'GeM-Consignee'], function () {
+
+    Route::get('/gem-dashboard',[GemConsigneeController::class,'index']);
 Route::get('/consignee-details',[GemConsigneeController::class,'consigneeDetails']);
 
 Route::post('/gem-confirm/{id}',[ConsigneeResponseController::class,'gem_confirm']);
 Route::post('/gem-reject/{id}',[ConsigneeResponseController::class,'gem_reject']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
+// SAS group
+Route::group(['middleware' => 'SAS'], function () {
+
+    Route::get('/officedashboard',[OfficePageController::class,'index']);
+
+});
+
+
+
+//Auth::routes();
+
+
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

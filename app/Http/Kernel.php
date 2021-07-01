@@ -43,6 +43,41 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'Store-Keeper' => [
+            
+            \App\Http\Middleware\StoreKeeper::class,
+        ],
+
+ 'Section-Officer' => [
+            
+            \App\Http\Middleware\SectionOfficer::class,
+        ],
+
+
+ 'Store-Officer' => [
+            
+            \App\Http\Middleware\StoreOfficer::class,
+        ],
+
+'GeM-Consignee' => [
+            
+            \App\Http\Middleware\GeMConsignee::class,
+        ],
+
+'SAS' => [
+            
+            \App\Http\Middleware\SAS::class,
+        ],
+
+
+
+
+
+
+        
+
+
     ];
 
     /**

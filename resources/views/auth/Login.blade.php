@@ -55,6 +55,10 @@
                     <div class="text-center pt-3 pb-3">
                         <span class="db"><img src="assets/images/logo.png" alt="logo" /></span>
                     </div>
+
+
+
+
                     <!-- Form -->
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -191,7 +195,7 @@
 
 
 
-
+    
 
     <!-- ============================================================== -->
     <!-- All Required js -->

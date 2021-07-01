@@ -30,6 +30,8 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
 Vue.component('change-password', require('./components/auth/passwordChange.vue').default);
 
+Vue.component('first-user', require('./components/auth/firstUser.vue').default);
+
 Vue.component('dashboard-form', require('./components/storekeeper/dashboardform.vue').default);
 
 Vue.component('add-new-user', require('./components/storekeeper/addnewuser.vue').default);

@@ -23,7 +23,8 @@
           <td scope="row">{{role.id}}</td>
           <td>{{ role.name }}</td>
 
-          <td v-if="role.status == 0">  <span class="rolestatus"> Active</span></td>
+          <td v-if="role.status == 0">  <span class="rolestatusIdle">Idle</span></td>
+          <td v-if="role.status == 1">  <span class="rolestatus">Active</span></td>
           <!-- 
           <td>
             <button
@@ -151,6 +152,12 @@ export default {
 
   color: green;
 }
+.rolestatusIdle{
+
+  color: rgb(204, 38, 8);
+}
+
+
 .adduserspan{
 
   font-weight: bold;

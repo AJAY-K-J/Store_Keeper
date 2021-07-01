@@ -462,17 +462,25 @@ Details_of_suppliers(event){
       for (let er in this.errors) {
         this.errors[er] = null;
       }
+
+     this.Details_of_supplier='';
+this.Details_of_item = "";
+
     },
 
     addarrivals() {
 
       this.isLoading=true;
+      
       axios
         .post("./api/addarrivals", this.arrivals)
         .then((response) => {
           if (response.data == "Success") {
             Swal.fire("Successfully Added!", "", "success");
+      
             this.clear_data();
+           
+
           }
 
           bus.$emit("arrivals-added");
