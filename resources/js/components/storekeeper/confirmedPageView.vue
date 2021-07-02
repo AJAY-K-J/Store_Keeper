@@ -198,6 +198,11 @@ export default {
       akku.lot.arrivals_page_no = confirmed.arrivals_page_no;
 
       akku.lot.remarks = confirmed.remarks;
+
+akku.lot.invoice_date = confirmed.invoice_date;
+akku.lot.stock_type = confirmed.stock_type;
+
+      
     });
   },
   data() {
@@ -216,6 +221,8 @@ export default {
         approvedquantity:'',
         price: "",
         invoice: "",
+        stock_type:'',
+        invoice_date:'',
         Dc_no: "",
         Dc_date: "",
         arrivals_page_no: "",

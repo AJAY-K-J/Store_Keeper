@@ -35,6 +35,8 @@ class ConfirmedItemsController extends Controller
                 'storearrivals.approvedquantity',
                 'storearrivals.price',
                 'storearrivals.invoice',
+                'storearrivals.invoice_date',
+                'storearrivals.stock_type',
                 'storearrivals.Dc_no',
                 'storearrivals.Dc_date',
                 'storearrivals.arrivals_page_no',
@@ -129,9 +131,20 @@ class ConfirmedItemsController extends Controller
         if ($request->Dc_no) {
             $store->Dc_no = $request->Dc_no;
         }
+
         if ($request->Dc_date) {
             $store->Dc_date = $request->Dc_date;
         }
+
+
+if ($request->stock_type) {
+            $store->stock_type = $request->stock_type;
+        }
+
+if ($request->invoice_date) {
+            $store->invoice_date = $request->invoice_date;
+        }
+
 
         if ($request->arrivals_page_no) {
             $store->arrivals_page_no = $request->arrivals_page_no;

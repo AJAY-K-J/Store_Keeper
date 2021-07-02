@@ -21,6 +21,10 @@ class CreateStocksTable extends Migration
             $table->string('section_id');
             $table->string('item_id');
 
+            $table->string('stock_type');
+            $table->date('invoice_date');
+            $table->string('gemstatus')->default(0);
+
             $table->float('quantity');
             $table->float('approvedquantity')->default(0);
             $table->float('balance_quantity')->default(0);

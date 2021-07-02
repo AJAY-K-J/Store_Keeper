@@ -86,6 +86,6 @@
 
 @section('main')
 
-<gem-dashboard> </gem-dashboard>
+<gem-arrival-book> </gem-arrival-book>
 
 @endsection

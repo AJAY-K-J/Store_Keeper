@@ -53,7 +53,9 @@
             <div class="auth-box bg-dark border-top border-secondary">
                 <div id="loginform">
                     <div class="text-center pt-3 pb-3">
-                        <span class="db"><img src="assets/images/logo.png" alt="logo" /></span>
+                        <h3 style="color: rgb(224, 111, 136)">Store Keeper</h3>
+                        <hr>
+                        {{-- <span class="db"><img src="assets/images/logo.png" alt="logo" /></span> --}}
                     </div>
 
 

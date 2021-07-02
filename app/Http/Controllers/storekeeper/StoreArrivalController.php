@@ -79,6 +79,9 @@ $section_officer=User::all()->where('role','=','section-in-charge');
         }
         if ($request->Dc_date) {
             $store->Dc_date = $request->Dc_date;
+        }else{
+            $store->Dc_date =$request->date;
+
         }
 
         if ($request->supplier) {
@@ -194,8 +197,10 @@ public function arrivalDetails(){
         'storearrivals.quantity',
          'storearrivals.approvedquantity',
           'storearrivals.rejectedquantity',
+          'storearrivals.stock_type',
         'storearrivals.price',
         'storearrivals.invoice',
+        'storearrivals.invoice_date',
         'storearrivals.Dc_no',
         'storearrivals.Dc_date',
         'storearrivals.arrivals_page_no',

@@ -5,36 +5,29 @@ namespace App\Http\Controllers\GEM_consignee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\storearrival;
+use App\Models\Stock;
 
+use App\Models\storearrival;
 class ConsigneeResponseController extends Controller
 {
   
     public function gem_confirm(Request $request){
 
 
-        $request->validate([
-
-
-            'approvedquantity' => 'required|integer|min:1'
-
-
-        ]);
+     
 
 
 
 
         if($request->id){
 
-            $record=storearrival::find($request->id);
+            $record=Stock::find($request->id);
             
             if($record){
                 $record->remarks=$request->remarks;
             
-                $record->approvedquantity=$request->approvedquantity;
-                $record->rejectedquantity=  $record->quantity - $request->approvedquantity;
             
-                $record->gem_officer=0;
+                $record->gemstatus=1;
             
             }
             

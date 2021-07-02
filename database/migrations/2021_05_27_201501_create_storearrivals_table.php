@@ -34,7 +34,7 @@ class CreateStorearrivalsTable extends Migration
             $table->string('invoice_date');
             $table->string('Dc_no')->default('0000');
 
-            $table->date('Dc_date')->default(null);
+            $table->date('Dc_date');
             $table->string('section');
 
             $table->string('arrivals_page_no')->default(0);

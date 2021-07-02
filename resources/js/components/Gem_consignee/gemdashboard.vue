@@ -18,14 +18,14 @@
           <th scope="col">Item</th>
           <th scope="col">Description of item</th>
           <th scope="col">Quantity</th>
-          <th scope="col">Invoice No</th>
+          <th scope="col">Invoice </th>
           <th scope="col">Remarks</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="gem in consignee_details" :key="gem.id">
-          <td>{{ gem.id }}</td>
+          <td>{{ gem.product_id}}</td>
 
           <td>{{ convert_date(gem.date) }}</td>
 

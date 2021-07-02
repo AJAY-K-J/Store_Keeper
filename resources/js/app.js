@@ -99,6 +99,8 @@ Vue.component('office-dashboard-table', require('./components/office/officedashb
 Vue.component('gem-dashboard', require('./components/Gem_consignee/gemdashboard.vue').default);
 Vue.component('view-consignee', require('./components/Gem_consignee/viewconsignee.vue').default);
 
+Vue.component('gem-arrival-book', require('./components/Gem_consignee/gemArrivalBook.vue').default);
+Vue.component('view-GemArrival', require('./components/Gem_consignee/gemArrivalBookView.vue').default);
 
 /**
 /**

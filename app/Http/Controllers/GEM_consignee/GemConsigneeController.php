@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class GemConsigneeController extends Controller
 {
-    
 
-    public function index(){
 
-return view('Gem_consignee.Gem_consignee');
+    public function index()
+    {
 
+        return view('Gem_consignee.Gem_consignee');
     }
 
 
@@ -26,50 +26,109 @@ return view('Gem_consignee.Gem_consignee');
 
 
 
+        $consignee_details = DB::table('stocks')
+            ->join('sections', 'sections.id', '=', 'stocks.section_id')
+            ->join('items', 'items.id', '=', 'stocks.item_id')
+            ->join('suppliers', 'suppliers.id', '=', 'stocks.product_supplier_id')
+            ->select([
+
+                'stocks.product_id',
+                'stocks.product_date',
+                'stocks.quantity',
+                'stocks.approvedquantity',
 
 
+                'stocks.price',
+                'stocks.invoice',
 
-    
-
-
-
-
-
-
-            $consignee_details = DB::table('storearrivals')
-                ->join('sections', 'sections.id', '=', 'storearrivals.section')
-                ->join('items', 'items.id', '=', 'storearrivals.item_name')
-                ->join('suppliers', 'suppliers.id', '=', 'storearrivals.supplier')
-                ->select([
-
-                    'storearrivals.id',
-                    'storearrivals.date',
-                    'storearrivals.supplier',
-                    'storearrivals.quantity',
-                    'storearrivals.price',
-                    'storearrivals.invoice',
-                    'storearrivals.Dc_no',
-                    'storearrivals.Dc_date',
-                    'storearrivals.arrivals_page_no',
-                    'storearrivals.sign_of_insp_officer',
-                    'storearrivals.store_officer',
-                    'storearrivals.remarks',
-                    'sections.name as section_name',
-                    'suppliers.name as supplier_name',
-                    'suppliers.gst',
-                    'suppliers.Details',
-                    'items.name as item_name',
-                    'items.category_name',
-                    'items.description_item',
+                'stocks.stock_type',
+                'stocks.invoice_date',
 
 
-                ])
-                ->where([ ['gem_officer', 1]])
-                ->get();
+                'stocks.Dc_no',
+                'stocks.Dc_date',
+                'stocks.arrivals_page_no',
 
-            return $consignee_details;
-   
+               
+                'stocks.remarks',
+                'sections.name as section_name',
+                'suppliers.name as supplier_name',
+                'suppliers.gst',
+                'suppliers.Details',
+                'items.name as item_name',
+                'items.category_name',
+                'items.description_item',
+
+
+            ])
+            ->where([['stock_type', 'Gem-consignee'],['gemstatus', 0]])
+            ->get();
+
+        return $consignee_details;
     }
+
+
+    public function GemArrivalBook(){
+
+        return view('Gem_consignee.gem_arrival_book');
+
+    }
+
+
+
+    public function  GemArrivalDetails(){
+
+        $GemArrival_details = DB::table('stocks')
+        ->join('sections', 'sections.id', '=', 'stocks.section_id')
+        ->join('items', 'items.id', '=', 'stocks.item_id')
+        ->join('suppliers', 'suppliers.id', '=', 'stocks.product_supplier_id')
+        ->select([
+
+            'stocks.product_id',
+            'stocks.product_date',
+            'stocks.quantity',
+            'stocks.approvedquantity',
+
+
+            'stocks.price',
+            'stocks.invoice',
+
+            'stocks.stock_type',
+            'stocks.invoice_date',
+ 'stocks.gemstatus',
+
+            'stocks.Dc_no',
+            'stocks.Dc_date',
+            'stocks.arrivals_page_no',
+
+           
+            'stocks.remarks',
+            'sections.name as section_name',
+            'suppliers.name as supplier_name',
+            'suppliers.gst',
+            'suppliers.Details',
+            'items.name as item_name',
+            'items.category_name',
+            'items.description_item',
+
+
+        ])
+        ->where([['stock_type', 'Gem-consignee']])
+        ->get();
+
+    return $GemArrival_details;
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 }

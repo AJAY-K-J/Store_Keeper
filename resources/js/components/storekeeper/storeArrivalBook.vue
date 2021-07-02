@@ -18,7 +18,7 @@
           <th scope="col">Item</th>
           <th scope="col">Description of item</th>
           <th scope="col">Quantity</th>
-          <th scope="col">Approved Quantity</th>
+          <th scope="col">Price</th>
           <th scope="col">Invoice No</th>
           <th scope="col">Remarks</th>
           <th scope="col">Actions</th>
@@ -35,7 +35,7 @@
           <td>{{ arrivals.description_item }}</td>
 
           <td>{{ arrivals.quantity }}</td>
-          <td>{{ arrivals.approvedquantity }}</td>
+          <td>{{ arrivals.price }}</td>
 
           <td>{{ arrivals.invoice }}</td>
 

@@ -8,22 +8,22 @@
         <div class="row">
           <div class="col-md-3">
             <h5>Date</h5>
-            <p>{{ convert_date(date) }}</p>
+            <p>{{convert_date(product_date)}}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Name of Supplier</h5>
-            <p>{{ Name_of_supplier }}</p>
+            <p>{{ NameOfSupplier }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Details of Supplier</h5>
-            <p>{{ Details_of_supplier }}</p>
+            <p>{{ DetailsOfSupplier }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>GST No</h5>
-            <p>{{ gst }}</p>
+            <p>{{ GstNo }}</p>
           </div>
           <hr />
         </div>
@@ -41,12 +41,12 @@
 
           <div class="col-md-3">
             <h5>Item Name</h5>
-            <p>{{ Name_of_item }}</p>
+            <p>{{ItemName}}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Details of Item</h5>
-            <p>{{ Descripction_of_item }}</p>
+            <p>{{ ItemDetails }}</p>
           </div>
 
           <hr />
@@ -55,7 +55,7 @@
         <div class="row">
           <div class="col-md-3">
             <h5>Item Category</h5>
-            <p>{{ category  }}</p>
+            <p>{{ ItemCategory }}</p>
           </div>
           <div class="col-md-3">
             <h5>Invoice</h5>
@@ -64,13 +64,13 @@
           </div>
           <div class="col-md-3">
             <h5>Invoice date</h5>
-            <p>{{ convert_date(invoice_date)  }}</p>
+            <p>{{ convert_date(InvoiceDate) }}</p>
           </div>
 
           <div class="col-md-3">
             <h5>DC No</h5>
 
-            <p>{{ DC_no }}</p>
+            <p>{{ DcNo }}</p>
           </div>
 
           <hr />
@@ -79,37 +79,31 @@
         <div class="row">
           <div class="col-md-3">
             <h5>DC Date</h5>
-            <p>{{ convert_date(DC_date) }}</p>
+            <p>{{convert_date(DcDate) }}</p>
           </div>
           <div class="col-md-3">
             <h5>Section</h5>
 
-            <p>{{ section }}</p>
+            <p>{{ Section }}</p>
           </div>
           <div class="col-md-3">
             <h5>Entry Type</h5>
-            <p>{{ entry }}</p>
+            <p>{{entry}}</p>
           </div>
 
           <div class="col-md-3">
             <h5>Arrival Page No</h5>
 
-            <p>{{ Arrival_page }}</p>
+            <p>{{ ArrivalPageNo}}</p>
           </div>
 
           <hr />
         </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <h5>Remarks</h5>
-            <p>{{ Remarks }}</p>
-          </div>
-
-          <hr />
-        </div>
+    
       </div>
     </div>
+   
   </div>
 </template>
 
@@ -117,49 +111,53 @@
 import moment from "moment";
 export default {
   created() {
-    var np = this;
-    bus.$on("arrivals-details", function (arrivals) {
-      np.date = arrivals.date;
-      np.Name_of_supplier = arrivals.supplier_name;
-      np.Details_of_supplier = arrivals.Details;
-      np.Descripction_of_item = arrivals.description_item;
-      np.Name_of_item = arrivals.item_name;
-      np.Price = arrivals.price;
-      np.Invoice = arrivals.invoice;
-      np.DC_no = arrivals.Dc_no;
-      np.DC_date = arrivals.Dc_date;
-      np.Quantity = arrivals.quantity;
-
-      np.Remarks = arrivals.remarks;
-
-      np.gst = arrivals.gst;
-      np.section = arrivals.section_name;
-      np.entry = arrivals.stock_type;
-      np.invoice_date = arrivals.invoice_date;
-      np.category = arrivals.category_name;
-      np.Arrival_page = arrivals.arrivals_page_no;
+    var vm = this;
+    bus.$on("GemArrival-details", function (GemArrival) {
+      vm.id = GemArrival.product_id;
+       vm.product_date = GemArrival.product_date;
+      vm.NameOfSupplier = GemArrival.supplier_name;
+      vm.DetailsOfSupplier = GemArrival.Details;
+      vm.GstNo = GemArrival.gst;
+      vm.Quantity = GemArrival.quantity;
+      vm.Price = GemArrival.price;
+      vm.ItemName = GemArrival.item_name;
+      vm.ItemDetails = GemArrival.description_item;
+      vm.ItemCategory = GemArrival.category_name;
+      vm.Invoice = GemArrival.invoice;
+      vm.InvoiceDate = GemArrival.invoice_date;
+      vm.DcNo = GemArrival.Dc_no;
+      vm.DcDate = GemArrival.Dc_date;
+      vm.Section = GemArrival.section_name;
+      vm.ArrivalPageNo = GemArrival.arrivals_page_no;
+      vm.remarks = GemArrival.remarks;
+vm.entry= GemArrival.stock_type;
+      
     });
   },
   data() {
     return {
-      date: "",
-      Name_of_supplier: "",
-      Details_of_supplier: "",
-      Descripction_of_item: "",
-      Name_of_item: "",
-      Price: "",
-      Invoice: "",
-      DC_no: "",
-      DC_date: "",
+      id: "",
+      product_date:'',
+      NameOfSupplier: "",
+      DetailsOfSupplier: "",
+      GstNo: "",
       Quantity: "",
-      Remarks: "",
+      Price: "",
+      ItemName: "",
+      ItemDetails: "",
+      ItemCategory: "",
+      Invoice: "",
+      InvoiceDate: "",
+      DcNo: "",
+      DcDate: "",
+      Section: "",
+      SectionApproved: "",
+      StoreManagerApproved: "",
+      ArrivalPageNo: "",
+      remarks: "",
+      entry:'',
 
-      gst: "",
-      section: "",
-      entry: "",
-      invoice_date: "",
-      category: "",
-      Arrival_page: "",
+      errors: {},
     };
   },
 
@@ -167,6 +165,8 @@ export default {
     convert_date(date) {
       return moment(date).format("DD-MM-YYYY");
     },
+
+
   },
 };
 </script>

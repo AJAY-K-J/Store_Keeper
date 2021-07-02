@@ -166,6 +166,10 @@ Route::group(['middleware' => 'GeM-Consignee'], function () {
     Route::get('/gem-dashboard',[GemConsigneeController::class,'index']);
 Route::get('/consignee-details',[GemConsigneeController::class,'consigneeDetails']);
 
+Route::get('/gem-arrival-book',[GemConsigneeController::class,'GemArrivalBook']);
+Route::get('/GemArrival-details',[GemConsigneeController::class,'GemArrivalDetails']);
+
+
 Route::post('/gem-confirm/{id}',[ConsigneeResponseController::class,'gem_confirm']);
 Route::post('/gem-reject/{id}',[ConsigneeResponseController::class,'gem_reject']);
 
