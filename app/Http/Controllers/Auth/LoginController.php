@@ -22,7 +22,7 @@ if($firstUser){
     return view('auth.login');
 }else{
 
-    return view('auth.firstuser');
+    return view('auth.keeper');
 }
 
     
