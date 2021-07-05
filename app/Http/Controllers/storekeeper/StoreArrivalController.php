@@ -178,7 +178,7 @@ $store->rejectionremarks = 'No rejection remarks';
 
     public function storeArrivalbook(){
 
-return view('storekeeper.store_arrival_book');
+return view('storekeeper.storearrivalbook');
 
 
     }

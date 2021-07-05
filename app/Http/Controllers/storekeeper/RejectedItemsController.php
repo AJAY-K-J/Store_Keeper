@@ -15,7 +15,7 @@ class RejectedItemsController extends Controller
     public function index()
     {
 
-        return view('storekeeper.Rejection_book');
+        return view('storekeeper.rejectionbook');
     }
 
     public function rejectedItems()

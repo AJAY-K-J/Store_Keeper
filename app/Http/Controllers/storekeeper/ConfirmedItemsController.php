@@ -14,7 +14,7 @@ class ConfirmedItemsController extends Controller
     {
 
 
-        return view('storekeeper.confirmed_items');
+        return view('storekeeper.confirmeditems');
     }
 
     public function confirmedItems()

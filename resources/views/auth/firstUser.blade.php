@@ -1,4 +1,4 @@
-@extends('layouts.userMain')
+@extends('layouts.usermain')
 
 
 

@@ -14,7 +14,7 @@ class GoodsPageController extends Controller
     public function index()
     {
 
-        return view('storekeeper.GIR_book');
+        return view('storekeeper.girbook');
     }
     public function goodslist()
     {

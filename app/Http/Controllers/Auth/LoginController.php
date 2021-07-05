@@ -22,7 +22,7 @@ if($firstUser){
     return view('auth.login');
 }else{
 
-    return view('auth.firstUser');
+    return view('auth.firstuser');
 }
 
     
@@ -76,6 +76,9 @@ if($firstUser){
 
         return redirect('login')->with('error', 'Oppes! You have entered invalid credentials');
     }
+
+
+    
 
     public function logout() {
       Auth::logout();

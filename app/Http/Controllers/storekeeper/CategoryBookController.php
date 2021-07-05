@@ -13,12 +13,12 @@ class CategoryBookController extends Controller
 
     public function dsrindex(){
 
-        return view('storekeeper.DSR_book');
+        return view('storekeeper.dsrbook');
     }
 
     public function kardexindex(){
 
-        return view('storekeeper.kardex_book');
+        return view('storekeeper.kardexbook');
     }
 
 

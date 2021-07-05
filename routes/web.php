@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use Illuminate\Support\Facades\Auth;
+ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -72,7 +72,7 @@ Route::get('/', function () {
 // #############################################################################
 // Store-Keeper group
 
-Route::group(['middleware' => 'Store-Keeper'], function () {
+Route::group(['middleware' => ['Store-Keeper','prevent-back-history']], function () {
 
     Route::get('/storedashboard',[StoreArrivalController::class,'index']);
 Route::get('/storeArrivalbook',[StoreArrivalController::class,'storeArrivalbook']);
@@ -183,7 +183,9 @@ Route::group(['middleware' => 'SAS'], function () {
 
 
 
-//Auth::routes();
+
+
+
 
 
 
